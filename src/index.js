@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 export const MailTo = ({ className, id, children }) => {
-  const classes = { className };
+  const classes = [className];
   classes.push("wmk-link");
   classes.push("wmk-link-mailto");
   return (
