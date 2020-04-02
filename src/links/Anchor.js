@@ -20,13 +20,13 @@ const Anchor = ({ to, id, className, target, children }) => {
 
 export default Anchor;
 
-ExternalLink.propTypes = {
+Anchor.propTypes = {
   children: PropTypes.node.isRequired,
   to: PropTypes.string.isRequired,
   target: PropTypes.string
 };
 
-ExternalLink.defaultProps = {
+Anchor.defaultProps = {
   target: "_self",
   id: "",
   className: ""
