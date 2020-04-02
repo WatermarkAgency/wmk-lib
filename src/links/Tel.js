@@ -2,12 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const Tel = ({ className, id, children }) => {
-  const classes = [className];
-  classes.push("wmk-link");
+  const classes = ["wmk-link"];
   classes.push("wmk-link-tel");
+  classes.push(className);
   return (
     <a
-      className={className}
+      className={classes.join(" ")}
       id={id}
       href={"tel:" + children.replace(/\D/g, "")}
     >

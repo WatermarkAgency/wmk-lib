@@ -2,14 +2,14 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const Anchor = ({ to, id, className, target, children }) => {
-  const classes = [className];
-  classes.push("wmk-link");
+  const classes = ["wmk-link"];
   classes.push("wmk-link-anchor");
+  classes.push(className);
   return (
     <a
       href={to}
       id={id}
-      className={props.className}
+      className={classes.join(" ")}
       target={target}
       rel={target === "_blank" ? "noopener noreferrer" : false}
     >
