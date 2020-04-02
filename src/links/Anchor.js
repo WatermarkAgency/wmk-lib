@@ -9,7 +9,7 @@ const Anchor = ({ to, id, className, target, children }) => {
     <a
       href={to}
       id={id}
-      className={classes.join(" ")}
+      className={classes.join(" ").trim()}
       target={target}
       rel={target === "_blank" ? "noopener noreferrer" : false}
     >

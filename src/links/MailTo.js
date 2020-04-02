@@ -6,7 +6,7 @@ const MailTo = ({ className, id, children }) => {
   classes.push("wmk-link-mailto");
   classes.push(className);
   return (
-    <a className={classes.join(" ")} id={id} href={"mailto:" + children}>
+    <a className={classes.join(" ").trim()} id={id} href={"mailto:" + children}>
       {children}
     </a>
   );

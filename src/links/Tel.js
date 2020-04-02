@@ -7,7 +7,7 @@ const Tel = ({ className, id, children }) => {
   classes.push(className);
   return (
     <a
-      className={classes.join(" ")}
+      className={classes.join(" ").trim()}
       id={id}
       href={"tel:" + children.replace(/\D/g, "")}
     >
