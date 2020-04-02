@@ -1,23 +1,8 @@
 import React from "react";
-import PropTypes from "prop-types";
+import MailToComp from './links/MailTo'
 
-export const MailTo = ({ className, id, children }) => {
-  const classes = [className];
-  classes.push("wmk-link");
-  classes.push("wmk-link-mailto");
-  return (
-    <a className={classes.join(" ")} id={id} href={"mailto:" + children}>
-      {children}
-    </a>
-  );
-};
+export const MailTo = MailToComp
 
-MailTo.propTypes = {
-  id: PropTypes.string,
-  className: PropTypes.string
-};
-
-MailTo.defaultTypes = {
-  id: "",
-  className: ""
-};
+export default () => {
+  <h1>WMK Components Library</h1>
+}
