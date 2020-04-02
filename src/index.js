@@ -14,7 +14,7 @@ export const MailTo = ({ className, id, children }) => {
 
 MailTo.propTypes = {
   id: PropTypes.string,
-  className: propTypes.string
+  className: PropTypes.string
 };
 
 MailTo.defaultTypes = {
