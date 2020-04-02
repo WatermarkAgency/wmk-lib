@@ -16,7 +16,8 @@ export default MailTo;
 
 MailTo.propTypes = {
   id: PropTypes.string,
-  className: PropTypes.string
+  className: PropTypes.string,
+  children: PropTypes.node.isRequired,
 };
 
 MailTo.defaultTypes = {

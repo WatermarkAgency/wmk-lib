@@ -20,7 +20,8 @@ export default Tel;
 
 Tel.propTypes = {
   classes: PropTypes.string,
-  id: PropTypes.string
+  id: PropTypes.string,
+  children: PropTypes.node.isRequired,
 };
 
 Tel.defaultTypes = {
