@@ -1,7 +1,7 @@
 import React from "react";
-import MailToComp from './links/MailTo'
+import LinkMailTo from './links/MailTo'
 
-export const MailTo = MailToComp
+export const MailTo = LinkMailTo
 
 export default () => {
   <h1>WMK Components Library</h1>
