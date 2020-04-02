@@ -12,7 +12,7 @@ const MailTo = ({ className, id, children }) => {
   );
 };
 
-export const MailTo;
+export default MailTo;
 
 MailTo.propTypes = {
   id: PropTypes.string,
