@@ -7,7 +7,7 @@ const Anchor = ({ to, id, className, target, children }) => {
     <a
       href={to}
       id={id}
-      className={wmkClass('tel','anchor',className)}
+      className={wmkClass('anchor','link',className)}
       target={target}
       rel={target === "_blank" ? "noopener noreferrer" : false}
     >
