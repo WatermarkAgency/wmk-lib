@@ -14,12 +14,11 @@ const CtflLogo = ({
   to,
   alt
 }) => {
-  const mime = contentType.split("/")[1];
   const isFixed = fixed && !fixed.notAProp ? fixed : false
   const isFluid = fluid && !fluid.notAProp ? fluid : false
   let JSX = null;
   switch (true) {
-    case mime === "svg":
+    case contentType.find('svg') !== -1:
       JSX = ({ src, alt }) => (
         <img
           className={wmkClass("logo", "ctfl", className)}
