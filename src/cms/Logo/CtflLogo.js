@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "gatsby";
-import Img from "gatsby-img";
+import Img from "gatsby-image";
 import { wmkClass } from "wmk-lib";
 
 const CtflLogo = ({
@@ -15,8 +15,8 @@ const CtflLogo = ({
   alt
 }) => {
   const mime = contentType.split("/")[1];
-  const isfixed = fixed && !fixed.notAProp ? fixed : false
-  const isfluid = fluid && !fluid.notAProp ? fluid : false
+  const isFixed = fixed && !fixed.notAProp ? fixed : false
+  const isFluid = fluid && !fluid.notAProp ? fluid : false
   let JSX = null;
   switch (true) {
     case mime === "svg":
@@ -54,7 +54,7 @@ const CtflLogo = ({
   }
   return (
     <Link to={to}>
-      <JSX src={url} alt={alt} fixed={isfixed} fluid={isFluid} />
+      <JSX src={url} alt={alt} fixed={isFixed} fluid={isFluid} />
     </Link>
   );
 };
