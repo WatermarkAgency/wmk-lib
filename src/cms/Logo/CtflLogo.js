@@ -18,9 +18,10 @@ const CtflLogo = ({
   const isFixed = fixed && !fixed.notAProp ? fixed : false;
   const isFluid = fluid && !fluid.notAProp ? fluid : false;
   let JSX = null;
+  console.log(isFixed,isFluidß)
   switch (true) {
     case contentType.indexOf("svg") !== -1:
-      JSX = ({ src, alt }) => (
+      JSX = ({ src, alt, className, id }) => (
         <img
           className={wmkClass("logo", "ctfl", className)}
           id={id}
@@ -29,8 +30,8 @@ const CtflLogo = ({
         />
       );
       break;
-    case fixed:
-      JSX = ({ fixed, alt }) => (
+    case isFixed:
+      JSX = ({ fixed, alt, id, className }) => (
         <Img
           className={wmkClass("logo", "ctfl", className)}
           id={id}
@@ -39,8 +40,8 @@ const CtflLogo = ({
         />
       );
       break;
-    case fluid:
-      JSX = ({ fluid, alt }) => (
+    case isFluid:
+      JSX = ({ fluid, alt, id, className }) => (
         <Img
           className={wmkClass("logo", "ctfl", className)}
           id={id}
@@ -54,11 +55,25 @@ const CtflLogo = ({
   }
   return target === "internal" ? (
     <Internal to={to}>
-      <JSX src={url} alt={alt} fixed={isFixed} fluid={isFluid} />
+      <JSX
+        src={url}
+        alt={alt}
+        fixed={isFixed}
+        fluid={isFluid}
+        className={className}
+        id={id}
+      />
     </Internal>
   ) : (
     <External to={to} target={target}>
-      <JSX src={url} alt={alt} fixed={isFixed} fluid={isFluid} />
+      <JSX
+        src={url}
+        alt={alt}
+        fixed={isFixed}
+        fluid={isFluid}
+        className={className}
+        id={id}
+      />
     </External>
   );
 };
