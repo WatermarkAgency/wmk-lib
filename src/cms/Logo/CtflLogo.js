@@ -18,7 +18,7 @@ const CtflLogo = ({
   const isFluid = fluid && !fluid.notAProp ? fluid : false
   let JSX = null;
   switch (true) {
-    case contentType.find('svg') !== -1:
+    case contentType.indexOf('svg') !== -1:
       JSX = ({ src, alt }) => (
         <img
           className={wmkClass("logo", "ctfl", className)}
