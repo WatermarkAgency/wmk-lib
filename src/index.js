@@ -2,6 +2,7 @@ import React from "react";
 import LinkMailTo from './links/MailTo'
 import LinkTel from './links/Tel'
 import LinkAnchor from './links/Anchor'
+import LinkSocialMediaIcons from './links/SocialMediaIcons/SocialMediaIcons'
 
 import LayoutFlexSpacer from './layout/FlexSpacer'
 import LayoutMainLayout from './layout/MainLayout'
@@ -18,6 +19,7 @@ export const FlexSpacer = LayoutFlexSpacer
 export const MailTo = LinkMailTo
 export const Tel = LinkTel
 export const Anchor = LinkAnchor
+export const SocialMediaIcons = LinkSocialMediaIcons
 
 /* Media Components */
 export const Video = MediaVideo
