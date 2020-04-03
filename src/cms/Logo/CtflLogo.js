@@ -16,7 +16,7 @@ const CtflLogo = ({
 }) => {
   const mime = contentType.split("/")[1];
   const isfixed = fixed && !fixed.notAProp ? fixed : false
-  const isfixed = fluid && !fluid.notAProp ? fluid : false
+  const isfluid = fluid && !fluid.notAProp ? fluid : false
   let JSX = null;
   switch (true) {
     case mime === "svg":
