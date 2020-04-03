@@ -52,22 +52,26 @@ const CtflLogo = ({
     default:
       JSX = () => <div>Contentful Image Error</div>;
   }
-  return target === 'internal' ? <Internal /> : <External />;
+  return target === "internal" ? (
+    <Internal to={to}>
+      <JSX src={url} alt={alt} fixed={isFixed} fluid={isFluid} />
+    </Internal>
+  ) : (
+    <External to={to} target={target}>
+      <JSX src={url} alt={alt} fixed={isFixed} fluid={isFluid} />
+    </External>
+  );
 };
 
 export default CtflLogo;
 
-const Internal = () => (
-    <Link to={to}>
-      <JSX src={url} alt={alt} fixed={isFixed} fluid={isFluid} />
-    </Link>
-  );
+const Internal = ({ to, children }) => <Link to={to}>{children}</Link>;
 
-const External = () => (
-    <Anchor to={to} target={target}>
-      <JSX src={url} alt={alt} fixed={isFixed} fluid={isFluid} />
-    </Anchor>
-  );
+const External = ({ to, target, children }) => (
+  <Anchor to={to} target={target}>
+    {children}
+  </Anchor>
+);
 
 CtflLogo.propTypes = {
   fluid: PropTypes.object,
