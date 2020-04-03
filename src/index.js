@@ -8,6 +8,8 @@ import LayoutMainLayout from './layout/MainLayout'
 
 import MediaVideo from './media/Video'
 
+import ContentfulLogo from './cms/Logo/CtflLogo'
+
 /* Layout Components */
 export const MainLayout = LayoutMainLayout
 export const FlexSpacer = LayoutFlexSpacer
@@ -19,6 +21,8 @@ export const Anchor = LinkAnchor
 
 /* Media Components */
 export const Video = MediaVideo
+
+export const CtflLogo = ContentfulLogo
 
 export const wmkClass = (name, group, append = "", prefix = "wmk") => {
     const classes = [prefix+"-"+group,prefix+"-"+group+'-'+name,append];
