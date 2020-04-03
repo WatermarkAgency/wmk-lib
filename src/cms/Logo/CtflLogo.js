@@ -18,7 +18,7 @@ const CtflLogo = ({
   const isFixed = fixed && !fixed.notAProp ? fixed : false;
   const isFluid = fluid && !fluid.notAProp ? fluid : false;
   let JSX = null;
-  console.log(isFixed,isFluidß)
+  console.log(isFixed,isFluid)
   switch (true) {
     case contentType.indexOf("svg") !== -1:
       JSX = ({ src, alt, className, id }) => (
