@@ -9,11 +9,11 @@ const FlexWrap = styled.div`
     margin: auto;
   }
 `;
-const MainLayout = ({ children, Header, Footer }) => {
+const MainLayout = ({ children, Header, Footer, className }) => {
   return (
     <FlexWrap>
       <Header />
-      <main className={wmkClass("main", "layout")}>{children}</main>
+      <main className={wmkClass("main", "layout",className)}>{children}</main>
       <FlexSpacer />
       <Footer />
     </FlexWrap>

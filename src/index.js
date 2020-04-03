@@ -6,15 +6,19 @@ import LinkAnchor from './links/Anchor'
 import LayoutFlexSpacer from './layout/FlexSpacer'
 import LayoutMainLayout from './layout/MainLayout'
 
+import MediaVideo from './media/Video'
+
+/* Layout Components */
+export const MainLayout = LayoutMainLayout
+export const FlexSpacer = LayoutFlexSpacer
 
 /* Link Components */
 export const MailTo = LinkMailTo
 export const Tel = LinkTel
 export const Anchor = LinkAnchor
-export const MainLayout = LayoutMainLayout
 
-/* Layout Components */
-export const FlexSpacer = LayoutFlexSpacer
+/* Media Components */
+export const Video = MediaVideo
 
 export const wmkClass = (name, group, append = "", prefix = "wmk") => {
     const classes = [prefix+"-"+group,prefix+"-"+group+'-'+name,append];
@@ -22,4 +26,4 @@ export const wmkClass = (name, group, append = "", prefix = "wmk") => {
   };
   
 
-export default () => <h1><MailTo> Components Library</MailTo></h1>
+export default () => <h1>Components Library</h1>
