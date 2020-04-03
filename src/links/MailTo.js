@@ -1,12 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { wmkClass } from "wmk-lib";
 
 const MailTo = ({ className, id, children }) => {
-  const classes = ["wmk-link"];
-  classes.push("wmk-link-mailto");
-  classes.push(className);
   return (
-    <a className={classes.join(" ").trim()} id={id} href={"mailto:" + children}>
+    <a className={wmkClass('mailto','link',className)} id={id} href={"mailto:" + children}>
       {children}
     </a>
   );
