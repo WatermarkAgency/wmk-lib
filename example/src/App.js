@@ -1,10 +1,14 @@
-import React from 'react'
+import React from "react";
 
-import { ExampleComponent } from 'wmk-lib'
-import 'wmk-lib/dist/index.css'
+import { MainLayout, FlexSpacer } from "wmk-lib";
+import "wmk-lib/dist/index.css";
 
 const App = () => {
-  return <ExampleComponent text="Create React Library Example 😄" />
-}
+  return (
+    <MainLayout>
+      <FlexSpacer />
+    </MainLayout>
+  );
+};
 
-export default App
+export default App;

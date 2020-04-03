@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { wmkClass } from "wmk-lib/logic/logic";
+import { wmkClass } from "wmk-lib";
 
 const Tel = ({ className, id, children }) => {
   return (

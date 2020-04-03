@@ -1,15 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { wmkClass } from "wmk-lib";
 
 const Anchor = ({ to, id, className, target, children }) => {
-  const classes = ["wmk-link"];
-  classes.push("wmk-link-anchor");
-  classes.push(className);
   return (
     <a
       href={to}
       id={id}
-      className={classes.join(" ").trim()}
+      className={wmkClass('tel','anchor',className)}
       target={target}
       rel={target === "_blank" ? "noopener noreferrer" : false}
     >

@@ -1,26 +1,34 @@
 import React from "react";
 import PropTypes from "prop-types";
-import styled from 'styled-components'
+import styled from "styled-components";
+import FlexSpacer from "./FlexSpacer";
+import { wmkClass } from "wmk-lib";
 
 const FlexWrap = styled.div`
-.flex-spacer {
-  margin: auto;
-}
-`
-const Layout = ({ children }) => {
+  .flex-spacer {
+    margin: auto;
+  }
+`;
+const MainLayout = ({ children, Header, Footer }) => {
   return (
     <FlexWrap>
       <Header />
-      <main>{children}</main>
-      <div className="flex-spacer"/>
+      <main className={wmkClass("main", "layout")}>{children}</main>
+      <FlexSpacer />
       <Footer />
-      <Stripe />
     </FlexWrap>
   );
 };
 
-Layout.propTypes = {
-  children: PropTypes.node.isRequired
+MainLayout.propTypes = {
+  children: PropTypes.node.isRequired,
+  Header: PropTypes.func,
+  Footer: PropTypes.func
 };
 
-export default Layout;
+MainLayout.defaultProps = {
+  Header: () => <div>Pass Header JSX</div>,
+  Footer: () => <div>Pass Footer JSX</div>
+};
+
+export default MainLayout;
