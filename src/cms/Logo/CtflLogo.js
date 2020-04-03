@@ -18,7 +18,6 @@ const CtflLogo = ({
   const isFixed = fixed && !fixed.notAProp ? fixed : false;
   const isFluid = fluid && !fluid.notAProp ? fluid : false;
   let JSX = null;
-  console.log(isFixed,isFluid)
   switch (true) {
     case contentType.indexOf("svg") !== -1:
       JSX = ({ src, alt, className, id }) => (
@@ -30,7 +29,7 @@ const CtflLogo = ({
         />
       );
       break;
-    case isFixed:
+    case isFixed !== false:
       JSX = ({ fixed, alt, id, className }) => (
         <Img
           className={wmkClass("logo", "ctfl", className)}
@@ -40,7 +39,7 @@ const CtflLogo = ({
         />
       );
       break;
-    case isFluid:
+    case isFluid !== false:
       JSX = ({ fluid, alt, id, className }) => (
         <Img
           className={wmkClass("logo", "ctfl", className)}
