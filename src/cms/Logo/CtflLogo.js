@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "gatsby";
 import Img from "gatsby-image";
-import { wmkClass } from "wmk-lib";
+import { wmkClass, Anchor } from "wmk-lib";
 
 const CtflLogo = ({
   fluid,
@@ -12,13 +12,14 @@ const CtflLogo = ({
   id,
   className,
   to,
-  alt
+  alt,
+  target
 }) => {
-  const isFixed = fixed && !fixed.notAProp ? fixed : false
-  const isFluid = fluid && !fluid.notAProp ? fluid : false
+  const isFixed = fixed && !fixed.notAProp ? fixed : false;
+  const isFluid = fluid && !fluid.notAProp ? fluid : false;
   let JSX = null;
   switch (true) {
-    case contentType.indexOf('svg') !== -1:
+    case contentType.indexOf("svg") !== -1:
       JSX = ({ src, alt }) => (
         <img
           className={wmkClass("logo", "ctfl", className)}
@@ -51,14 +52,22 @@ const CtflLogo = ({
     default:
       JSX = () => <div>Contentful Image Error</div>;
   }
-  return (
+  return target === 'internal' ? <Internal /> : <External />;
+};
+
+export default CtflLogo;
+
+const Internal = () => (
     <Link to={to}>
       <JSX src={url} alt={alt} fixed={isFixed} fluid={isFluid} />
     </Link>
   );
-};
 
-export default CtflLogo;
+const External = () => (
+    <Anchor to={to} target={target}>
+      <JSX src={url} alt={alt} fixed={isFixed} fluid={isFluid} />
+    </Anchor>
+  );
 
 CtflLogo.propTypes = {
   fluid: PropTypes.object,
@@ -68,7 +77,8 @@ CtflLogo.propTypes = {
   url: PropTypes.string,
   id: PropTypes.string,
   className: PropTypes.string,
-  to: PropTypes.string
+  to: PropTypes.string,
+  target: PropTypes.string
 };
 
 CtflLogo.defaultProps = {
@@ -77,5 +87,6 @@ CtflLogo.defaultProps = {
   url: "",
   id: "",
   className: "",
-  to: "/"
+  to: "/",
+  target: "internal"
 };
