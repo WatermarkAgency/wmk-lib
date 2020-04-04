@@ -1,35 +1,40 @@
 import React from "react";
-import LinkMailTo from './links/MailTo'
-import LinkTel from './links/Tel'
-import LinkAnchor from './links/Anchor'
-import LinkSocialMediaIcons from './links/SocialMediaIcons/SocialMediaIcons'
+import LinkMailTo from "./links/MailTo";
+import LinkTel from "./links/Tel";
+import LinkAnchor from "./links/Anchor";
+import LinkSocialMediaIcons from "./links/SocialMediaIcons/SocialMediaIcons";
 
-import LayoutFlexSpacer from './layout/FlexSpacer'
-import LayoutMainLayout from './layout/MainLayout'
+import LayoutCopyright from "./layout/Copyright";
+import LayoutFlexSpacer from "./layout/FlexSpacer";
+import LayoutMainLayout from "./layout/MainLayout";
 
-import MediaVideo from './media/Video'
+import MediaVideo from "./media/Video";
 
-import ContentfulLogo from './cms/Logo/CtflLogo'
+import ContentfulLogo from "./cms/Logo/CtflLogo";
 
 /* Layout Components */
-export const MainLayout = LayoutMainLayout
-export const FlexSpacer = LayoutFlexSpacer
+export const MainLayout = LayoutMainLayout;
+export const FlexSpacer = LayoutFlexSpacer;
+export const Copyright = LayoutCopyright;
 
 /* Link Components */
-export const MailTo = LinkMailTo
-export const Tel = LinkTel
-export const Anchor = LinkAnchor
-export const SocialMediaIcons = LinkSocialMediaIcons
+export const MailTo = LinkMailTo;
+export const Tel = LinkTel;
+export const Anchor = LinkAnchor;
+export const SocialMediaIcons = LinkSocialMediaIcons;
 
 /* Media Components */
-export const Video = MediaVideo
+export const Video = MediaVideo;
 
-export const CtflLogo = ContentfulLogo
+export const CtflLogo = ContentfulLogo;
 
 export const wmkClass = (name, group, append = "", prefix = "wmk") => {
-    const classes = [prefix+"-"+group,prefix+"-"+group+'-'+name,append];
-    return classes.join(" ").trim();
-  };
-  
+  const classes = [
+    prefix + "-" + group,
+    prefix + "-" + group + "-" + name,
+    append
+  ];
+  return classes.join(" ").trim();
+};
 
-export default () => <h1>Components Library</h1>
+export default () => <h1>Components Library</h1>;
