@@ -7,56 +7,33 @@ import {
   FaLinkedinIn,
   FaInstagram,
   FaPinterestP,
+  FaYelp,
 } from "react-icons/fa";
 import SocialMediaIcon from "./SocialMediaIcon";
 
 const getPlatform = (platform, platforms) => {
   let socialPlatform = null;
   platforms.forEach((p) => {
-    if (platform.toLowerCase().indexOf(p) !== -1) {
+    if (platform.toLowerCase().indexOf(p.name) !== -1) {
       socialPlatform = p;
     }
   });
-  return socialPlatform;
+  return socialPlatform
 };
 
-const SocialMediaIcons = ({ icons, platforms, className }) => {
+const SocialMediaIcons = ({ query, platforms, className }) => {
   return (
     <>
-      {icons.map((icon) => {
+      {query.map((icon) => {
         const { title, url, target } = icon;
         const platform = getPlatform(title, platforms);
-        let JSX = null;
-        switch (platform) {
-          case "facebook":
-            JSX = FaFacebookF;
-            break;
-          case "twitter":
-            JSX = FaTwitter;
-            break;
-          case "youtube":
-            JSX = FaYoutube;
-            break;
-          case "linkedin":
-            JSX = FaLinkedinIn;
-            break;
-          case "instagram":
-            JSX = FaInstagram;
-            break;
-          case "pinterest":
-            JSX = FaPinterestP;
-            break;
-          default:
-            JSX = () => <div>Error: No Icon Import for {platform}</div>;
-        }
         return (
           <SocialMediaIcon
-            platform={getPlatform(title, platforms)}
+            platform={platform}
             url={url}
             target={target}
             className={className}
-            Icon={() => <JSX />}
-            key={platform + "-icon"}
+            key={platform.name + "-icon"}
           />
         );
       })}
@@ -67,18 +44,18 @@ const SocialMediaIcons = ({ icons, platforms, className }) => {
 export default SocialMediaIcons;
 
 SocialMediaIcons.propTypes = {
-  icons: PropTypes.array.isRequired,
+  query: PropTypes.array.isRequired,
   platforms: PropTypes.array,
 };
 
 SocialMediaIcons.defaultProps = {
   platforms: [
-    "facebook",
-    "twitter",
-    "linkedin",
-    "youtube",
-    "instagram",
-    "pinterest",
-    "yelp",
+    { name: "facebook", Icon: FaFacebookF },
+    { name: "twitter", Icon: FaTwitter },
+    { name: "linkedin", Icon: FaLinkedinIn },
+    { name: "youtube", Icon: FaYoutube },
+    { name: "instagram", Icon: FaInstagram },
+    { name: "pinterest", Icon: FaPinterestP },
+    { name: "yelp", Icon: FaYelp },
   ],
 };

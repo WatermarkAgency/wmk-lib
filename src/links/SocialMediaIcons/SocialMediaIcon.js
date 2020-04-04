@@ -2,17 +2,18 @@ import React from "react";
 import { Anchor, wmkClass } from "wmk-lib";
 import PropTypes from "prop-types";
 
-const SocialMediaIcon = ({ platform, url, target, className, Icon }) => {
+const SocialMediaIcon = ({ platform, url, target, className }) => {
+  const {Icon, name} = platform
   return (
     <Anchor
-      key={platform}
+      key={name}
       to={url}
       target={target}
-      className={wmkClass(platform, "social-icon", className)}
+      className={wmkClass(name, "social-icon", className)}
     >
       <Icon />
       <span className="sr-only sr-only-focusable">
-        {"Open " + platform + " page"}
+        {"Open " + name + " page"}
       </span>
     </Anchor>
   );
@@ -21,7 +22,7 @@ const SocialMediaIcon = ({ platform, url, target, className, Icon }) => {
 export default SocialMediaIcon;
 
 SocialMediaIcon.propTypes = {
-  platform: PropTypes.string.isRequired,
+  platform: PropTypes.object.isRequired,
   url: PropTypes.string.isRequired,
   target: PropTypes.string
 };
