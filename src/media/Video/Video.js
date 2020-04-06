@@ -4,7 +4,7 @@ import { Player, ControlBar } from "video-react";
 import Loading from "../../loader/Spinner/Spinner";
 import PropTypes from "prop-types";
 import { wmkClass } from "../../";
-import "./Video.scss";
+import "./Video.css";
 
 class Video extends React.Component {
   state = {
