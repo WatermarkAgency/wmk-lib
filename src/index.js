@@ -4,18 +4,20 @@ import LinkTel from "./links/Tel";
 import LinkAnchor from "./links/Anchor";
 import LinkSocialMediaIcons from "./links/SocialMediaIcons/SocialMediaIcons";
 
-import LayoutCopyright from "./layout/Copyright";
+import LayoutCopyright from "./layout/Footer/Copyright";
 import LayoutFlexSpacer from "./layout/FlexSpacer";
 import LayoutMainLayout from "./layout/MainLayout";
 
 import MediaVideo from "./media/Video";
 
 import ContentfulLogo from "./cms/Logo/CtflLogo";
+import Footer from './layout/Footer'
 
 /* Layout Components */
+export const Copyright = LayoutCopyright;
 export const MainLayout = LayoutMainLayout;
 export const FlexSpacer = LayoutFlexSpacer;
-export const Copyright = LayoutCopyright;
+
 
 /* Link Components */
 export const MailTo = LinkMailTo;

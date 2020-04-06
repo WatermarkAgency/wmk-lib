@@ -11,17 +11,16 @@ import {
 } from "react-icons/fa";
 import SocialMediaIcon from "./SocialMediaIcon";
 
-const getPlatform = (platform, platforms) => {
-  let socialPlatform = null;
-  platforms.forEach((p) => {
-    if (platform.toLowerCase().indexOf(p.name) !== -1) {
-      socialPlatform = p;
-    }
-  });
-  return socialPlatform
-};
-
 const SocialMediaIcons = ({ query, platforms, className }) => {
+  const getPlatform = (platform, platforms) => {
+    let socialPlatform = null;
+    platforms.forEach((p) => {
+      if (platform.toLowerCase().indexOf(p.name) !== -1) {
+        socialPlatform = p;
+      }
+    });
+    return socialPlatform
+  };
   return (
     <>
       {query.map((icon) => {
