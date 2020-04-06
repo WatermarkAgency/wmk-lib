@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "gatsby";
 import Img from "gatsby-image";
-import { wmkClass, Anchor } from "wmk-lib";
+import { wmkClass, WMKLink } from "wmk-lib";
 
 const CtflLogo = ({
   fluid,
@@ -53,7 +53,7 @@ const CtflLogo = ({
       JSX = () => <div>Contentful Image Error</div>;
   }
   return target === "internal" ? (
-    <Internal to={to}>
+    <WMKLink to={to}>
       <JSX
         src={url}
         alt={alt}
@@ -62,9 +62,9 @@ const CtflLogo = ({
         className={className}
         id={id}
       />
-    </Internal>
+    </WMKLink>
   ) : (
-    <External to={to} target={target}>
+    <WMKLink to={to} target={target}>
       <JSX
         src={url}
         alt={alt}
@@ -73,19 +73,11 @@ const CtflLogo = ({
         className={className}
         id={id}
       />
-    </External>
+    </WMKLink>
   );
 };
 
 export default CtflLogo;
-
-const Internal = ({ to, children }) => <Link to={to}>{children}</Link>;
-
-const External = ({ to, target, children }) => (
-  <Anchor to={to} target={target}>
-    {children}
-  </Anchor>
-);
 
 CtflLogo.propTypes = {
   fluid: PropTypes.object,
