@@ -3,6 +3,7 @@ import LinkMailTo from "./links/MailTo";
 import LinkTel from "./links/Tel";
 import LinkAnchor from "./links/Anchor";
 import LinkSocialMediaIcons from "./links/SocialMediaIcons/SocialMediaIcons";
+import LinkWMKLink from "./links/WMKLink"
 
 import LayoutCopyright from "./layout/Footer/Copyright";
 import LayoutFlexSpacer from "./layout/FlexSpacer";
@@ -26,6 +27,7 @@ export const MailTo = LinkMailTo;
 export const Tel = LinkTel;
 export const Anchor = LinkAnchor;
 export const SocialMediaIcons = LinkSocialMediaIcons;
+export const WMKLink = LinkWMKLink
 
 /* Media Components */
 export const Video = MediaVideo;
