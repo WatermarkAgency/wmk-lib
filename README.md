@@ -23,7 +23,7 @@ npm install --save wmk-lib
 #### Anchor
 
 ```jsx
-const Anchor = { to, id, className, target, children };
+const Anchor = ({ to, id, className, target, children })...
 <Anchor to={'http://link.com'}>Link Text</Anchor>
 ```
 
@@ -34,8 +34,8 @@ Creates an anchor link for external links.
 #### MailTo
 
 ```jsx
-const MailTo = { className, id, children };
-<MailTo>email@email.com</Mailto>
+const MailTo = ({ className, id, children })...
+<MailTo>email@email.com</MailTo>
 ```
 
 Creates an anchor link with mailto attribute for emails.
@@ -43,30 +43,64 @@ Creates an anchor link with mailto attribute for emails.
 #### Tel
 
 ```jsx
-const Tel = { className, id, children };
+const Tel = ({ className, id, children })...
 <Tel>(303)555-5555</Tel>
 ```
 
 Creates an anchor link with tel atrribute for phone numbers.
 Will strip special characters out of tel attr number.
 
+#### SocialMediaIcons - NOT WORKING
+
+```jsx
+const SocialMediaIcons = { query, platforms, className };
+const socials = graphql`
+{ 
+  socials {
+    title
+    url
+    target
+  }
+}
+`
+<SocialMediaIcons query={socials} />
+```
+
+Given an array of social media link objects, 
+will render social media icons.
+
 ### Layout
+
+#### Copyright
+```jsx
+const Copyright = ({children, className, id})...
+<Copyright>Company Name. Copyright text goes here.</Copyright>
+```
+
+Component renders copyright text with symbol and date.
 
 #### FlexSpacer
 ```jsx
-const FlexSpacer = ({ className, id })
+const FlexSpacer = ({ className, id })...
 <FlexSpacer />
 ```
 Component will fill vertical space in flex layouts.
 
 #### MainLayout
 ```jsx
-const MainLayout = ({ children, Header, Footer }) 
+const MainLayout = ({ children, Header, Footer })...
 <MainLayout><Content /></MainLayout>
 ```
-
 Puts content into main element, 
 inserts header and footer components.
+
+### Media
+
+#### Video - NOT WORKING
+```jsx
+<Video url={url} />
+```
+Component will load video player with Loader/Spinner.
 
 ## License
 
