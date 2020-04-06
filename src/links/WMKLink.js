@@ -11,6 +11,7 @@ const WMKLink = ({ children, to, target, className, id, mailto, tel }) => {
       break;
     case tel:
       JSX = ({children}) => <Tel>{children}</Tel>;
+      break;
     case target:
       JSX = ({ to, target, children }) => (
         <Anchor to={to} target={target}>
