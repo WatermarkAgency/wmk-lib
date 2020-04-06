@@ -1,9 +1,9 @@
 import React from "react";
-import "../../node_modules/video-react/dist/video-react.css";
+import "../../../node_modules/video-react/dist/video-react.css";
 import { Player, ControlBar } from "video-react";
 import Loading from "../../loader/Spinner/Spinner";
 import PropTypes from "prop-types";
-import { wmkClass } from "wmk-lib";
+import { wmkClass } from "../../";
 import "./Video.scss";
 
 class Video extends React.Component {

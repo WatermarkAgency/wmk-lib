@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "gatsby";
-import { Anchor, Tel, MailTo, wmkClass } from "wmk-lib";
+import { Anchor, Tel, MailTo, wmkClass } from "../";
 import PropTypes from "prop-types";
 
 const WMKLink = props => {

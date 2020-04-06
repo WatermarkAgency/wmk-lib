@@ -1,5 +1,5 @@
 import React from "react";
-import { wmkClass } from "wmk-lib";
+import { wmkClass } from "../../";
 import PropTypes from "prop-types";
 
 const DefaultWrapper = ({ children, path, slug }) => (

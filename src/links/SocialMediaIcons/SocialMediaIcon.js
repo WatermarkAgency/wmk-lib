@@ -1,5 +1,5 @@
 import React from "react";
-import { Anchor, wmkClass } from "wmk-lib";
+import { Anchor, wmkClass } from "../../";
 import PropTypes from "prop-types";
 
 const SocialMediaIcon = ({ platform, url, target, className }) => {
