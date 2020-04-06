@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { wmkClass } from "../";
+import { wmkClass } from 'wmk-lib';
 
 const Anchor = ({ to, id, className, target, children }) => {
   const rel =

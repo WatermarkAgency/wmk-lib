@@ -1,5 +1,5 @@
 import React from "react";
-import { wmkClass } from "../../";
+import { wmkClass } from 'wmk-lib';
 
 const Footer = ({ children, className, id }) => {
   return (

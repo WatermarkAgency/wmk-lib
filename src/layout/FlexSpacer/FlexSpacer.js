@@ -1,5 +1,5 @@
 import React from "react";
-import { wmkClass } from "../../";
+import { wmkClass } from 'wmk-lib';
 import PropTypes from 'prop-types'
 import "./FlexSpacer.css"
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import {wmkClass} from '../../'
+import {wmkClass} from 'wmk-lib'
 
 const Copyright = ({children, className, id}) => {
     const year = new Date().getFullYear();
