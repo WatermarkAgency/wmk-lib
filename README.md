@@ -50,6 +50,12 @@ const Tel = { className, id, children };
 Creates an anchor link with tel atrribute for phone numbers.
 Will strip special characters out of tel attr number.
 
+#### SocialMediaIcons
+
+```jsx
+```
+
+
 ### Layout
 
 #### FlexSpacer
@@ -64,6 +70,14 @@ Component will fill vertical space in flex layouts.
 const MainLayout = ({ children, Header, Footer }) 
 <MainLayout><Content /></MainLayout>
 ```
+
+### Media
+
+#### Video - NOT WORKING
+```jsx
+<Video url={url} />
+```
+Component will load video player with Loader/Spinner.
 
 Puts content into main element, 
 inserts header and footer components.
