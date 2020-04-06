@@ -3,12 +3,14 @@ import PropTypes from "prop-types";
 import { wmkClass, FlexSpacer } from 'wmk-lib';
 
 const MainLayout = ({ children, Header, Footer, className }) => {
+  const HeaderJSX = Header
+  const FooterJSX = Footer
   return (
     <>
-      <Header />
+      <HeaderJSX />
       <main className={wmkClass("main", "layout",className)}>{children}</main>
       <FlexSpacer />
-      <Footer />
+      <FooterJSX />
     </>
   );
 };
