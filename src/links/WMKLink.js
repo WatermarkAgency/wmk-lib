@@ -4,7 +4,7 @@ import { Anchor, Tel, MailTo, wmkClass } from "wmk-lib";
 import PropTypes from "prop-types";
 
 const WMKLink = props => {
-  const { children, to, target, className, id, mailto, tel } = props;
+  const { children, target, mailto, tel } = props;
   let JSX = null;
   switch (true) {
     case mailto:
@@ -45,11 +45,12 @@ WMKLink.defaultProps = {
   mailto: false,
   id: "",
   target: "internal",
-  className: ""
+  className: "",
+  to: '/'
 };
 
 WMKLink.propTypes = {
-  to: PropTypes.string.isRequired,
+  to: PropTypes.string,
   className: PropTypes.string,
   target: PropTypes.string,
   id: PropTypes.string,
