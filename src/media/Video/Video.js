@@ -1,31 +1,10 @@
 import React from "react";
 import "../../node_modules/video-react/dist/video-react.css";
 import { Player, ControlBar } from "video-react";
-import styled from "styled-components";
-import Loading from "../loader/Spinner/Spinner";
+import Loading from "../../loader/Spinner/Spinner";
 import PropTypes from "prop-types";
 import { wmkClass } from "wmk-lib";
-
-const PlayerWrap = styled(Player)`
-  .video-react .video-react-video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  .video-react.video-react-fluid {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
-  .video-react .video-react-big-play-button {
-    display: none;
-  }
-`;
+import "./Video.scss";
 
 class Video extends React.Component {
   state = {
@@ -51,7 +30,7 @@ class Video extends React.Component {
       <>
         {!this.state.ready || this.state.ready < 4 ? <Loading /> : null}
         <div id={id} className={wmkClass("video", "media", className)}>
-          <PlayerWrap
+          <Player
             ref={player => {
               this.player = player;
             }}
@@ -65,7 +44,7 @@ class Video extends React.Component {
           >
             <source src={url} />
             <ControlBar disableCompletely={true} />
-          </PlayerWrap>
+          </Player>
         </div>
       </>
     );

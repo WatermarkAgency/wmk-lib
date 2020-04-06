@@ -6,11 +6,11 @@ import LinkSocialMediaIcons from "./links/SocialMediaIcons/SocialMediaIcons";
 import LinkWMKLink from "./links/WMKLink"
 
 import LayoutCopyright from "./layout/Footer/Copyright";
-import LayoutFlexSpacer from "./layout/FlexSpacer";
+import LayoutFlexSpacer from "./layout/FlexSpacer/FlexSpacer";
 import LayoutFooter from './layout/Footer'
 import LayoutMainLayout from "./layout/MainLayout";
 
-import MediaVideo from "./media/Video";
+import MediaVideo from "./media/Video/Video";
 
 import ContentfulLogo from "./cms/Logo/CtflLogo";
 

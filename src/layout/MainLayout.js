@@ -1,22 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
-import styled from "styled-components";
-import FlexSpacer from "./FlexSpacer";
-import { wmkClass } from "wmk-lib";
+import { wmkClass, FlexSpacer } from "wmk-lib";
 
-const FlexWrap = styled.div`
-  .flex-spacer {
-    margin: auto;
-  }
-`;
 const MainLayout = ({ children, Header, Footer, className }) => {
   return (
-    <FlexWrap>
+    <>
       <Header />
       <main className={wmkClass("main", "layout",className)}>{children}</main>
       <FlexSpacer />
       <Footer />
-    </FlexWrap>
+    </>
   );
 };
 

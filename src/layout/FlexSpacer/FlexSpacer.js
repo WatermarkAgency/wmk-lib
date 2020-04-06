@@ -1,16 +1,10 @@
 import React from "react";
-import styled from "styled-components";
 import { wmkClass } from "wmk-lib";
 import PropTypes from 'prop-types'
-
-const SpacerWrap = styled.div`
-  .flex-spacer {
-    margin: auto;
-  }
-`;
+import "./FlexSpacer.scss"
 
 const FlexSpacer = ({ className, id }) => {
-  return <SpacerWrap className={wmkClass('flex-spacer','layout','flex-spacer'+" "+className)} id={id} />;
+  return <div className={wmkClass('flex-spacer','layout',className)} id={id} />;
 };
 
 export default FlexSpacer
