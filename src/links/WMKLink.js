@@ -1,28 +1,41 @@
 import React from "react";
 import { Link } from "gatsby";
-import { Anchor, Tel, MailTo } from "wmk-lib";
+import { Anchor, Tel, MailTo, wmkClass } from "wmk-lib";
 import PropTypes from "prop-types";
 
-const WMKLink = ({ children, to, target, className, id, mailto, tel }) => {
+const WMKLink = props => {
+  const { children, to, target, className, id, mailto, tel } = props;
   let JSX = null;
   switch (true) {
     case mailto:
-      JSX = ({children}) => <MailTo>{children}</MailTo>;
+      JSX = ({ children, className, id }) => (
+        <MailTo className={className} id={id}>
+          {children}
+        </MailTo>
+      );
       break;
     case tel:
-      JSX = ({children}) => <Tel>{children}</Tel>;
+      JSX = ({ children, className, id }) => (
+        <Tel className={className} id={id}>
+          {children}
+        </Tel>
+      );
       break;
-    case target:
-      JSX = ({ to, target, children }) => (
-        <Anchor to={to} target={target}>
+    case target && target !== "internal":
+      JSX = ({ to, target, children, className, id }) => (
+        <Anchor to={to} target={target} className={className} id={id}>
           {children}
         </Anchor>
       );
       break;
     default:
-      JSX = ({ to, children }) => <Link to={to}>{children}</Link>;
+      JSX = ({ to, children, className, id }) => (
+        <Link to={to} className={wmkClass("gatsby", "link", className)} id={id}>
+          {children}
+        </Link>
+      );
   }
-  return <JSX>{children}</JSX>;
+  return <JSX {...props}>{children}</JSX>;
 };
 
 export default WMKLink;
