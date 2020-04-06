@@ -9,7 +9,7 @@ const Anchor = ({ to, id, className, target, children }) => {
       id={id}
       className={wmkClass('anchor','link',className)}
       target={target}
-      rel={target === "_blank" ? "noopener noreferrer" : false}
+      rel={target === "_blank" ? "noopener noreferrer" : undefined}
     >
       {children}
     </a>
