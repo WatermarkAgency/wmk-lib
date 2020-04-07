@@ -1,27 +1,38 @@
 import React from "react";
-import {Row, Col} from 'react-bootstrap'
+import { Row, Col } from "react-bootstrap";
+import WMKLink from "../../links/WMKLink";
+import PropTypes from "prop-types";
 
-const MenuList = ({ header, menu }) => {
+// MenuItems.defaultProps = {
+//   header=
+// }
+
+const MenuItems = ({ Header, menus, Menu }) => {
   return (
     <Row className="flex-column">
-      <Col>
-        <FooterHeader>{title.split("Footer: ")[1]}</FooterHeader>
-      </Col>
-      {menuItems &&
-        menuItems.map(item => {
-          const { title, slug } = item;
-          const path =
-            item.__typename.search(/Page/) > 0
-              ? "/"
-              : Theme.paths.communities + "/";
+      <Header />
+      {menus &&
+        menus.map((item, i) => {
+          const { title, target, to } = item;
           return (
-            <Col key={slug}>
-              <Link to={path + slug}>{title}</Link>
-            </Col>
+            <Menu key={title + i} to={to} target={target}>
+              {title}
+            </Menu>
           );
         })}
     </Row>
   );
 };
 
-export default MenuList
+export default MenuItems;
+
+MenuItems.propTypes = {
+  Header: props => <Col>{props.children}</Col>,
+  Menu: props => (
+    <Col>
+      <WMKLink to={props.to} target={props.target}>
+        {props.children}
+      </WMKLink>
+    </Col>
+  )
+};
