@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { wmkClass } from "../index";
+import { wmkClass } from "../logic";
 
 const MailTo = ({ className, id, children }) => {
   return (
