@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { wmkClass } from 'wmk-lib';
+import { wmkClass } from '../index';
 import FlexSpacer from '../layout/FlexSpacer/FlexSpacer'
 
 const MainLayout = ({ children, Header, Footer, className }) => {

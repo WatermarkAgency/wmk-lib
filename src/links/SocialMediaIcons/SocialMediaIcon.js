@@ -1,5 +1,5 @@
 import React from "react";
-import { wmkClass } from 'wmk-lib';
+import { wmkClass } from '../../index';
 import Anchor from '../Anchor'
 import PropTypes from "prop-types";
 
