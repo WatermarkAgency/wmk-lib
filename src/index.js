@@ -12,6 +12,8 @@ import LayoutMainLayout from "./layout/MainLayout";
 
 import MediaVideo from "./media/Video/Video";
 
+import MenusMenuItems from './menus/MenuItems/MenuItems'
+
 import ContentfulLogo from "./cms/Logo/CtflLogo";
 
 
@@ -31,6 +33,9 @@ export const WMKLink = LinkWMKLink
 
 /* Media Components */
 export const Video = MediaVideo;
+
+/* Menus */
+export const MenuItems = MenusMenuItems
 
 export const CtflLogo = ContentfulLogo;
 
