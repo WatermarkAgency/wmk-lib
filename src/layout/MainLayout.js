@@ -6,12 +6,12 @@ const MainLayout = ({ children, Header, Footer, className }) => {
   const HeaderJSX = Header
   const FooterJSX = Footer
   return (
-    <>
+    <div className={wmkClass("wrap","layout")}>
       <HeaderJSX />
       <main className={wmkClass("main", "layout",className)}>{children}</main>
       <FlexSpacer />
       <FooterJSX />
-    </>
+    </div>
   );
 };
 

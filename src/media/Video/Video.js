@@ -27,7 +27,7 @@ class Video extends React.Component {
       !this.state.ready || this.state.ready < 4 ? "hidden" : "visible";
     const { id, className, toggle, url } = this.props;
     return (
-      <>
+      <div>
         {!this.state.ready || this.state.ready < 4 ? <Loading /> : null}
         <div id={id} className={wmkClass("video", "media", className)}>
           <Player
@@ -46,7 +46,7 @@ class Video extends React.Component {
             <ControlBar disableCompletely={true} />
           </Player>
         </div>
-      </>
+      </div>
     );
   }
 }

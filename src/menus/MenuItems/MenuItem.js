@@ -3,10 +3,10 @@ import { wmkClass } from 'wmk-lib';
 import PropTypes from "prop-types";
 
 const DefaultWrapper = ({ children, path, slug }) => (
-  <>
+  <React.Fragment>
     {children}
     {console.log("pass a Wrapper functional prop", path, slug)}
-  </>
+  </React.Fragment>
 );
 
 const MenuItem = ({ children, path, slug, Wrapper, className, id }) => {

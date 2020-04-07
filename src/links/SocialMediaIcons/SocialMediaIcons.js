@@ -22,7 +22,7 @@ const SocialMediaIcons = ({ query, platforms, className }) => {
     return socialPlatform
   };
   return (
-    <>
+    <React.Fragment>
       {query.map((icon) => {
         const { title, url, target } = icon;
         const platform = getPlatform(title, platforms);
@@ -36,7 +36,7 @@ const SocialMediaIcons = ({ query, platforms, className }) => {
           />
         );
       })}
-    </>
+    </React.Fragment>
   );
 };
 
