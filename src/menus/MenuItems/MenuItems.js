@@ -20,13 +20,14 @@ MenuItems.defaultProps = {
 MenuItems.propTypes = {
   Header: PropTypes.func,
   Menu: PropTypes.func,
-  menus: PropTypes.array.isRequired
+  menus: PropTypes.array.isRequired,
+  header: PropTypes.node
 };
 
-const MenuItems = ({ Header, menus, Menu }) => {
+const MenuItems = ({ Header, header, menus, Menu }) => {
   return (
     <Row className="flex-column">
-      <Header />
+      <Header>{header}</Header>}
       {menus &&
         menus.map((item, i) => {
           const { title, target, to } = item;
