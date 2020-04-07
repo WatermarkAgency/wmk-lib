@@ -3,7 +3,7 @@ import "../../../node_modules/video-react/dist/video-react.css";
 import { Player, ControlBar } from "video-react";
 import Loading from "../../loader/Spinner/Spinner";
 import PropTypes from "prop-types";
-import { wmkClass } from '../../index';
+import { wmkClass } from '../../logic';
 import "./Video.css";
 
 class Video extends React.Component {

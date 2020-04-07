@@ -34,13 +34,4 @@ export const Video = MediaVideo;
 
 export const CtflLogo = ContentfulLogo;
 
-export const wmkClass = (name, group, append = "", prefix = "wmk") => {
-  const classes = [
-    prefix + "-" + group,
-    prefix + "-" + group + "-" + name,
-    append
-  ];
-  return classes.join(" ").trim();
-};
-
 export default () => <h1>Components Library</h1>;

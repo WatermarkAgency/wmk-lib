@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "gatsby";
-import { wmkClass } from '../index';
+import { wmkClass } from '../logic';
 import Anchor from './Anchor'
 import Tel from './Tel'
 import MailTo from './MailTo'

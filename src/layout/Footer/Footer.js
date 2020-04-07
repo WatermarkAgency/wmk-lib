@@ -1,5 +1,5 @@
 import React from "react";
-import { wmkClass } from '../../index';
+import { wmkClass } from '../../logic';
 
 const Footer = ({ children, className, id }) => {
   return (
