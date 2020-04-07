@@ -1,5 +1,6 @@
 import React from "react";
-import { Anchor, wmkClass } from 'wmk-lib';
+import { wmkClass } from 'wmk-lib';
+import Anchor from '../Anchor'
 import PropTypes from "prop-types";
 
 const SocialMediaIcon = ({ platform, url, target, className }) => {
