@@ -3,9 +3,25 @@ import { Row, Col } from "react-bootstrap";
 import WMKLink from "../../links/WMKLink";
 import PropTypes from "prop-types";
 
-// MenuItems.defaultProps = {
-//   header=
-// }
+const DefaultHeader = ({ children }) => <Col>{children}</Col>;
+const DefaultMenu = ({ to, target, children }) => (
+  <Col>
+    <WMKLink to={to} target={target}>
+      {children}
+    </WMKLink>
+  </Col>
+);
+
+MenuItems.defaultProps = {
+  Header: DefaultHeader,
+  Menu: DefaultMenu
+};
+
+MenuItems.propTypes = {
+  Header: PropTypes.func,
+  Menu: PropTypes.func,
+  menus: PropTypes.array.isRequired
+};
 
 const MenuItems = ({ Header, menus, Menu }) => {
   return (
@@ -25,14 +41,3 @@ const MenuItems = ({ Header, menus, Menu }) => {
 };
 
 export default MenuItems;
-
-MenuItems.propTypes = {
-  Header: props => <Col>{props.children}</Col>,
-  Menu: props => (
-    <Col>
-      <WMKLink to={props.to} target={props.target}>
-        {props.children}
-      </WMKLink>
-    </Col>
-  )
-};
