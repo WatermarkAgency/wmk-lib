@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 const MenuItems = ({ Header, header, menus, Menu }) => {
   return (
     <Row className="flex-column">
-      <Header>{header}</Header>}
+      <Header>{header}</Header>
       {menus &&
         menus.map((item, i) => {
           const { title, target, to } = item;
