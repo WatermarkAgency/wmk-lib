@@ -11,6 +11,7 @@ import LayoutFooter from "./layout/Footer";
 import LayoutMainLayout from "./layout/MainLayout";
 import LayoutSticky from "./layout/Sticky/Sticky";
 import LayoutHeader from "./layout/Header/Header";
+import LayoutListItemColumns from './layout/Columns/ListItemColumns'
 
 import MediaVideo from "./media/Video/Video";
 
@@ -24,6 +25,7 @@ export const MainLayout = LayoutMainLayout;
 export const FlexSpacer = LayoutFlexSpacer;
 export const Footer = LayoutFooter;
 export const Header = LayoutHeader;
+export const ListItemColumns = LayoutListItemColumns;
 export const Sticky = LayoutSticky;
 
 /* Link Components */
