@@ -5,7 +5,7 @@ import ListItemColumn from "./ListItemColumn";
 import {wmkClass} from '../../logic'
 
 const ListItemColumns = ({ list, cols, JSX, className }) => {
-  const sortList = {...list};
+  const sortList = [...list];
   const total = sortList.length;
   const per = Math.floor(total / cols);
   const rem = total % cols;
