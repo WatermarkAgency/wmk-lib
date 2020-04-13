@@ -1,6 +1,5 @@
 import React from 'react'
 import {Row, Col} from 'react-bootstrap'
-import {wmkClass} from 'wmk-lib'
 import PropTypes from 'prop-types'
 
 const ListItemColumn = ({list, JSX}) => {

@@ -2,8 +2,9 @@ import React from "react";
 import { Row, Col } from "react-bootstrap";
 import PropTypes from "prop-types";
 import ListItemColumn from "./ListItemColumn";
+import {wmkClass} from '../../logic'
 
-const ListItemColumns = ({ list, cols, JSX }) => {
+const ListItemColumns = ({ list, cols, JSX, className }) => {
   const sortList = list;
   const total = sortList.length;
   const per = Math.floor(total / cols);
@@ -18,7 +19,7 @@ const ListItemColumns = ({ list, cols, JSX }) => {
     columns.push(column);
   }
   return columns && columns.length ? (
-    <Row>
+    <Row className={wmkClass('list-item-columns','layout',className)}>
       {columns.map((col, i) => {
         const randomString =
           Math.random()
@@ -48,10 +49,12 @@ export default ListItemColumns;
 ListItemColumns.propTypes = {
   list: PropTypes.array.isRequired,
   cols: PropTypes.number,
-  JSX: PropTypes.func
+  JSX: PropTypes.func,
+  className: PropTypes.string
 };
 
 ListItemColumns.defaultProps = {
   cols: 3,
-  JSX: ({ li }) => <Col>{console.log(li)} List Item Data</Col>
+  JSX: ({ li }) => <Col>{console.log(li)} List Item Data</Col>,
+  className: ""
 };
