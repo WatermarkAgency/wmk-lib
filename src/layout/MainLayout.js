@@ -7,7 +7,7 @@ const MainLayout = ({ children, Header, Footer, className }) => {
   const HeaderJSX = Header
   const FooterJSX = Footer
   return (
-    <div className={wmkClass("wrap","layout")}>
+    <div className={wmkClass("wrap","layout")} style={{minHeight: '100vh', display: 'flex', flexDirection: 'column'}}>
       <HeaderJSX />
       <main className={wmkClass("main", "layout",className)}>{children}</main>
       <FlexSpacer />
