@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Helmet from "react-helmet";
+import {Helmet} from "react-helmet";
 
 const SEO = ({ description, lang, title, path, slug, baseUrl, siteTitle }) => {
   const slugVar = !slug || slug === '/' ? "" : slug;
