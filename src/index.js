@@ -19,6 +19,8 @@ import MenusMenuItems from "./menus/MenuItems/MenuItems";
 
 import ContentfulLogo from "./cms/Logo/CtflLogo";
 
+import SEOMeta from './seo/SEOMeta'
+
 /* Layout Components */
 export const Copyright = LayoutCopyright;
 export const MainLayout = LayoutMainLayout;
@@ -41,6 +43,11 @@ export const Video = MediaVideo;
 /* Menus */
 export const MenuItems = MenusMenuItems;
 
+
+/* CMS Specific */
 export const CtflLogo = ContentfulLogo;
+
+/* SEO Components */
+export const Meta = SEOMeta
 
 export default () => <h1>Components Library</h1>;
