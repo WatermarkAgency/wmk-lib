@@ -3,7 +3,7 @@ import "../../../node_modules/video-react/dist/video-react.css";
 import { Player, ControlBar } from "video-react";
 import Loading from "../../loader/Spinner/Spinner";
 import PropTypes from "prop-types";
-import { wmkClass } from '../../logic';
+import { wmkClass } from "../../logic";
 import "./Video.css";
 
 class Video extends React.Component {
@@ -25,7 +25,7 @@ class Video extends React.Component {
   render() {
     const viz =
       !this.state.ready || this.state.ready < 4 ? "hidden" : "visible";
-    const { id, className, toggle, url } = this.props;
+    const { id, className, url, poster } = this.props;
     return (
       <div>
         {!this.state.ready || this.state.ready < 4 ? <Loading /> : null}
@@ -35,7 +35,7 @@ class Video extends React.Component {
               this.player = player;
             }}
             style={{ visibility: viz }}
-            //poster={this.props.video.poster.source_url}
+            poster={poster}
             preload="auto"
             muted={true}
             autoPlay={true}
@@ -56,12 +56,14 @@ export default Video;
 Video.propTypes = {
   toggle: PropTypes.bool,
   url: PropTypes.string,
-  id: PropTypes.string
+  id: PropTypes.string,
+  poster: PropTypes.string
 };
 
 Video.defaultProps = {
   id: "",
   toggle: true,
   url:
-    "https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/1080/Big_Buck_Bunny_1080_10s_5MB.mp4"
+    "https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/1080/Big_Buck_Bunny_1080_10s_5MB.mp4",
+  poster: "https://via.placeholder.com/1920x1080.jpg"
 };
