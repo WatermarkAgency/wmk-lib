@@ -1,5 +1,5 @@
 import React from "react";
-import "./dist/Spinner.css";
+import "wmk-lib/dist/Spinner.css";
 
 const Spinner = () => (
   <div

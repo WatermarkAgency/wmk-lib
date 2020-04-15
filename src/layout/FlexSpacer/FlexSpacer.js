@@ -1,7 +1,7 @@
 import React from "react";
 import { wmkClass } from '../../logic';
 import PropTypes from 'prop-types'
-import "./dist/FlexSpacer.css"
+import "wmk-lib/dist/FlexSpacer.css"
 
 const FlexSpacer = ({ className, id }) => {
   return <div className={wmkClass('flex-spacer','layout',className)} id={id} />;
