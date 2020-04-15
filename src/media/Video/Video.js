@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import "../../../node_modules/video-react/dist/video-react.css";
+//import "../../../node_modules/video-react/dist/video-react.css";
 import { Player, ControlBar } from "video-react";
 import Loading from "../../loader/Spinner/Spinner";
 import PropTypes from "prop-types";
