@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-//import "../../../node_modules/video-react/dist/video-react.css";
+import "../../../node_modules/video-react/dist/video-react.css";
 import { Player, ControlBar } from "video-react";
 import Loading from "../../loader/Spinner/Spinner";
 import PropTypes from "prop-types";
@@ -8,7 +8,7 @@ import "./Video.css";
 
 const Video = ({ id, className, url, poster, dimensions, Loader }) => {
   const [readyState, setReadyState] = useState(null);
-  const viz = !readyState || readyState < 4 ? "hidden" : "visible";
+  //const viz = !readyState || readyState < 4 ? "hidden" : "visible";
 
   const playerRef = useRef()
   useEffect(() => {
@@ -32,7 +32,7 @@ const Video = ({ id, className, url, poster, dimensions, Loader }) => {
       {!readyState || readyState < 4 ? <Loader /> : null}
         <Player
           ref={playerRef}
-          style={{ visibility: viz }}
+          //style={{ visibility: viz }}
           poster={poster}
           preload="auto"
           muted={true}
