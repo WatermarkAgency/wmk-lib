@@ -4,7 +4,7 @@ import { Player, ControlBar } from "video-react";
 import Loading from "../../loader/Spinner/Spinner";
 import PropTypes from "prop-types";
 import { wmkClass } from "../../logic";
-import "wmk-lib/dist/Video.css";
+import "./Video.css";
 
 const Video = ({ id, className, url, poster, dimensions, Loader }) => {
   const [readyState, setReadyState] = useState(null);
