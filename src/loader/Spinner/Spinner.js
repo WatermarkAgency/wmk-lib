@@ -1,5 +1,5 @@
 import React from "react";
-import "./Spinner.css";
+import "./dist/Spinner.css";
 
 const Spinner = () => (
   <div
