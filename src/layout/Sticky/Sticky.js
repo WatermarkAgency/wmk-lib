@@ -1,10 +1,18 @@
 import React, { useState, useRef, useEffect } from "react";
 import { wmkClass } from "../../logic";
 import PropTypes from "prop-types";
-import Header from '../Header/Header'
+import Header from "../Header/Header";
 import { useScrollPosition } from "@n8tb1t/use-scroll-position";
 
-const StickyHeader = ({ Alert, className, children, absolute, zIndex, width }) => {
+const StickyHeader = ({
+  Alert,
+  className,
+  children,
+  absolute,
+  style,
+  zIndex,
+  width
+}) => {
   const domPosition = absolute ? "absolute" : "relative";
   const [headerHeight, setHeaderHeight] = useState(0);
   const [scrollPos, setScrollPos] = useState(0);
@@ -24,8 +32,15 @@ const StickyHeader = ({ Alert, className, children, absolute, zIndex, width }) =
     setScrollPos(currPos.y * -1);
   });
   return (
-    <div className={wmkClass("sticky-header", "layout", className)}
-    style={{ position: scrollPos > headerHeight ? "fixed" : domPosition }}>
+    <div
+      className={wmkClass("sticky-header", "layout", className)}
+      style={{
+        ...style,
+        position: scrollPos > headerHeight ? "fixed" : domPosition,
+        zIndex,
+        width
+      }}
+    >
       {Alert}
       <Header ref={headerRef}>{children}</Header>
       {scrollPos > headerHeight && <div style={{ height: headerHeight }} />}
@@ -49,5 +64,5 @@ StickyHeader.defaultProps = {
   className: "",
   absolute: false,
   zIndex: 1000,
-  width: '100%'
+  width: "100%"
 };
