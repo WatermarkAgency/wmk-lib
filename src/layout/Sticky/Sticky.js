@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import Header from '../Header/Header'
 import { useScrollPosition } from "@n8tb1t/use-scroll-position";
 
-const StickyHeader = ({ Alert, className, children, absolute }) => {
+const StickyHeader = ({ Alert, className, children, absolute, zIndex, width }) => {
   const domPosition = absolute ? "absolute" : "relative";
   const [headerHeight, setHeaderHeight] = useState(0);
   const [scrollPos, setScrollPos] = useState(0);
@@ -39,11 +39,15 @@ StickyHeader.propTypes = {
   Alert: PropTypes.node,
   className: PropTypes.string,
   children: PropTypes.node.isRequired,
-  absolute: PropTypes.bool
+  absolute: PropTypes.bool,
+  zIndex: PropTypes.number,
+  width: PropTypes.string
 };
 
 StickyHeader.defaultProps = {
   Alert: <React.Fragment />,
   className: "",
-  absolute: false
+  absolute: false,
+  zIndex: 1000,
+  width: '100%'
 };
