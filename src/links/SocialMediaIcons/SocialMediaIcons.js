@@ -22,7 +22,7 @@ const SocialMediaIcons = ({ query, platforms, className, id }) => {
     });
     return socialPlatform
   };
-  const _className = wmkClass('socials','link',className)
+  const _className = wmkClass('icon','social',className)
   return (
     <React.Fragment>
       {query.map((icon) => {
