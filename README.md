@@ -39,6 +39,8 @@ const WMKLink = React.forwardRef(
 <WMKLink to={'/page'}>Link Text</WMKLink>
 <WMKLink to="http://site.com" target="blank">Link Text</WMKLink>
 ```
+*target* any target will trigger external link _except_ internal, \_internal, link and \_link, which will use Gatsby <Link>
+*to* can be left blank for *tel* and *mailto* if {children} is phone number / email.
 
 #### SocialMediaIcons - NOT WORKING
 
