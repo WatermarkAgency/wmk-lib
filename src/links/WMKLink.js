@@ -1,45 +1,35 @@
 import React from "react";
 import { Link } from "gatsby";
-import { wmkClass } from '../logic';
-import Anchor from './Anchor'
-import Tel from './Tel'
-import MailTo from './MailTo'
+import { wmkClass } from "../logic";
+import Anchor from "./Anchor";
 import PropTypes from "prop-types";
 
-const WMKLink = props => {
-  const { children, target, mailto, tel } = props;
-  let JSX = null;
-  switch (true) {
-    case mailto:
-      JSX = ({ children, className, id }) => (
-        <MailTo className={className} id={id}>
-          {children}
-        </MailTo>
-      );
-      break;
-    case tel:
-      JSX = ({ children, className, id }) => (
-        <Tel className={className} id={id}>
-          {children}
-        </Tel>
-      );
-      break;
-    case target && target !== "internal":
-      JSX = ({ to, target, children, className, id }) => (
-        <Anchor to={to} target={target} className={className} id={id}>
-          {children}
-        </Anchor>
-      );
-      break;
-    default:
-      JSX = ({ to, children, className, id }) => (
-        <Link to={to} className={wmkClass("gatsby", "link", className)} id={id}>
-          {children}
-        </Link>
-      );
+const WMKLink = React.forwardRef(
+  ({ id, children, target, mailto, tel, style, className, speed }, ref) => {
+    const _className = wmkClass("gatsby", "link", className);
+    const _target = target ? "_" + target.replace("_", "") : null;
+    return _target !== "_internal" && _target !== "_link" ? (
+      <Anchor
+        to={to}
+        mailto={mailto}
+        tel={tel}
+        target={target}
+        className={_className}
+        id={id}
+        ref={ref}
+        style={style}
+        speed={speed}
+        animate
+      >
+        {children}
+      </Anchor>
+    ) : (
+      <Link to={to} ref={ref} className={_className} id={id} style={style}>
+        {children}
+      </Link>
+    );
   }
-  return <JSX {...props}>{children}</JSX>;
-};
+);
 
 export default WMKLink;
 
@@ -49,7 +39,7 @@ WMKLink.defaultProps = {
   id: "",
   target: "internal",
   className: "",
-  to: '/'
+  to: "/"
 };
 
 WMKLink.propTypes = {
