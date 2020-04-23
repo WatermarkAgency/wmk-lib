@@ -8,9 +8,10 @@ const WMKLink = React.forwardRef(
   ({ id, children, target, mailto, tel, style, className, speed }, ref) => {
     const _className = wmkClass("gatsby", "link", className);
     const _target = target ? "_" + target.replace("_", "") : null;
+    const _to = mailto || tel ? (to !== "/" ? to : children) : to;
     return _target !== "_internal" && _target !== "_link" ? (
       <Anchor
-        to={to}
+        to={_to}
         mailto={mailto}
         tel={tel}
         target={target}

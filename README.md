@@ -31,24 +31,14 @@ Creates an anchor link for external links.
 *target* can be "\_blank" (new window) or "\_self".
 *to* is href
 
-#### MailTo
+#### WMKLink
 
 ```jsx
-const MailTo = ({ className, id, children })...
-<MailTo>email@email.com</MailTo>
+const WMKLink = React.forwardRef(
+  ({ id, children, target, mailto, tel, style, className, speed }, ref)...
+<WMKLink to={'/page'}>Link Text</WMKLink>
+<WMKLink to="http://site.com" target="blank">Link Text</WMKLink>
 ```
-
-Creates an anchor link with mailto attribute for emails.
-
-#### Tel
-
-```jsx
-const Tel = ({ className, id, children })...
-<Tel>(303)555-5555</Tel>
-```
-
-Creates an anchor link with tel atrribute for phone numbers.
-Will strip special characters out of tel attr number.
 
 #### SocialMediaIcons - NOT WORKING
 

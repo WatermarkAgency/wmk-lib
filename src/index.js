@@ -1,6 +1,4 @@
 import React from "react";
-import LinkMailTo from "./links/MailTo";
-import LinkTel from "./links/Tel";
 import LinkAnchor from "./links/Anchor";
 import LinkSocialMediaIcons from "./links/SocialMediaIcons/SocialMediaIcons";
 import LinkWMKLink from "./links/WMKLink";
@@ -31,8 +29,6 @@ export const ListItemColumns = LayoutListItemColumns;
 export const Sticky = LayoutSticky;
 
 /* Link Components */
-export const MailTo = LinkMailTo;
-export const Tel = LinkTel;
 export const Anchor = LinkAnchor;
 export const SocialMediaIcons = LinkSocialMediaIcons;
 export const WMKLink = LinkWMKLink;
