@@ -51,7 +51,7 @@ SocialMediaIcons.propTypes = {
   className: PropTypes.string,
   id: PropTypes.oneOfType([
     PropTypes.bool,
-    propTypes.string
+    PropTypes.string
   ])
 };
 
