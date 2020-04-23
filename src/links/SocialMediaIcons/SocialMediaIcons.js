@@ -12,7 +12,7 @@ import {
 import SocialMediaIcon from "./SocialMediaIcon";
 import {wmkClass} from '../../logic'
 
-const SocialMediaIcons = ({ query, platforms, className }) => {
+const SocialMediaIcons = ({ query, platforms, className, id }) => {
   const getPlatform = (platform, platforms) => {
     let socialPlatform = null;
     platforms.forEach((p) => {
@@ -35,6 +35,7 @@ const SocialMediaIcons = ({ query, platforms, className }) => {
             target={target}
             className={_className}
             key={platform.name + "-icon"}
+            id={id}
           />
         );
       })}
@@ -47,6 +48,11 @@ export default SocialMediaIcons;
 SocialMediaIcons.propTypes = {
   query: PropTypes.array.isRequired,
   platforms: PropTypes.array,
+  className: PropTypes.string,
+  id: PropTypes.oneOfType([
+    PropTypes.bool,
+    propTypes.string
+  ])
 };
 
 SocialMediaIcons.defaultProps = {
@@ -59,4 +65,6 @@ SocialMediaIcons.defaultProps = {
     { name: "pinterest", Icon: FaPinterestP },
     { name: "yelp", Icon: FaYelp },
   ],
+  id: false,
+  className: ''
 };
