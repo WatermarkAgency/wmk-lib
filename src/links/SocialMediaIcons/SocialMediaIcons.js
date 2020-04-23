@@ -10,6 +10,7 @@ import {
   FaYelp,
 } from "react-icons/fa";
 import SocialMediaIcon from "./SocialMediaIcon";
+import {wmkClass} from '../../logic'
 
 const SocialMediaIcons = ({ query, platforms, className }) => {
   const getPlatform = (platform, platforms) => {
@@ -21,6 +22,7 @@ const SocialMediaIcons = ({ query, platforms, className }) => {
     });
     return socialPlatform
   };
+  const _className = wmkClass('socials','link',className)
   return (
     <React.Fragment>
       {query.map((icon) => {
@@ -31,7 +33,7 @@ const SocialMediaIcons = ({ query, platforms, className }) => {
             platform={platform}
             url={url}
             target={target}
-            className={className}
+            className={_className}
             key={platform.name + "-icon"}
           />
         );
