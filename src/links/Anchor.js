@@ -14,12 +14,12 @@ const Anchor = React.forwardRef(
     const rel = _target === "_blank" ? "noopener noreferrer" : target;
     const prefix = tel ? "tel:" : mailto ? "mailto:" : "";
     const _to = tel ? to.replace(/\D/g, "") : to;
-    const _link = tel ? "tel" : mailto ? "mailto" : "link";
+    const _link = tel ? "tel" : mailto ? "mailto" : "anchor";
     return (
       <a
         href={prefix + _to.toLowerCase()}
         id={id}
-        className={wmkClass("anchor", _link, className)}
+        className={wmkClass(_link, "link", className)}
         target={_target}
         rel={rel}
         ref={ref}

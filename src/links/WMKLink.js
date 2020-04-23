@@ -40,8 +40,8 @@ export default WMKLink;
 WMKLink.defaultProps = {
   tel: false,
   mailto: false,
-  id: "",
-  target: "internal",
+  id: false,
+  target: false,
   className: "",
   to: "/"
 };
@@ -49,9 +49,15 @@ WMKLink.defaultProps = {
 WMKLink.propTypes = {
   to: PropTypes.string,
   className: PropTypes.string,
-  target: PropTypes.string,
-  id: PropTypes.string,
-  children: PropTypes.node,
+  target: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.string
+  ]),
+  id: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.string
+  ]),
+  children: PropTypes.node.isRequired,
   mailto: PropTypes.bool,
   tel: PropTypes.bool
 };
