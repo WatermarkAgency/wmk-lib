@@ -7,25 +7,25 @@ import {
   FaLinkedinIn,
   FaInstagram,
   FaPinterestP,
-  FaYelp,
+  FaYelp
 } from "react-icons/fa";
 import SocialMediaIcon from "./SocialMediaIcon";
-import {wmkClass} from '../../logic'
+import { wmkClass } from "../../logic";
 
-const SocialMediaIcons = ({ query, platforms, className, id }) => {
+const SocialMediaIcons = ({ query, platforms, className }) => {
   const getPlatform = (platform, platforms) => {
     let socialPlatform = null;
-    platforms.forEach((p) => {
+    platforms.forEach(p => {
       if (platform.toLowerCase().indexOf(p.name) !== -1) {
         socialPlatform = p;
       }
     });
-    return socialPlatform
+    return socialPlatform;
   };
-  const _className = wmkClass('icon','social',className)
+  const _className = wmkClass("icon", "social", className);
   return (
     <React.Fragment>
-      {query.map((icon) => {
+      {query.map(icon => {
         const { title, url, target } = icon;
         const platform = getPlatform(title, platforms);
         return (
@@ -35,7 +35,6 @@ const SocialMediaIcons = ({ query, platforms, className, id }) => {
             target={target}
             className={_className}
             key={platform.name + "-icon"}
-            id={id}
           />
         );
       })}
@@ -48,11 +47,7 @@ export default SocialMediaIcons;
 SocialMediaIcons.propTypes = {
   query: PropTypes.array.isRequired,
   platforms: PropTypes.array,
-  className: PropTypes.string,
-  id: PropTypes.oneOfType([
-    PropTypes.bool,
-    PropTypes.string
-  ])
+  className: PropTypes.string
 };
 
 SocialMediaIcons.defaultProps = {
@@ -63,8 +58,7 @@ SocialMediaIcons.defaultProps = {
     { name: "youtube", Icon: FaYoutube },
     { name: "instagram", Icon: FaInstagram },
     { name: "pinterest", Icon: FaPinterestP },
-    { name: "yelp", Icon: FaYelp },
+    { name: "yelp", Icon: FaYelp }
   ],
-  id: false,
-  className: ''
+  className: ""
 };
