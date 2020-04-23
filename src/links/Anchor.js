@@ -10,7 +10,7 @@ const Anchor = React.forwardRef(
     const _style = animate
       ? { ...style, transition: `all ${speed}s ease` }
       : style;
-    const _target = target ? "_" + target.replace(_, "") : null;
+    const _target = target ? "_" + target.replace("_", "") : null;
     const rel = _target === "_blank" ? "noopener noreferrer" : target;
     const prefix = tel ? "tel:" : mailto ? "mailto:" : "";
     return (
