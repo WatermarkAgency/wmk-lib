@@ -23,7 +23,7 @@ const WMKLink = React.forwardRef(
         ref={ref}
         style={style}
         speed={speed}
-        animate
+        animate={animate}
       >
         {children}
       </Anchor>
@@ -43,7 +43,8 @@ WMKLink.defaultProps = {
   id: false,
   target: false,
   className: "",
-  to: "/"
+  to: "/",
+  animate: false
 };
 
 WMKLink.propTypes = {
@@ -59,5 +60,6 @@ WMKLink.propTypes = {
   ]),
   children: PropTypes.node.isRequired,
   mailto: PropTypes.bool,
-  tel: PropTypes.bool
+  tel: PropTypes.bool,
+  animate: PropTypes.bool
 };

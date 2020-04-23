@@ -44,7 +44,11 @@ Anchor.propTypes = {
   speed: PropTypes.number,
   mailto: PropTypes.bool,
   tel: PropTypes.bool,
-  animate: PropTypes.bool
+  animate: PropTypes.bool,
+  rel: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.string
+  ])
 };
 
 Anchor.defaultProps = {
