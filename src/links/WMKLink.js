@@ -28,7 +28,7 @@ const WMKLink = React.forwardRef(
         {children}
       </Anchor>
     ) : (
-      <Link to={to} ref={ref} className={_className} id={id} style={style}>
+      <Link to={to} ref={ref} className={_className} id={id ? id : undefined} style={style}>
         {children}
       </Link>
     );
