@@ -18,7 +18,7 @@ const Anchor = React.forwardRef(
     return (
       <a
         href={prefix + _to.toLowerCase()}
-        id={id}
+        id={id ? id : undefined}
         className={wmkClass(_link, "link", className)}
         target={_target}
         rel={_rel}
