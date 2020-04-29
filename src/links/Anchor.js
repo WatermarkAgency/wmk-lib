@@ -17,7 +17,7 @@ const Anchor = React.forwardRef(
     const _link = tel ? "tel" : mailto ? "mailto" : "anchor";
     return (
       <a
-        href={prefix + _to.toLowerCase()}
+        href={prefix + _to}
         id={id ? id : undefined}
         className={wmkClass(_link, "link", className)}
         target={_target}
