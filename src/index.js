@@ -19,7 +19,6 @@ import CtflLogo from "./cms/Contentful/CtflLogo";
 import SSFormEmbed from './cms/SharpSpring/SSFormEmbed'
 
 import SEOMeta from './seo/SEOMeta'
-import SSFormEmbed from "./cms/SharpSpring/SSFormEmbed";
 
 /* Layout Components */
 export const Copyright = LayoutCopyright;
