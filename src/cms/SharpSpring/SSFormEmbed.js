@@ -17,8 +17,8 @@ const SSFormEmbed = React.forwardRef(
         hidden
       };
 
-      const domainId = domain.split(".")[0];
-      domainId.slice(0, 4);
+      const domainIdSplit = domain.split(".")[0];
+      const domainId = domainIdSplit.substr(4, domain.length - 4);
 
       postscribe(
         target,
