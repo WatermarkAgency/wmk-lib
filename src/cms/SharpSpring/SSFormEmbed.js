@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import { wmkClass } from "../../logic";
-import postscribe from "postscribe";
+//import postscribe from "postscribe";
 
 const SSFormEmbed = React.forwardRef(
   ({ account, formID, width, height, domain, hidden, className }, ref) => {
@@ -19,11 +19,20 @@ const SSFormEmbed = React.forwardRef(
 
       const domainIdSplit = domain.split(".")[0];
       const domainId = domainIdSplit.substr(4, domain.length - 4);
+      const src = `https://koi-${domainId}.marketingautomation.services/client/form.js?ver=2.0.1`
 
-      postscribe(
-        target,
-        `<script type="text/javascript" src="https://koi-${domainId}.marketingautomation.services/client/form.js?ver=2.0.1"></script>`
-      );
+      const script = document.createElement("script")
+
+      script.src = src
+      script.type = "text/javascript"
+      script.async = false
+
+      target.appendChild(script)
+
+    //   postscribe(
+    //     target,
+    //     `<script type="text/javascript" src="https://koi-${domainId}.marketingautomation.services/client/form.js?ver=2.0.1"></script>`
+    //   );
 
       return () => empty(target);
     });
