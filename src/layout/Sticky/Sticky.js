@@ -32,19 +32,21 @@ const StickyHeader = ({
     setScrollPos(currPos.y * -1);
   });
   return (
-    <div
-      className={wmkClass("sticky-header", "layout", className)}
-      style={{
-        ...style,
-        position: scrollPos > headerHeight ? "fixed" : domPosition,
-        zIndex,
-        width
-      }}
-    >
-      {Alert}
-      <Header ref={headerRef}>{children}</Header>
+    <>
+      <div
+        className={wmkClass("sticky-header", "layout", className)}
+        style={{
+          ...style,
+          position: scrollPos > headerHeight ? "fixed" : domPosition,
+          zIndex,
+          width
+        }}
+      >
+        {Alert}
+        <Header ref={headerRef}>{children}</Header>
+      </div>
       {scrollPos > headerHeight && <div style={{ height: headerHeight }} />}
-    </div>
+    </>
   );
 };
 
