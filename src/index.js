@@ -16,7 +16,6 @@ import MediaVideo from "./media/Video/Video";
 import MenusMenuItems from "./menus/MenuItems/MenuItems";
 
 import CtflLogo from "./cms/Contentful/CtflLogo";
-import SSFormEmbed from './cms/SharpSpring/SSFormEmbed'
 
 import SEOMeta from './seo/SEOMeta'
 
@@ -43,7 +42,6 @@ export const MenuItems = MenusMenuItems;
 
 /* CMS Specific */
 export const ContentfulLogo = CtflLogo;
-export const SharpSpringFormEmbed = SSFormEmbed;
 
 /* SEO Components */
 export const Meta = SEOMeta
