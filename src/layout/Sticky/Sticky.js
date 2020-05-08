@@ -32,7 +32,7 @@ const StickyHeader = ({
     setScrollPos(currPos.y * -1);
   });
   return (
-    <>
+    <React.Fragment>
       <div
         className={wmkClass("sticky-header", "layout", className)}
         style={{
@@ -46,7 +46,7 @@ const StickyHeader = ({
         <Header ref={headerRef}>{children}</Header>
       </div>
       {scrollPos > headerHeight && <div style={{ height: headerHeight }} />}
-    </>
+    </React.Fragment>
   );
 };
 

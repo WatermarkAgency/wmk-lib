@@ -5,7 +5,7 @@ import LinkWMKLink from "./links/WMKLink";
 
 import LayoutCopyright from "./layout/Footer/Copyright";
 import LayoutFlexSpacer from "./layout/FlexSpacer/FlexSpacer";
-import LayoutFooter from "./layout/Footer";
+import LayoutFooter from "./layout/Footer/Footer";
 import LayoutMainLayout from "./layout/MainLayout";
 import LayoutSticky from "./layout/Sticky/Sticky";
 import LayoutHeader from "./layout/Header/Header";
