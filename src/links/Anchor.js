@@ -4,7 +4,7 @@ import { wmkClass } from "../logic";
 
 const Anchor = React.forwardRef(
   (
-    { to, id, className, target, children, style, speed, mailto, tel, animate, rel },
+    { to, id, className, target, children, style, speed, mailto, tel, animate, rel, label },
     ref
   ) => {
     const _style = animate
@@ -24,6 +24,7 @@ const Anchor = React.forwardRef(
         rel={_rel}
         ref={ref}
         style={_style}
+        aria-label={label}
       >
         {children}
       </a>

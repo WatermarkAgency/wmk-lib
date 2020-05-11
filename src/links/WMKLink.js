@@ -5,7 +5,7 @@ import Anchor from "./Anchor";
 import PropTypes from "prop-types";
 
 const WMKLink = React.forwardRef(
-  ({ to, id, children, target, mailto, tel, style, className, speed, animate }, ref) => {
+  ({ to, id, children, target, mailto, tel, style, className, speed, animate, label }, ref) => {
     const _className = wmkClass("gatsby", "link", className);
     const _target = target ? "_" + target.replace("_", "") : null;
     const _to = mailto || tel ? (to !== "/" ? to : children) : to;
@@ -24,11 +24,12 @@ const WMKLink = React.forwardRef(
         style={style}
         speed={speed}
         animate={animate}
+        label={label}
       >
         {children}
       </Anchor>
     ) : (
-      <Link to={to} ref={ref} className={_className} id={id ? id : undefined} style={style}>
+      <Link to={to} ref={ref} className={_className} id={id ? id : undefined} style={style} aria-label={label}>
         {children}
       </Link>
     );
