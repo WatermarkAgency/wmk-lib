@@ -20,6 +20,7 @@ const Video = ({ id, className, url, poster, dimensions, Loader }) => {
     const handleResize = () => {
       setWinWidth(window.innerWidth);
     };
+    handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   });
