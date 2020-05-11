@@ -8,12 +8,14 @@ import "./Video.css";
 
 const Video = ({ id, className, url, poster, dimensions, Loader }) => {
   const [readyState, setReadyState] = useState(null);
+  const [hasLoaded, setHasLoaded] = useState(false)
   //const viz = !readyState || readyState < 4 ? "hidden" : "visible";
 
   const playerRef = useRef()
   useEffect(() => {
     playerRef.current.subscribeToStateChange((state,prevState)=>{
       setReadyState(state.readyState)
+      if(state.readyState > 3) setHasLoaded(true)
     })
   });
   const _id = id === "" ? false : id
@@ -30,7 +32,7 @@ const Video = ({ id, className, url, poster, dimensions, Loader }) => {
         visibility: 'hidden'
       }}
       />
-      {!readyState || readyState < 4 ? <Loader /> : null}
+      {(!readyState || readyState < 4) && !hasLoaded ? <Loader /> : null}
         <Player
           ref={playerRef}
           poster={poster}
