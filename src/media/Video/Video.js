@@ -36,7 +36,7 @@ const Video = ({ id, className, url, poster, dimensions, Loader }) => {
       {/*This image sets the aspect ratio of the video*/}
       <img
         src={`https://via.placeholder.com/${
-          !winWidth || winWidth > edgeShort
+          winWidth > edgeShort
             ? `${edgeLong}x${edgeShort}`
             : `${edgeShort}x${edgeShort}`
         }.jpg`}
