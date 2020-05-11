@@ -16,8 +16,9 @@ const Video = ({ id, className, url, poster, dimensions, Loader }) => {
       setReadyState(state.readyState)
     })
   });
+  const _id = id === "" ? false : id
   return (
-    <div id={id} 
+    <div id={_id} 
       className={wmkClass("video", "media", className)} 
       style={{position: 'relative'}}
     > 
@@ -32,7 +33,6 @@ const Video = ({ id, className, url, poster, dimensions, Loader }) => {
       {!readyState || readyState < 4 ? <Loader /> : null}
         <Player
           ref={playerRef}
-          //style={{ visibility: viz }}
           poster={poster}
           preload="auto"
           muted={true}
