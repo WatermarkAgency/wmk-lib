@@ -27,9 +27,10 @@ const Video = ({ id, className, url, poster, dimensions, Loader }) => {
 
   const edgeLong = dimensions.split("x")[0];
   const edgeShort = dimensions.split("x")[1];
+  const _id = id ? id : undefined
   return (
     <div
-      id={id}
+      id={_id}
       className={wmkClass("video", "media", className)}
       style={{ position: "relative" }}
     >
