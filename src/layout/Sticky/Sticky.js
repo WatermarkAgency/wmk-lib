@@ -11,8 +11,7 @@ const StickyHeader = ({
   absolute,
   style,
   zIndex,
-  width,
-  overflow
+  width
 }) => {
   const domPosition = absolute ? "absolute" : "relative";
   const [headerHeight, setHeaderHeight] = useState(0);
@@ -40,8 +39,7 @@ const StickyHeader = ({
           ...style,
           position: scrollPos > headerHeight ? "fixed" : domPosition,
           zIndex,
-          width,
-          overflow
+          width
         }}
       >
         {Alert}
@@ -60,8 +58,7 @@ StickyHeader.propTypes = {
   children: PropTypes.node.isRequired,
   absolute: PropTypes.bool,
   zIndex: PropTypes.number,
-  width: PropTypes.string,
-  overflow: PropTypes.string
+  width: PropTypes.string
 };
 
 StickyHeader.defaultProps = {
@@ -69,6 +66,5 @@ StickyHeader.defaultProps = {
   className: "",
   absolute: false,
   zIndex: 1000,
-  width: "100%",
-  overflow: "hidden"
+  width: "100%"
 };
