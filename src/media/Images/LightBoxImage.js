@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { IoIosClose } from "react-icons/io";
 import { Container, Row, Col } from "react-bootstrap";
 import PropTypes from "prop-types";
