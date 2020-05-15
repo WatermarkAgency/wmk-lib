@@ -9,15 +9,16 @@ import LayoutFooter from "./layout/Footer/Footer";
 import LayoutMainLayout from "./layout/MainLayout";
 import LayoutSticky from "./layout/Sticky/Sticky";
 import LayoutHeader from "./layout/Header/Header";
-import LayoutListItemColumns from './layout/Columns/ListItemColumns'
+import LayoutListItemColumns from "./layout/Columns/ListItemColumns";
 
 import MediaVideo from "./media/Video/Video";
+import MediaLightBoxImage from "./media/Images/LightBoxImage";
 
 import MenusMenuItems from "./menus/MenuItems/MenuItems";
 
 import CtflLogo from "./cms/Contentful/CtflLogo";
 
-import SEOMeta from './seo/SEOMeta'
+import SEOMeta from "./seo/SEOMeta";
 
 /* Layout Components */
 export const Copyright = LayoutCopyright;
@@ -35,15 +36,15 @@ export const WMKLink = LinkWMKLink;
 
 /* Media Components */
 export const Video = MediaVideo;
+export const LightBoxImage = MediaLightBoxImage;
 
 /* Menus */
 export const MenuItems = MenusMenuItems;
-
 
 /* CMS Specific */
 export const ContentfulLogo = CtflLogo;
 
 /* SEO Components */
-export const Meta = SEOMeta
+export const Meta = SEOMeta;
 
 export default () => <h1>Components Library</h1>;
