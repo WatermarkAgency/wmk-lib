@@ -31,10 +31,12 @@ const StickyHeader = ({
   useScrollPosition(({ currPos }) => {
     setScrollPos(currPos.y * -1);
   });
+  const classes = [className];
+  if (scrollPos > headerHeight) classes.push("stuck");
   return (
     <React.Fragment>
       <div
-        className={wmkClass("sticky-header", "layout", className)}
+        className={wmkClass("sticky-header", "layout", classes.join(" "))}
         style={{
           ...style,
           position: scrollPos > headerHeight ? "fixed" : domPosition,
