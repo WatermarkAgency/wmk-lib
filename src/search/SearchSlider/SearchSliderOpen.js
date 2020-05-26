@@ -11,9 +11,8 @@ const SearchSliderOpen = ({
     setIsSearchOpen(true);
   };
   const _className = [];
-  _className
-    .push(isSearchOpen ? "search-open" : "search-closed")
-    .push(className);
+  _className.push(isSearchOpen ? "search-open" : "search-closed");
+  _className.push(className);
 
   return (
     <button
