@@ -18,7 +18,7 @@ const SearchSliderOpen = ({
 
   return (
     <button
-      className={wmkClass("drawer", "search", _className.join(" "))}
+      className={wmkClass("open", "search", _className.join(" "))}
       onClick={handleFocus}
       style={style ? style : undefined}
     >
