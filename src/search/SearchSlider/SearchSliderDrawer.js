@@ -3,7 +3,7 @@ import { Row, Col, Form, Container } from "react-bootstrap";
 import { IoIosClose } from "react-icons/io";
 import PropTypes from "prop-types";
 import { WMKLink } from "wmk-lib";
-import {wmkClass} from '../../logic'
+import { wmkClass } from "../../logic";
 
 const SearchSliderDrawer = ({
   isSearchOpen,
@@ -11,10 +11,23 @@ const SearchSliderDrawer = ({
   query,
   Result,
   Close,
-  className
+  className,
+  style
 }) => {
   const [searchResults, setSearchResults] = useState(null);
   const [searchKey, setSearchKey] = useState("");
+  const _style = {
+    ...style,
+    position: isSearchOpen ? "fixed" : "absolute",
+    zIndex: !isSearchOpen ? -1 : 20000,
+    width: isSearchOpen ? "100%" : "1px",
+    minHeight: isSearchOpen ? "100%" : "none",
+    height: isSearchOpen ? "auto" : "1px",
+    transition: "all 0.3s ease",
+    right: 0,
+    top: 0,
+    overflow: isSearchOpen ? "scroll" : "hidden"
+  };
   const getSearchIndex = query => {
     const searchIndices = Object.keys(query).map(key => {
       // gets each array of objects
@@ -55,18 +68,8 @@ const SearchSliderDrawer = ({
   _className.push(className);
   return (
     <div
-      style={{
-        position: isSearchOpen ? "fixed" : "absolute",
-        zIndex: !isSearchOpen ? -1 : 20000,
-        width: isSearchOpen ? "100%" : "1px",
-        minHeight: isSearchOpen ? "100%" : "none",
-        height: isSearchOpen ? "auto" : "1px",
-        transition: "all 0.3s ease",
-        right: 0,
-        top: 0,
-        overflow: isSearchOpen ? "scroll" : "hidden"
-      }}
-      className={wmkClass('drawer','search',_className.join(" "))}
+      style={_style}
+      className={wmkClass("drawer", "search", _className.join(" "))}
     >
       <Row className="flex-column" style={{ width: "100%" }}>
         <Col

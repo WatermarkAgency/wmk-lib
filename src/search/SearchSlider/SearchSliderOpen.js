@@ -6,7 +6,8 @@ const SearchSliderOpen = ({
   isSearchOpen,
   setIsSearchOpen,
   className,
-  children
+  children,
+  style
 }) => {
   const handleFocus = () => {
     setIsSearchOpen(true);
@@ -19,6 +20,7 @@ const SearchSliderOpen = ({
     <button
       className={wmkClass("drawer", "search", _className.join(" "))}
       onClick={handleFocus}
+      style={style ? style : undefined}
     >
       {children}
     </button>
