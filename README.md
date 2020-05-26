@@ -10,12 +10,6 @@
 npm install --save wmk-lib
 ```
 
-## Change Log
-  1.14.0 - Added SearchSlider components
-  1.13.2 - Video Component (Not Working)
-  1.1.2 - Update Readme
-  1.1.1 - Added first layout components
-
 ## Usage
 
 ### Links
@@ -42,7 +36,7 @@ const WMKLink = React.forwardRef(
 *target* any target will trigger external link _except_ internal, \_internal, link and \_link, which will use Gatsby <Link>
 *to* can be left blank for *tel* and *mailto* if {children} is phone number / email.
 
-#### SocialMediaIcons - NOT WORKING
+#### SocialMediaIcons -
 
 ```jsx
 const SocialMediaIcons = { query, platforms, className };
@@ -68,6 +62,7 @@ will render social media icons.
 const Copyright = ({children, className, id})...
 <Copyright>Company Name. Copyright text goes here.</Copyright>
 ```
+#### Header
 
 Component renders copyright text with symbol and date.
 
@@ -78,6 +73,10 @@ const FlexSpacer = ({ className, id })...
 ```
 Component will fill vertical space in flex layouts.
 
+#### Footer
+
+#### ListItemColumns
+
 #### MainLayout
 ```jsx
 const MainLayout = ({ children, Header, Footer })...
@@ -86,13 +85,35 @@ const MainLayout = ({ children, Header, Footer })...
 Puts content into main element, 
 inserts header and footer components.
 
+#### Sticky
+
+### Search
+
+#### SearchSliderOpen
+
+#### SearchSliderDrawer
+
 ### Media
 
-#### Video - NOT WORKING
+#### LightBoxImage
+
+#### Video - 
 ```jsx
 <Video url={url} />
 ```
 Component will load video player with Loader/Spinner.
+
+### Menus
+
+#### MenuItems
+
+### CMS
+
+#### ContentfulLogo
+
+### SEO
+
+#### SEOMeta
 
 ## License
 
