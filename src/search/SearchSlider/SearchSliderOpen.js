@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const SeachSlider = ({
+const SearchSliderOpen = ({
   isSearchOpen,
   setIsSearchOpen,
   className,
@@ -25,15 +25,15 @@ const SeachSlider = ({
   );
 };
 
-export default SeachSlider;
+export default SearchSliderOpen;
 
-SearchSlider.propTypes = {
+SearchSliderOpen.propTypes = {
   isSearchOpen: PropTypes.bool.isRequired,
   setIsSearchOpen: PropTypes.func.isRequired,
   className: PropTypes.string,
   children: PropTypes.node.isRequired
 };
 
-SeachSlider.defaultProps = {
+SearchSliderOpen.defaultProps = {
   className: ""
 };
