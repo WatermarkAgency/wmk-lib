@@ -2,6 +2,8 @@ import React from "react";
 import LinkAnchor from "./links/Anchor";
 import LinkSocialMediaIcons from "./links/SocialMediaIcons/SocialMediaIcons";
 import LinkWMKLink from "./links/WMKLink";
+import LinkSearchSliderOpen from './search/SearchSlider/SearchSliderOpen'
+import LinkSearchSliderDrawer from './search/SearchSlider/SearchSliderDrawer'
 
 import LayoutCopyright from "./layout/Footer/Copyright";
 import LayoutFlexSpacer from "./layout/FlexSpacer/FlexSpacer";
@@ -33,6 +35,10 @@ export const Sticky = LayoutSticky;
 export const Anchor = LinkAnchor;
 export const SocialMediaIcons = LinkSocialMediaIcons;
 export const WMKLink = LinkWMKLink;
+
+/*Search Components */
+export const SearchSliderOpen = LinkSearchSlider;
+export const SearchSliderDrawer = LinkSearchSliderDrawer
 
 /* Media Components */
 export const Video = MediaVideo;

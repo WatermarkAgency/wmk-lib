@@ -11,8 +11,8 @@ npm install --save wmk-lib
 ```
 
 ## Change Log
-  1.1.4 - Anchor classes name fix
-  1.1.3 - Video Component (Not Working)
+  1.14.0 - Added SearchSlider components
+  1.13.2 - Video Component (Not Working)
   1.1.2 - Update Readme
   1.1.1 - Added first layout components
 
