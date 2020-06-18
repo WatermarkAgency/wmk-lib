@@ -121,5 +121,3 @@ SEO.Meta.propTypes = {
   baseUrl: PropTypes.string.isRequired,
   siteTitle: PropTypes.string.isRequired
 };
-
-export default SEO;
