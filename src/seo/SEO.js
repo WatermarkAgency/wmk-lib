@@ -16,56 +16,56 @@ SEO.Meta = ({
   twitterImage,
   twitterHandle,
   baseUrl,
-  siteTitle,
+  siteTitle
 }) => {
   const slugVar = !slug || slug === "/" ? "" : slug;
   const pathVar = !slug || slug === "/" ? "" : path;
   const metaProps = [
     {
       name: `description`,
-      content: description,
+      content: description
     },
     {
       property: `og:title`,
-      content: title,
+      content: title
     },
     {
       property: `og:description`,
-      content: description,
+      content: description
     },
     {
       property: `og:type`,
-      content: `website`,
+      content: `website`
     },
     {
       property: `og:sitename`,
-      content: baseUrl,
+      content: baseUrl
     },
     {
       name: `twitter:card`,
-      content: `summary`,
+      content: `summary`
     },
     {
       name: `twitter:creator`,
-      content: siteTitle,
+      content: siteTitle
     },
     {
       name: `twitter:image:alt`,
-      content: title,
+      content: title
     },
     {
       name: `twitter:title`,
-      content: title,
+      content: title
     },
     {
       name: `twitter:description`,
-      content: description,
-    },
+      content: description
+    }
   ];
   if (ogImage) {
     metaProps.push({
       property: `og:image`,
-      content: ogImage,
+      content: ogImage
     });
   } else {
     console.log("No Open Graph Image set in SEO.Meta");
@@ -74,7 +74,7 @@ SEO.Meta = ({
   if (twitterImage) {
     metaProps.push({
       name: `twitter:image`,
-      content: `https:${twitterImage}`,
+      content: `https:${twitterImage}`
     });
   } else {
     console.log("No Twitter Image set in SEO.Meta");
@@ -83,7 +83,7 @@ SEO.Meta = ({
   if (twitterHandle) {
     metaProps.push({
       name: `twitter:site`,
-      content: twitterHandle,
+      content: twitterHandle
     });
   } else {
     console.log("No Twitter Handle set in SEO.Meta");
@@ -92,13 +92,13 @@ SEO.Meta = ({
   return (
     <Helmet
       htmlAttributes={{
-        lang,
+        lang
       }}
       link={[
         {
           rel: "canonical",
-          href: `${baseUrl}${pathVar}${slugVar}`,
-        },
+          href: `${baseUrl}${pathVar}${slugVar}`
+        }
       ]}
       title={title}
       titleTemplate={`%s | ${siteTitle}`}
@@ -110,7 +110,7 @@ SEO.Meta = ({
 SEO.Meta.defaultProps = {
   lang: `en`,
   description: ``,
-  path: "/",
+  path: "/"
 };
 
 SEO.Meta.propTypes = {
@@ -123,78 +123,40 @@ SEO.Meta.propTypes = {
   twitterImage: PropTypes.string,
   twitterHandle: PropTypes.string,
   baseUrl: PropTypes.string.isRequired,
-  siteTitle: PropTypes.string.isRequired,
+  siteTitle: PropTypes.string.isRequired
 };
 
-export const generateGraph = (type, baseUrl, graphMeta = {}) => {
+export const generateGraph = (type, graphMeta = {}, baseUrl) => {
   const info = {
     "@type": type,
-    "@id": baseUrl + "/#" + type.toLowerCase(),
+    "@id": baseUrl + "/#" + type.toLowerCase()
   };
   return {
     ...info,
-    ...graphMeta,
+    ...graphMeta
   };
 };
 
 /* SEO SCHEMA */
 SEO.Schema = ({ graphs, baseUrl, siteTitle }) => {
-  // const organization = generateGraph("Organization", {
-  //   name: siteTitle,
-  //   url: baseUrl,
-  //   sameAs: options.social.map(s => s.url),
-  //   employee: people.edges.map(e => {
-  //     const person = e.node;
-  //     const name = person.name.split(" ");
-  //     return {
-  //       "@type": "Person",
-  //       name: person.name,
-  //       image:
-  //         person.mainImage && person.mainImage.file && person.mainImage.file.url
-  //           ? person.mainImage.file.url
-  //           : "",
-  //       familyName: name[name.length - 1],
-  //       givenName: name[0],
-  //       jobTitle: person.jobTitle,
-  //       sameAs: person.websiteUrl
-  //     };
-  //   }),
-  //   address: {
-  //     "@type": "PostalAddress",
-  //     streetAddress: options.street,
-  //     addressLocality: options.city,
-  //     addressRegion: options.state,
-  //     postalCode: options.zip,
-  //     addressCountry: "USA"
-  //   },
-  //   contactPoint: {
-  //     "@type": "ContactPoint",
-  //     contactType: "Sales",
-  //     telephone: options.phone.replace(/\D/g, ""),
-  //     email: options.email
-  //   },
-  //   logo: {
-  //     "@type": "ImageObject",
-  //     "@id": meta.baseUrl + "/#logo",
-  //     url: options.logo.file.url,
-  //     caption: meta.title
-  //   }
-  // });
-
-  const website = generateGraph("WebSite", {
-    name: siteTitle,
-    url: baseUrl,
-    publisher: {
-      "@id": baseUrl + "/#organization",
+  const website = generateGraph(
+    "WebSite",
+    {
+      name: siteTitle,
+      url: baseUrl,
+      publisher: {
+        "@id": baseUrl + "/#organization"
+      }
     },
-  });
+    baseUrl
+  );
 
   graphs.push(website);
   const schema = {
     "@context": "https://schema.org",
-    "@graph": [],
+    "@graph": []
   };
-  graphs.forEach((graph) => schema["@graph"].push(graph));
+  graphs.forEach(graph => schema["@graph"].push(graph));
   return (
     <Helmet>
       <script type="application/ld+json">{JSON.stringify(schema)}</script>
@@ -203,7 +165,7 @@ SEO.Schema = ({ graphs, baseUrl, siteTitle }) => {
 };
 
 SEO.Schema.defaultProps = {
-  graphs: [],
+  graphs: []
 };
 
 SEO.Schema.propTypes = {
