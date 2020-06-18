@@ -208,4 +208,6 @@ SEO.Schema.defaultProps = {
 
 SEO.Schema.propTypes = {
   graphs: PropTypes.array,
+  baseUrl: PropTypes.string.isRequired,
+  siteTitle: PropTypes.string.isRequired
 };
