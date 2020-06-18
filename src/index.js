@@ -3,8 +3,8 @@ import LinkAnchor from "./links/Anchor";
 import LinkSocialMediaIcons from "./links/SocialMediaIcons/SocialMediaIcons";
 import LinkWMKLink from "./links/WMKLink";
 
-import SearchSearchSliderOpen from './search/SearchSlider/SearchSliderOpen'
-import SearchSearchSliderDrawer from './search/SearchSlider/SearchSliderDrawer'
+import SearchSearchSliderOpen from "./search/SearchSlider/SearchSliderOpen";
+import SearchSearchSliderDrawer from "./search/SearchSlider/SearchSliderDrawer";
 
 import LayoutCopyright from "./layout/Footer/Copyright";
 import LayoutFlexSpacer from "./layout/FlexSpacer/FlexSpacer";
@@ -21,7 +21,7 @@ import MenusMenuItems from "./menus/MenuItems/MenuItems";
 
 import CtflLogo from "./cms/Contentful/CtflLogo";
 
-import SEOMeta from "./seo/SEOMeta";
+import SEOSEO from "./seo/SEO";
 
 /* Layout Components */
 export const Copyright = LayoutCopyright;
@@ -52,6 +52,6 @@ export const MenuItems = MenusMenuItems;
 export const ContentfulLogo = CtflLogo;
 
 /* SEO Components */
-export const Meta = SEOMeta;
+export const SEO = SEOSEO;
 
 export default () => <h1>Components Library</h1>;
