@@ -38,6 +38,10 @@ SEO.Meta = ({
       content: `website`
     },
     {
+      property: `og:url`,
+      content: `${baseUrl}${pathVar}${slugVar}`
+    },
+    {
       property: `og:sitename`,
       content: baseUrl
     },
