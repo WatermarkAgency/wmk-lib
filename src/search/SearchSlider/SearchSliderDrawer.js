@@ -12,7 +12,8 @@ const SearchSliderDrawer = ({
   Result,
   Close,
   className,
-  style
+  style,
+  algorithim
 }) => {
   const [searchResults, setSearchResults] = useState(null);
   const [searchKey, setSearchKey] = useState("");

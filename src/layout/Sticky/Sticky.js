@@ -4,14 +4,15 @@ import PropTypes from "prop-types";
 import Header from "../Header/Header";
 import { useScrollPosition } from "@n8tb1t/use-scroll-position";
 
-const StickyHeader = ({
+export const Sticky = ({
   Alert,
   className,
   children,
   absolute,
   style,
   zIndex,
-  width
+  width,
+  trigger
 }) => {
   const domPosition = absolute ? "absolute" : "relative";
   const [headerHeight, setHeaderHeight] = useState(0);
@@ -32,7 +33,7 @@ const StickyHeader = ({
     setScrollPos(currPos.y * -1);
   });
   const classes = [className];
-  if (scrollPos > headerHeight) classes.push("stuck");
+  if (scrollPos > (trigger > 0 ? trigger : headerHeight)) classes.push("stuck");
   return (
     <React.Fragment>
       <div
@@ -52,21 +53,21 @@ const StickyHeader = ({
   );
 };
 
-export default StickyHeader;
-
-StickyHeader.propTypes = {
+Sticky.propTypes = {
   Alert: PropTypes.node,
   className: PropTypes.string,
   children: PropTypes.node.isRequired,
   absolute: PropTypes.bool,
   zIndex: PropTypes.number,
-  width: PropTypes.string
+  width: PropTypes.string,
+  trigger: PropTypes.number
 };
 
-StickyHeader.defaultProps = {
+Sticky.defaultProps = {
   Alert: <React.Fragment />,
   className: "",
   absolute: false,
   zIndex: 1000,
-  width: "100%"
+  width: "100%",
+  trigger: 0
 };

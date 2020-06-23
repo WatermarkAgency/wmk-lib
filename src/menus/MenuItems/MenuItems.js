@@ -3,7 +3,7 @@ import { Row, Col } from "react-bootstrap";
 import WMKLink from "../../links/WMKLink";
 import PropTypes from "prop-types";
 
-const MenuItems = ({ Header, header, menus, Menu }) => {
+export const MenuItems = ({ Header, header, menus, Menu }) => {
   return (
     <Row className="flex-column">
       <Header>{header}</Header>
@@ -19,8 +19,6 @@ const MenuItems = ({ Header, header, menus, Menu }) => {
     </Row>
   );
 };
-
-export default MenuItems;
 
 MenuItems.defaultProps = {
   Header: ({ children }) => <Col>{children}</Col>,

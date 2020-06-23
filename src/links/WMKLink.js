@@ -4,7 +4,7 @@ import { wmkClass } from "../logic";
 import Anchor from "./Anchor";
 import PropTypes from "prop-types";
 
-const WMKLink = React.forwardRef(
+export const WMKLink = React.forwardRef(
   ({ to, id, children, target, mailto, tel, style, className, speed, animate, label }, ref) => {
     const _className = wmkClass("gatsby", "link", className);
     const _target = target ? "_" + target.replace("_", "") : null;
@@ -35,8 +35,6 @@ const WMKLink = React.forwardRef(
     );
   }
 );
-
-export default WMKLink;
 
 WMKLink.defaultProps = {
   tel: false,

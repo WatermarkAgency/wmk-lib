@@ -4,7 +4,7 @@ import Img from "gatsby-image";
 import { wmkClass } from '../../logic'
 import WMKLink from '../../links/WMKLink'
 
-const CtflLogo = ({
+export const CtflLogo = ({
   fluid,
   fixed,
   contentType,
@@ -76,8 +76,6 @@ const CtflLogo = ({
     </WMKLink>
   );
 };
-
-export default CtflLogo;
 
 CtflLogo.propTypes = {
   fluid: PropTypes.object,

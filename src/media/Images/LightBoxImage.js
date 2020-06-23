@@ -3,7 +3,7 @@ import { IoIosClose } from "react-icons/io";
 import { Container, Row, Col } from "react-bootstrap";
 import PropTypes from "prop-types";
 
-const LightBoxImage = ({ url, alt, caption, fluid, prefix }) => {
+export const LightBoxImage = ({ url, alt, caption, fluid, prefix }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const handleExpand = () => {
     setIsExpanded(!isExpanded);
@@ -83,8 +83,6 @@ const LightBoxImage = ({ url, alt, caption, fluid, prefix }) => {
     </React.Fragment>
   );
 };
-
-export default LightBoxImage;
 
 LightBoxImage.propTypes = {
   url: PropTypes.string.isRequired,
