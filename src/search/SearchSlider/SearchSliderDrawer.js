@@ -151,7 +151,7 @@ SearchSliderDrawer.propTypes = {
 SearchSliderDrawer.defaultProps = {
   Result: ({ result }) => <WMKLink to={result.slug}>{result.title}</WMKLink>,
   Close: () => <IoIosClose />,
-  algorithm: (event, index) => {
+  useAlgorithm: (event, index) => {
     let search = index.filter(item => {
       const lower = item.title.toLowerCase();
       return lower.includes(event.target.value.toLowerCase());
