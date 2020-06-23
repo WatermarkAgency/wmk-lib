@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "gatsby";
 import { wmkClass } from "../logic";
-import Anchor from "./Anchor";
+import {Anchor} from "./Anchor";
 import PropTypes from "prop-types";
 
 export const WMKLink = React.forwardRef(

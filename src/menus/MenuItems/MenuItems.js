@@ -1,6 +1,6 @@
 import React from "react";
 import { Row, Col } from "react-bootstrap";
-import WMKLink from "../../links/WMKLink";
+import {WMKLink} from "../../links/WMKLink";
 import PropTypes from "prop-types";
 
 export const MenuItems = ({ Header, header, menus, Menu }) => {

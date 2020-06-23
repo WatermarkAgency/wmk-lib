@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import Img from "gatsby-image";
 import { wmkClass } from '../../logic'
-import WMKLink from '../../links/WMKLink'
+import {WMKLink} from '../../links/WMKLink'
 
 export const CtflLogo = ({
   fluid,

@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { wmkClass } from "../logic";
-import FlexSpacer from "../layout/FlexSpacer/FlexSpacer";
+import {FlexSpacer} from "../layout/FlexSpacer/FlexSpacer";
 
 export const MainLayout = ({ children, Header, Footer, className }) => {
   const HeaderJSX = Header;

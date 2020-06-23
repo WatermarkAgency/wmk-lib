@@ -1,5 +1,5 @@
 import React from "react";
-import Anchor from "../Anchor";
+import {Anchor} from "../Anchor";
 import PropTypes from "prop-types";
 
 const SocialMediaIcon = React.forwardRef(

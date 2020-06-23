@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { wmkClass } from "../../logic";
 import PropTypes from "prop-types";
-import Header from "../Header/Header";
+import {Header} from "../Header/Header";
 import { useScrollPosition } from "@n8tb1t/use-scroll-position";
 
 export const Sticky = ({
