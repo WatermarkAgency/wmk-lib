@@ -1,7 +1,7 @@
 import React from "react";
 import { Row, Col } from "react-bootstrap";
 import PropTypes from "prop-types";
-import {ListItemColumn} from "./ListItemColumn";
+import ListItemColumn from "./ListItemColumn";
 import {wmkClass} from '../../logic'
 
 export const ListItemColumns = ({ list, cols, JSX, className }) => {
