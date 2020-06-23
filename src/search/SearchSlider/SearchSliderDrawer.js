@@ -13,7 +13,7 @@ const SearchSliderDrawer = ({
   Close,
   className,
   style,
-  algorithm
+  useAlgorithm
 }) => {
   const [searchResults, setSearchResults] = useState(null);
   const [searchKey, setSearchKey] = useState("");
@@ -51,7 +51,7 @@ const SearchSliderDrawer = ({
   const searchIndex = getSearchIndex(query);
 
   const handleSearch = e => {
-    const { key, results } = algorithm(e, searchIndex);
+    const { key, results } = useAlgorithm(e, searchIndex);
     setSearchKey(key);
     setSearchResults(results);
   };
@@ -145,7 +145,7 @@ SearchSliderDrawer.propTypes = {
   query: PropTypes.object.isRequired,
   Result: PropTypes.func,
   Close: PropTypes.func,
-  algorithm: PropTypes.func
+  useAlgorithm: PropTypes.func
 };
 
 SearchSliderDrawer.defaultProps = {
