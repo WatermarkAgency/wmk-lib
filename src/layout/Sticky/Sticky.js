@@ -33,15 +33,16 @@ export const Sticky = ({
     setScrollPos(currPos.y * -1);
   });
   const classes = [className];
-  const triggerHeight = trigger > 0 ? trigger : headerHeight
-  if (scrollPos > triggerHeight) classes.push("stuck");
+  const triggerHeight = trigger >= 0 ? trigger : headerHeight
+  const isTriggered = scrollPos >= triggerHeight
+  if (isTriggered) classes.push("stuck");
   return (
     <React.Fragment>
       <div
         className={wmkClass("sticky-header", "layout", classes.join(" "))}
         style={{
           ...style,
-          position: scrollPos > triggerHeight ? "fixed" : domPosition,
+          position: isTriggered ? "fixed" : domPosition,
           zIndex,
           width
         }}
@@ -49,7 +50,7 @@ export const Sticky = ({
         {Alert}
         <Header ref={headerRef}>{children}</Header>
       </div>
-      {scrollPos > triggerHeight && <div style={{ height: headerHeight }} />}
+      {isTriggered && <div style={{ height: headerHeight }} />}
     </React.Fragment>
   );
 };
