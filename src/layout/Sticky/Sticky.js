@@ -34,7 +34,7 @@ export const Sticky = ({
   });
   const classes = [className];
   const triggerHeight = trigger >= 0 ? trigger : headerHeight
-  const isTriggered = scrollPos >= triggerHeight
+  const isTriggered = scrollPos > triggerHeight
   if (isTriggered) classes.push("stuck");
   return (
     <React.Fragment>
