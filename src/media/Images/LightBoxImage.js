@@ -36,7 +36,7 @@ export const LightBoxImage = ({ url, alt, caption, fluid, prefix }) => {
           }}
         >
           <Row className="flex-column" style={{ width: "100%" }}>
-            <Col style={{ display: "flex", justifyContent: "flex-end" }}>
+            <Col style={{ display: "flex", justifyContent: "flex-end", "-webkit-flex": "initial" }}>
               <button
                 aria-label="Close lightbox"
                 onClick={handleExpand}
