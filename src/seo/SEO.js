@@ -4,11 +4,7 @@ import PropTypes from "prop-types";
 
 export const SEO = {};
 
-const sanitizeSocialImageUrl = url => {
-  if (url.indexOf("//") === 0) {
-    return "http:" + url;
-  }
-};
+const sanitizeSocialImageUrl = url => url.indexOf("//") === 0 ? "http:" + url : url;
 
 SEO.Meta = ({
   description,
