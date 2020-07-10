@@ -4,6 +4,12 @@ import PropTypes from "prop-types";
 
 export const SEO = {};
 
+const sanitizeSocialImageUrl = url => {
+  if (url.indexOf("//") === 0) {
+    return "http:" + url;
+  }
+};
+
 SEO.Meta = ({
   description,
   lang,
@@ -67,7 +73,7 @@ SEO.Meta = ({
   if (ogImage) {
     metaProps.push({
       property: `og:image`,
-      content: ogImage
+      content: sanitizeSocialImageUrl(ogImage)
     });
   } else {
     console.log("No Open Graph Image set in SEO.Meta");
@@ -76,7 +82,7 @@ SEO.Meta = ({
   if (twitterImage) {
     metaProps.push({
       name: `twitter:image`,
-      content: `https:${twitterImage}`
+      content: sanitizeSocialImageUrl(twitterImage)
     });
   } else {
     console.log("No Twitter Image set in SEO.Meta");
