@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { IoIosClose } from "react-icons/io";
 import { Container, Row, Col } from "react-bootstrap";
 import PropTypes from "prop-types";
@@ -54,7 +54,13 @@ export const LightBoxImage = ({ url, alt, caption, fluid, prefix }) => {
                 <IoIosClose />
               </button>
             </Col>
-            <Col style={{ display: "flex", justifyContent: "center" }}>
+            <Col
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                "-webkit-flex": "initial"
+              }}
+            >
               <img
                 className={`${prefix}-lightbox`}
                 src={url}
@@ -68,7 +74,13 @@ export const LightBoxImage = ({ url, alt, caption, fluid, prefix }) => {
               />
             </Col>
             {caption && (
-              <Col style={{ display: "flex", justifyContent: "center" }}>
+              <Col
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  "-webkit-flex": "initial"
+                }}
+              >
                 <figcaption
                   className={`${prefix}-lightbox-caption`}
                   style={{ color: "white", padding: ".5rem" }}
