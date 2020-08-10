@@ -1,9 +1,9 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { IoIosClose } from "react-icons/io";
 import { Container, Row, Col } from "react-bootstrap";
 import PropTypes from "prop-types";
 
-const LightBoxImage = ({ url, alt, caption, fluid, prefix }) => {
+export const LightBoxImage = ({ url, alt, caption, fluid, prefix }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const handleExpand = () => {
     setIsExpanded(!isExpanded);
@@ -36,7 +36,7 @@ const LightBoxImage = ({ url, alt, caption, fluid, prefix }) => {
           }}
         >
           <Row className="flex-column" style={{ width: "100%" }}>
-            <Col style={{ display: "flex", justifyContent: "flex-end" }}>
+            <Col style={{ display: "flex", justifyContent: "flex-end", "-webkit-flex": "initial" }}>
               <button
                 aria-label="Close lightbox"
                 onClick={handleExpand}
@@ -54,7 +54,13 @@ const LightBoxImage = ({ url, alt, caption, fluid, prefix }) => {
                 <IoIosClose />
               </button>
             </Col>
-            <Col style={{ display: "flex", justifyContent: "center" }}>
+            <Col
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                "-webkit-flex": "initial"
+              }}
+            >
               <img
                 className={`${prefix}-lightbox`}
                 src={url}
@@ -68,7 +74,13 @@ const LightBoxImage = ({ url, alt, caption, fluid, prefix }) => {
               />
             </Col>
             {caption && (
-              <Col style={{ display: "flex", justifyContent: "center" }}>
+              <Col
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  "-webkit-flex": "initial"
+                }}
+              >
                 <figcaption
                   className={`${prefix}-lightbox-caption`}
                   style={{ color: "white", padding: ".5rem" }}
@@ -83,8 +95,6 @@ const LightBoxImage = ({ url, alt, caption, fluid, prefix }) => {
     </React.Fragment>
   );
 };
-
-export default LightBoxImage;
 
 LightBoxImage.propTypes = {
   url: PropTypes.string.isRequired,

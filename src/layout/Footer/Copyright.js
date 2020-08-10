@@ -1,13 +1,11 @@
 import React from "react";
 import { wmkClass } from "../../logic";
 
-const Copyright = ({ children, className, id }) => {
+export const Copyright = React.forwardRef(({ children, className, id },ref) => {
   const year = new Date().getFullYear();
   return (
-    <div id={id} className={wmkClass("copyright", "layout", className)}>
+    <div id={id} className={wmkClass("copyright", "layout", className)} ref={ref}>
       © {year} {children}
     </div>
   );
-};
-
-export default Copyright;
+});

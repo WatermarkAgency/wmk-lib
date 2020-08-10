@@ -2,9 +2,9 @@ import React from "react";
 import Helmet from "react-helmet";
 import PropTypes from "prop-types";
 
-const SEO = {};
+export const SEO = {};
 
-export default SEO;
+const sanitizeSocialImageUrl = url => url.indexOf("//") === 0 ? "https:" + url : url;
 
 SEO.Meta = ({
   description,
@@ -69,7 +69,7 @@ SEO.Meta = ({
   if (ogImage) {
     metaProps.push({
       property: `og:image`,
-      content: ogImage
+      content: sanitizeSocialImageUrl(ogImage)
     });
   } else {
     console.log("No Open Graph Image set in SEO.Meta");
@@ -78,7 +78,7 @@ SEO.Meta = ({
   if (twitterImage) {
     metaProps.push({
       name: `twitter:image`,
-      content: `https:${twitterImage}`
+      content: sanitizeSocialImageUrl(twitterImage)
     });
   } else {
     console.log("No Twitter Image set in SEO.Meta");

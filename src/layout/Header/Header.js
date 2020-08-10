@@ -1,7 +1,7 @@
 import React from "react";
 import { wmkClass } from "../../logic";
 
-const Header = React.forwardRef(({ children, className, style }, ref) => {
+export const Header = React.forwardRef(({ children, className, style }, ref) => {
   //   style["top"] = offset ? offset : 0;
   return (
     <header
@@ -13,5 +13,3 @@ const Header = React.forwardRef(({ children, className, style }, ref) => {
     </header>
   );
 });
-
-export default Header;

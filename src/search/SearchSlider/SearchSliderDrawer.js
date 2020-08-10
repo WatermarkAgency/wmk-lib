@@ -12,7 +12,8 @@ const SearchSliderDrawer = ({
   Result,
   Close,
   className,
-  style
+  style,
+  useAlgorithm
 }) => {
   const [searchResults, setSearchResults] = useState(null);
   const [searchKey, setSearchKey] = useState("");
@@ -50,12 +51,9 @@ const SearchSliderDrawer = ({
   const searchIndex = getSearchIndex(query);
 
   const handleSearch = e => {
-    let search = searchIndex.filter(item => {
-      const lower = item.title.toLowerCase();
-      return lower.includes(e.target.value.toLowerCase());
-    });
-    setSearchKey(e.target.value);
-    setSearchResults(search);
+    const { key, results } = useAlgorithm(e, searchIndex);
+    setSearchKey(key);
+    setSearchResults(results);
   };
   const handleClose = () => {
     setIsSearchOpen(false);
@@ -146,10 +144,18 @@ SearchSliderDrawer.propTypes = {
   setIsSearchOpen: PropTypes.func.isRequired,
   query: PropTypes.object.isRequired,
   Result: PropTypes.func,
-  Close: PropTypes.func
+  Close: PropTypes.func,
+  useAlgorithm: PropTypes.func
 };
 
 SearchSliderDrawer.defaultProps = {
   Result: ({ result }) => <WMKLink to={result.slug}>{result.title}</WMKLink>,
-  Close: () => <IoIosClose />
+  Close: () => <IoIosClose />,
+  useAlgorithm: (event, index) => {
+    let search = index.filter(item => {
+      const lower = item.title.toLowerCase();
+      return lower.includes(event.target.value.toLowerCase());
+    });
+    return { key: event.target.value, results: search };
+  }
 };

@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { wmkClass } from "../logic";
 
-const Anchor = React.forwardRef(
+export const Anchor = React.forwardRef(
   (
     { to, id, className, target, children, style, speed, mailto, tel, animate, rel, label },
     ref
@@ -31,8 +31,6 @@ const Anchor = React.forwardRef(
     );
   }
 );
-
-export default Anchor;
 
 Anchor.propTypes = {
   children: PropTypes.node.isRequired,

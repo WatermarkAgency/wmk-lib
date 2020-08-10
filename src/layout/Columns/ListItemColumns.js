@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import ListItemColumn from "./ListItemColumn";
 import {wmkClass} from '../../logic'
 
-const ListItemColumns = ({ list, cols, JSX, className }) => {
+export const ListItemColumns = ({ list, cols, JSX, className }) => {
   const sortList = [...list];
   const total = sortList.length;
   const per = Math.floor(total / cols);
@@ -43,8 +43,6 @@ const ListItemColumns = ({ list, cols, JSX, className }) => {
     </Row>
   ) : null;
 };
-
-export default ListItemColumns;
 
 ListItemColumns.propTypes = {
   list: PropTypes.array.isRequired,

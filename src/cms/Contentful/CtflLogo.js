@@ -2,9 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import Img from "gatsby-image";
 import { wmkClass } from '../../logic'
-import WMKLink from '../../links/WMKLink'
+import {WMKLink} from '../../links/WMKLink'
 
-const CtflLogo = ({
+export const ContentfulLogo = ({
   fluid,
   fixed,
   contentType,
@@ -77,9 +77,7 @@ const CtflLogo = ({
   );
 };
 
-export default CtflLogo;
-
-CtflLogo.propTypes = {
+ContentfulLogo.propTypes = {
   fluid: PropTypes.object,
   fixed: PropTypes.object,
   alt: PropTypes.string.isRequired,
@@ -91,7 +89,7 @@ CtflLogo.propTypes = {
   target: PropTypes.string
 };
 
-CtflLogo.defaultProps = {
+ContentfulLogo.defaultProps = {
   fluid: { notAProp: true },
   fixed: { notAProp: true },
   url: "",

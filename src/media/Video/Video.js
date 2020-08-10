@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 import { wmkClass } from "../../logic";
 import "./Video.css";
 
-const Video = ({ id, className, url, poster, dimensions, Loader }) => {
+export const Video = ({ id, className, url, poster, dimensions, Loader }) => {
   const [readyState, setReadyState] = useState(null);
   const [hasLoaded, setHasLoaded] = useState(false);
   const [winWidth, setWinWidth] = useState(0);
@@ -64,8 +64,6 @@ const Video = ({ id, className, url, poster, dimensions, Loader }) => {
     </div>
   );
 };
-
-export default Video;
 
 Video.propTypes = {
   url: PropTypes.string,

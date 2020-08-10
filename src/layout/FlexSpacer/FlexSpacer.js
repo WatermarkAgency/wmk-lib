@@ -1,12 +1,18 @@
 import React from "react";
-import { wmkClass } from '../../logic';
-import PropTypes from 'prop-types'
+import { wmkClass } from "../../logic";
+import PropTypes from "prop-types";
 
-const FlexSpacer = ({ className, id }) => {
-  return <div className={wmkClass('flex-spacer','layout',className)} id={id} style={{margin: 'auto'}}/>;
+export const FlexSpacer = ({ className, id }) => {
+  return (
+    <div
+      className={wmkClass("flex-spacer", "layout", className)}
+      id={id}
+      style={{ margin: "auto" }}
+    />
+  );
 };
 
-export default FlexSpacer
+export default FlexSpacer;
 
 FlexSpacer.propTypes = {
   className: PropTypes.string,
@@ -17,4 +23,3 @@ FlexSpacer.defaultProps = {
   id: "",
   className: ""
 };
-

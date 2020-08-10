@@ -1,17 +1,18 @@
 import React, { useState, useRef, useEffect } from "react";
 import { wmkClass } from "../../logic";
 import PropTypes from "prop-types";
-import Header from "../Header/Header";
+import {Header} from "../Header/Header";
 import { useScrollPosition } from "@n8tb1t/use-scroll-position";
 
-const StickyHeader = ({
+export const Sticky = ({
   Alert,
   className,
   children,
   absolute,
   style,
   zIndex,
-  width
+  width,
+  trigger
 }) => {
   const domPosition = absolute ? "absolute" : "relative";
   const [headerHeight, setHeaderHeight] = useState(0);
@@ -32,14 +33,16 @@ const StickyHeader = ({
     setScrollPos(currPos.y * -1);
   });
   const classes = [className];
-  if (scrollPos > headerHeight) classes.push("stuck");
+  const triggerHeight = trigger >= 0 ? trigger : headerHeight
+  const isTriggered = scrollPos > triggerHeight
+  if (isTriggered) classes.push("stuck");
   return (
     <React.Fragment>
       <div
         className={wmkClass("sticky-header", "layout", classes.join(" "))}
         style={{
           ...style,
-          position: scrollPos > headerHeight ? "fixed" : domPosition,
+          position: isTriggered ? "fixed" : domPosition,
           zIndex,
           width
         }}
@@ -47,26 +50,26 @@ const StickyHeader = ({
         {Alert}
         <Header ref={headerRef}>{children}</Header>
       </div>
-      {scrollPos > headerHeight && <div style={{ height: headerHeight }} />}
+      {isTriggered && <div style={{ height: headerHeight }} />}
     </React.Fragment>
   );
 };
 
-export default StickyHeader;
-
-StickyHeader.propTypes = {
+Sticky.propTypes = {
   Alert: PropTypes.node,
   className: PropTypes.string,
   children: PropTypes.node.isRequired,
   absolute: PropTypes.bool,
   zIndex: PropTypes.number,
-  width: PropTypes.string
+  width: PropTypes.string,
+  trigger: PropTypes.number
 };
 
-StickyHeader.defaultProps = {
+Sticky.defaultProps = {
   Alert: <React.Fragment />,
   className: "",
   absolute: false,
   zIndex: 1000,
-  width: "100%"
+  width: "100%",
+  trigger: 0
 };

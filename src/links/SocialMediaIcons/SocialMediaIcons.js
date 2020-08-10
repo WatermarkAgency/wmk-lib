@@ -12,7 +12,7 @@ import {
 import SocialMediaIcon from "./SocialMediaIcon";
 import { wmkClass } from "../../logic";
 
-const SocialMediaIcons = ({ query, platforms, className }) => {
+export const SocialMediaIcons = ({ query, platforms, className }) => {
   const getPlatform = (platform, platforms) => {
     let socialPlatform = null;
     platforms.forEach(p => {
@@ -41,8 +41,6 @@ const SocialMediaIcons = ({ query, platforms, className }) => {
     </React.Fragment>
   );
 };
-
-export default SocialMediaIcons;
 
 SocialMediaIcons.propTypes = {
   query: PropTypes.array.isRequired,

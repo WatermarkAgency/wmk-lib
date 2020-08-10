@@ -1,12 +1,10 @@
 import React from "react";
 import { wmkClass } from '../../logic';
 
-const Footer = ({ children, className, id }) => {
+export const Footer = React.forwardRef(({ children, className, id },ref) => {
   return (
-    <footer className={wmkClass("footer", "layout", className)} id={id}>
+    <footer className={wmkClass("footer", "layout", className)} id={id} ref={ref}>
       {children}
     </footer>
   );
-};
-
-export default Footer;
+});
