@@ -32,7 +32,7 @@ export const LightBoxImage = ({ url, alt, caption, fluid, prefix }) => {
             width: "100%",
             height: "100%",
             background: "rgba(0,0,0,.75)",
-            zIndex: 5000
+            zIndex: 565656
           }}
         >
           <Row className="flex-column" style={{ width: "100%" }}>
