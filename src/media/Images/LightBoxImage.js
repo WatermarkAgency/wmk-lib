@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { IoIosClose } from "react-icons/io";
+//import { IoIosClose } from "react-icons/io";
 import { Container, Row, Col } from "react-bootstrap";
 import PropTypes from "prop-types";
 
@@ -32,11 +32,18 @@ export const LightBoxImage = ({ url, alt, caption, fluid, prefix }) => {
             width: "100%",
             height: "100%",
             background: "rgba(0,0,0,.75)",
-            zIndex: 565656
+            zIndex: 11111,
+            padding: 0
           }}
         >
           <Row className="flex-column" style={{ width: "100%" }}>
-            <Col style={{ display: "flex", justifyContent: "flex-end", "-webkit-flex": "initial" }}>
+            {/* <Col
+              style={{
+                display: "flex",
+                justifyContent: "flex-end",
+                WebkitFlex: "initial",
+              }}
+            >
               <button
                 aria-label="Close lightbox"
                 onClick={handleExpand}
@@ -48,28 +55,49 @@ export const LightBoxImage = ({ url, alt, caption, fluid, prefix }) => {
                   border: "none",
                   fontSize: "4rem",
                   lineHeight: 0,
-                  padding: 0
+                  padding: 0,
                 }}
               >
                 <IoIosClose />
               </button>
-            </Col>
+            </Col> */}
             <Col
               style={{
                 display: "flex",
                 justifyContent: "center",
-                "-webkit-flex": "initial"
+                WebkitFlex: "initial",
+                position: "fixed",
+                top: 0,
+                left: 0,
+                width: "100%",
+                height: "100%",
+                alignItems: "center"
               }}
             >
+              <button
+                aria-label="Close lightbox"
+                onClick={handleExpand}
+                style={{
+                  position: "absolute",
+                  background: "transparent",
+                  width: "100%",
+                  height: "100%",
+                  zIndex: 1
+                }}
+              >
+                Close
+              </button>
               <img
                 className={`${prefix}-lightbox`}
                 src={url}
                 alt={alt}
                 style={{
                   width: fluid ? "100%" : "auto",
-                  maxWidth: fluid ? "none" : "100%",
+                  maxWidth: "80vw",
+                  //maxWidth: fluid ? "none" : "100%",
                   maxHeight: fluid ? "80vh" : "none",
-                  objectFit: "contain"
+                  objectFit: "contain",
+                  zIndex: 2
                 }}
               />
             </Col>
@@ -78,7 +106,7 @@ export const LightBoxImage = ({ url, alt, caption, fluid, prefix }) => {
                 style={{
                   display: "flex",
                   justifyContent: "center",
-                  "-webkit-flex": "initial"
+                  WebkitFlex: "initial"
                 }}
               >
                 <figcaption
