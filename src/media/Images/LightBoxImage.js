@@ -37,7 +37,7 @@ export const LightBoxImage = ({ url, alt, caption, fluid, prefix }) => {
           }}
         >
           <Row className="flex-column" style={{ width: "100%" }}>
-            {/* <Col
+            <Col
               style={{
                 display: "flex",
                 justifyContent: "flex-end",
@@ -60,7 +60,7 @@ export const LightBoxImage = ({ url, alt, caption, fluid, prefix }) => {
               >
                 <IoIosClose />
               </button>
-            </Col> */}
+            </Col>
             <Col
               style={{
                 display: "flex",
