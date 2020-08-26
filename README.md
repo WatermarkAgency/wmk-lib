@@ -14,17 +14,6 @@ npm install --save wmk-lib
 
 ### Links
 
-#### Anchor
-
-```jsx
-const Anchor = ({ to, id, className, target, children })...
-<Anchor to={'http://link.com'}>Link Text</Anchor>
-```
-
-Creates an anchor link for external links.
-*target* can be "\_blank" (new window) or "\_self".
-*to* is href
-
 #### WMKLink
 
 ```jsx
@@ -33,15 +22,16 @@ const WMKLink = React.forwardRef(
 <WMKLink to={'/page'}>Link Text</WMKLink>
 <WMKLink to="http://site.com" target="blank">Link Text</WMKLink>
 ```
-*target* any target will trigger external link _except_ internal, \_internal, link and \_link, which will use Gatsby <Link>
-*to* can be left blank for *tel* and *mailto* if {children} is phone number / email.
+
+_target_ any target will trigger external link. It's best to leave target _undefined_ if intended to use Gatsby <Link>.
+_to_ can be left blank for _tel_ and _mailto_ if {children} is phone number / email.
 
 #### SocialMediaIcons -
 
 ```jsx
 const SocialMediaIcons = { query, platforms, className };
 const socials = graphql`
-{ 
+{
   socials {
     title
     url
@@ -52,68 +42,143 @@ const socials = graphql`
 <SocialMediaIcons query={socials} />
 ```
 
-Given an array of social media link objects, 
-will render social media icons.
+Given an array of social media link objects, will render social media icons.
 
 ### Layout
 
 #### Copyright
+
 ```jsx
 const Copyright = ({children, className, id})...
 <Copyright>Company Name. Copyright text goes here.</Copyright>
 ```
+
 #### Header
+
+```jsx
+const Header = React.forwardRef(({ children, className, style }, ref)...
+<Header className="main-header" style={{color: 'blue'}}><Menu /><Header/>
+```
 
 Component renders copyright text with symbol and date.
 
 #### FlexSpacer
+
 ```jsx
 const FlexSpacer = ({ className, id })...
 <FlexSpacer />
 ```
+
 Component will fill vertical space in flex layouts.
 
 #### Footer
 
+```jsx
+const Footer = React.forwardRef(({ children, className, id },ref)...
+<Footer><Contents /><Footer />
+```
+
 #### ListItemColumns
 
+```jsx
+const ListItemColumns = ({ list, cols, JSX, className })...
+```
+
 #### MainLayout
+
 ```jsx
 const MainLayout = ({ children, Header, Footer })...
 <MainLayout><Content /></MainLayout>
 ```
-Puts content into main element, 
-inserts header and footer components.
+
+Puts content into main element and inserts header and footer components.
 
 #### Sticky
+
+```jsx
+const Sticky = ({Alert, className, children, absolute, style, zIndex, width, trigger})...
+<Sticky Alert={AlertBar}><Header /></Sticky>
+```
 
 ### Search
 
 #### SearchSliderOpen
 
+```jsx
+const SearchSliderOpen = ({isSearchOpen, setIsSearchOpen, className, children, style})...
+<SearchSliderOpen><SearchIcon /><SearchSliderOpen>
+```
+
+Toggles SearchSliderDrawer.
+
 #### SearchSliderDrawer
+
+```jsx
+const SearchSliderDrawer = ({isSearchOpen, setIsSearchOpen, query, Result, Close, className, style, useAlgorithm})...
+```
+
+_query_ is graphql query as a collection of allNodes.edges.node.
+_Result_ is the JSX for search results.
+_Close_ is the JSX to close drawer.
+_useAlgorithm_ Hook that allows to modify/extend search algorithm.
 
 ### Media
 
 #### LightBoxImage
 
-#### Video - 
 ```jsx
+const LightBoxImage = ({ url, alt, caption, fluid, prefix })...
+<LightBoxImage props={...props}>
+```
+
+#### Video -
+
+```jsx
+const Video = ({ id, className, url, poster, dimensions, Loader })...
 <Video url={url} />
 ```
+
+_Loader_ is JSX for a preloader/spinner until video is ready
+
 Component will load video player with Loader/Spinner.
 
 ### Menus
 
 #### MenuItems
 
+```jsx
+const MenuItems = ({ Header, header, menus, Menu })...
+```
+
+Intended to be used as dropdown or mega menu category.
+
 ### CMS
 
 #### ContentfulLogo
 
+```jsx
+const ContentfulLogo = ({fluid, fixed, contentType, url, id, className, to, alt, target})...
+```
+
+Helps with loading and linking logo images from within Contentful. Detects whether to use Gatsby Image for raster or embed SVG.
+
 ### SEO
 
-#### SEOMeta
+#### SEO.Meta
+
+```jsx
+SEO.Meta = ({description, lang, title, path, slug, ogImage, twitterImage, twitterHandle, baseUrl, siteTitle})...
+```
+
+Assists with page SEO meta data (including open graph and twitter image).
+
+#### SEO.Schema
+
+```jsx
+SEO.Schema = ({ graphs, baseUrl, siteTitle })...
+```
+
+Helps dynamically generate on-page schema.
 
 ## License
 
