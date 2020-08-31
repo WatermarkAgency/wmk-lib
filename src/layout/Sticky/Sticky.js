@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
 import { wmkClass } from "../../logic";
 import PropTypes from "prop-types";
-import {Header} from "../Header/Header";
 import { useScrollPosition } from "@n8tb1t/use-scroll-position";
+import { Header } from "../Header/Header";
 
 export const Sticky = ({
   Alert,
@@ -15,26 +15,31 @@ export const Sticky = ({
   trigger
 }) => {
   const domPosition = absolute ? "absolute" : "relative";
-  const [headerHeight, setHeaderHeight] = useState(0);
+  const [headerRect, setHeaderRect] = useState({ y: 0, height: 0, width: 0 });
   const [scrollPos, setScrollPos] = useState(0);
 
   const headerRef = useRef();
 
   useEffect(() => {
     const handleResize = () => {
-      setHeaderHeight(headerRef.current.getBoundingClientRect().height);
+      setHeaderRect(headerRef.current.getBoundingClientRect());
     };
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  }, [headerHeight]);
+  }, []);
 
   useScrollPosition(({ currPos }) => {
     setScrollPos(currPos.y * -1);
   });
   const classes = [className];
-  const triggerHeight = trigger >= 0 ? trigger : headerHeight
-  const isTriggered = scrollPos > triggerHeight
+  const triggerHeight =
+    !Alert && !headerRect.y
+      ? trigger >= 0
+        ? trigger
+        : headerRect.height
+      : headerRect.y;
+  const isTriggered = scrollPos > triggerHeight;
   if (isTriggered) classes.push("stuck");
   return (
     <React.Fragment>
@@ -47,10 +52,11 @@ export const Sticky = ({
           width
         }}
       >
-        {Alert}
+        {!isTriggered ? Alert : null}
         <Header ref={headerRef}>{children}</Header>
       </div>
-      {isTriggered && <div style={{ height: headerHeight }} />}
+      {Alert && isTriggered ? <div style={{ height: headerRect.y }} /> : null}
+      {isTriggered && <div style={{ height: headerRect.height }} />}
     </React.Fragment>
   );
 };
