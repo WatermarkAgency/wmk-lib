@@ -171,6 +171,7 @@ SEO.Meta = ({description, lang, title, path, slug, ogImage, twitterImage, twitte
 ```
 
 Assists with page SEO meta data (including open graph and twitter image).
+Note: ogImage, twitterImage and twitterHandle expect a string. If undefined is passed, you will see console errors. To intentionally leave out this data, you must pass 'null' to these props. For the images, it is good to have a conditional to check for the url or pass null to avoid the console logs.
 
 #### SEO.Schema
 
