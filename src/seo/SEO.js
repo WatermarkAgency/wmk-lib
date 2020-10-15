@@ -4,8 +4,10 @@ import PropTypes from "prop-types";
 
 export const SEO = {};
 
-const sanitizeSocialImageUrl = url =>
-  url.indexOf("//") === 0 ? "https:" + url : url;
+const sanitizeSocialImageUrl = url => {
+  let _url = typeof url === "string" || url instanceof String ? url : "";
+  return _url.indexOf("//") === 0 ? "https:" + _url : _url;
+};
 
 SEO.Meta = ({
   description,
@@ -68,28 +70,34 @@ SEO.Meta = ({
     }
   ];
   if (typeof ogImage !== "undefined") {
-    metaProps.push({
-      property: `og:image`,
-      content: sanitizeSocialImageUrl(ogImage)
-    });
+    if (typeof ogImage === "string" || ogImage instanceof String) {
+      metaProps.push({
+        property: `og:image`,
+        content: sanitizeSocialImageUrl(ogImage)
+      });
+    }
   } else {
     console.log("No Open Graph Image set in SEO.Meta");
   }
 
   if (typeof twitterImage !== "undefined") {
-    metaProps.push({
-      name: `twitter:image`,
-      content: sanitizeSocialImageUrl(twitterImage)
-    });
+    if (typeof ogImage === "string" || ogImage instanceof String) {
+      metaProps.push({
+        name: `twitter:image`,
+        content: sanitizeSocialImageUrl(twitterImage)
+      });
+    }
   } else {
     console.log("No Twitter Image set in SEO.Meta");
   }
 
   if (typeof twitterHandle !== "undefined") {
-    metaProps.push({
-      name: `twitter:site`,
-      content: twitterHandle
-    });
+    if (typeof ogImage === "string" || ogImage instanceof String) {
+      metaProps.push({
+        name: `twitter:site`,
+        content: twitterHandle
+      });
+    }
   } else {
     console.log("No Twitter Handle set in SEO.Meta");
   }
