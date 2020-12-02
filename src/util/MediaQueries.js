@@ -18,6 +18,9 @@ export class MediaQueries {
       units: "error"
     });
   }
+  addSize(size, amount, units) {
+    this.breakpoints[size] = { amount, units };
+  }
   max(size, css, mediaType) {
     const type = mediaType ? mediaType : { type: "screen", qualifier: "only" };
     return this.query(type, [{ feature: "max-width", break: size }], css);
