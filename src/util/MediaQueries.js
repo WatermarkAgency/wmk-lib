@@ -18,6 +18,30 @@ export class MediaQueries {
       units: "error"
     });
   }
+  range(start, end, css, typeObj) {
+    const startBreaks = get(this, `breakpoints.${start}`);
+    const endBreaks = get(this, `breakpoints.${end}`);
+    return this.query(
+      typeObj,
+      [
+        {
+          feature: get(start, "feature"),
+          breakpoint: {
+            amount: get(startBreaks, "amount") + 1,
+            units: get(startBreaks, "units")
+          }
+        },
+        {
+          feature: get(end, "feature"),
+          breakpoint: {
+            amount: get(endBreaks, "amount") - 1,
+            units: get(endBreaks, "units")
+          }
+        }
+      ],
+      css
+    );
+  }
   addSize(size, amount, units) {
     this.breakpoints[size] = { amount, units };
   }
