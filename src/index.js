@@ -22,3 +22,5 @@ export * from "./menus/MenuItems/MenuItems";
 export * from "./cms/Contentful/CtflLogo";
 
 export * from "./seo/SEO";
+
+export * from './util/'

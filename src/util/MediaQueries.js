@@ -1,15 +1,15 @@
 import get from "lodash/get";
 
 export class MediaQueries {
-  constructor(breakpoints, units) {
-    const _units = units ? units : "px";
+  constructor(breakpoints, _units) {
+    const units = _units ? _units : "px";
     this.breakpoints = breakpoints
       ? { ...breakpoints }
       : {
-          xs: { amount: 576, units: _units },
-          sm: { amount: 768, units: _units },
-          md: { amount: 992, units: _units },
-          lg: { amount: 1200, units: _units }
+          xs: { amount: 576, units },
+          sm: { amount: 768, units },
+          md: { amount: 992, units },
+          lg: { amount: 1200, units }
         };
   }
   _bp(size) {
@@ -19,12 +19,16 @@ export class MediaQueries {
     });
   }
   max(size, css, mediaType) {
-    const _type = mediaType ? mediaType : { type: "screen", qualifier: "only" };
-    return this.query(_type, [{ feature: "max-width", break: size }], css);
+    const type = mediaType ? mediaType : { type: "screen", qualifier: "only" };
+    return this.query(type, [{ feature: "max-width", break: size }], css);
   }
   min(size, css, mediaType) {
-    const _type = mediaType ? mediaType : { type: "screen", qualifier: "only" };
-    return this.query(_type, [{ feature: "min-width", break: size }], css);
+    const type = mediaType ? mediaType : { type: "screen", qualifier: "only" };
+    return this.query(type, [{ feature: "min-width", break: size }], css);
+  }
+  only(css, _type) {
+    const type = _type ? _type : "screen";
+    return this.query({ type, qualifier: "only" }, [], css);
   }
   _mediaFeature(feature, breakpoint) {
     const featStr =
