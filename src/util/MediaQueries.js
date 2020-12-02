@@ -18,7 +18,8 @@ export class MediaQueries {
       units: "error"
     });
   }
-  range(start, end, css, typeObj) {
+  range(start, end, css, _typeObj) {
+    const typeObj = _typeObj ? _typeObj : { type: "screen", qualifier: "only" };
     const startBreaks = get(this, `breakpoints.${start}`);
     const endBreaks = get(this, `breakpoints.${end}`);
     return this.query(
@@ -73,8 +74,9 @@ export class MediaQueries {
       const bp = this._bp(feat.break);
       return this._mediaFeature(feat.feature, bp);
     });
-    return `${this._mediaType(typeObj.type, typeObj.qualifier)} ${feats.join(
-      " "
-    )}{${css}}`;
+    return `${this._mediaType(
+      get(typeObj, `type`),
+      get(typeObj, `qualifier`)
+    )} ${feats.join(" ")}{${css}}`;
   }
 }
