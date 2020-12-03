@@ -43,7 +43,8 @@ export class MediaQueries {
       css
     );
   }
-  addSize(size, amount, units) {
+  addSize(size, amount, _units) {
+    const units = _units ? _units : "px";
     this.breakpoints[size] = { amount, units };
   }
   max(size, css, mediaType) {
