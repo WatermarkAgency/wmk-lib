@@ -181,6 +181,72 @@ SEO.Schema = ({ graphs, baseUrl, siteTitle })...
 
 Helps dynamically generate on-page schema.
 
+### MediaQueries Methods (class object)
+A class utility for managing breakpoints 
+and writing consistent media queries in Javascript
+
+#### addSize()
+```js
+MediaQueries.addSize(size, amount, units)
+// @param {string} size
+// @param {number} amount
+// @param {string} [units=px] 
+
+mq.addSize('xl',1500,'px');
+```
+Adds a named media query to an instance.
+
+Above results in:
+```css
+@media [mediaType.qualifier=only] [mediaType.type=screen] and ([])
+```
+
+#### max() / min()
+```js
+MediaQueries.addSize(size, css, mediaType)
+// @param {string} size
+// @param {string} css
+// @param {Object} [mediaType={type: "screen", qualifier: "only"}] 
+// @returns {string} CSS media query
+
+mq.max('sm',`
+color: pink;
+opacity: .5;
+`);
+```
+Returns a media query to a max-width or min-width, with a default of being only screen.
+
+#### only()
+```js
+only(css, mediaType){
+// @param {string} css
+// @param {string} [mediaType=screen]
+// @returns {string} CSS media query
+}
+```
+
+#### query()
+```js
+query(type, features, css){
+// @param {Object} type | {type, qualifier}
+// @param {[Object]} features | [{feature, break}]
+// @returns {string} CSS media query
+}
+```
+Can be used to build any kind of media query and is the base for the other getter methods.
+
+#### range()
+```js
+range(min, max, css, type){
+// @param {string} min | Named breakpoint (object key)
+// @param {string} max | Named breakpoint
+// @param {string} css | CSS media query
+// @param {Object} type | {type, qualifier}
+// @returns {string} CSS media query
+}
+```
+Used for a media query valid between a min and max range.
+
 ## License
 
 MIT © [peterwatermark](https://github.com/peterwatermark)
