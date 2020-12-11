@@ -247,6 +247,36 @@ range(min, max, css, type){
 ```
 Used for a media query valid between a min and max range.
 
+### UrlPaths Methods (class object)
+A class utility for keeping Full/Relative paths 
+dynamic and consistent
+
+#### (Constructor) UrlPaths()
+```js
+query(baseUrl,paths){
+// @param {string} baseUrl
+// @param {[paths]} paths | [{path, name}]
+}
+```
+
+#### url()
+```js
+query(key,slug){
+// @param {string} key | valid path key OR empty string ("") for root
+// @param {string} slug | slug and/or remaining portion of path
+// @returns {string} full URL path including baseUrl
+}
+```
+
+#### rel()
+```js
+query(key,slug){
+// @param {string} key | valid path key OR empty string ("") for root
+// @param {string} slug | slug and/or remaining portion of path
+// @returns {string} path relative to root
+}
+```
+
 ## License
 
 MIT © [peterwatermark](https://github.com/peterwatermark)
