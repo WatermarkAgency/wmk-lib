@@ -51,11 +51,19 @@ export class MediaQueries {
   }
   max(size, css, mediaType) {
     const type = mediaType ? mediaType : { type: "screen", qualifier: "only" };
-    return this.query(type, [{ feature: "max-width", break: size }], css);
+    return this.query(
+      type,
+      [{ feature: "max-width", break: this._bp(size) }],
+      css
+    );
   }
   min(size, css, mediaType) {
     const type = mediaType ? mediaType : { type: "screen", qualifier: "only" };
-    return this.query(type, [{ feature: "min-width", break: size }], css);
+    return this.query(
+      type,
+      [{ feature: "min-width", break: this._bp(size) }],
+      css
+    );
   }
   only(css, _type) {
     const type = _type ? _type : "screen";
