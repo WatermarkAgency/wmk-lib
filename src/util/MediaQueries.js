@@ -20,22 +20,24 @@ export class MediaQueries {
   }
   range(start, end, css, _typeObj) {
     const typeObj = _typeObj ? _typeObj : { type: "screen", qualifier: "only" };
-    const startBreaks = get(this, `breakpoints.${start}`);
-    const endBreaks = get(this, `breakpoints.${end}`);
+    const startBreaks = this._bp(start);
+    const endBreaks = this._bp(end);
+    const minFirst =
+      get(startBreaks, "amount", NaN) < get(endBreaks, "amount", NaN);
     return this.query(
       typeObj,
       [
         {
-          feature: get(start, "feature"),
-          breakpoint: {
-            amount: get(startBreaks, "amount") + 1,
+          feature: minFirst ? "min-width" : "max-width",
+          break: {
+            amount: get(startBreaks, "amount") + (minFirst ? 0.1 : -0.1),
             units: get(startBreaks, "units")
           }
         },
         {
-          feature: get(end, "feature"),
-          breakpoint: {
-            amount: get(endBreaks, "amount") - 1,
+          feature: minFirst ? "max-width" : "min-width",
+          break: {
+            amount: get(endBreaks, "amount") + (minFirst ? -0.1 : 0.1),
             units: get(endBreaks, "units")
           }
         }
@@ -72,9 +74,9 @@ export class MediaQueries {
   }
   query(typeObj, features, css) {
     const feats = features.map(feat => {
-      const bp = this._bp(feat.break);
-      return this._mediaFeature(feat.feature, bp);
+      return this._mediaFeature(feat.feature, feat.break);
     });
+
     return `${this._mediaType(
       get(typeObj, `type`),
       get(typeObj, `qualifier`)
