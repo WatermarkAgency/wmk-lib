@@ -51,7 +51,7 @@ export const Video = ({ id, className, url, poster, dimensions, Loader }) => {
       /> */}
       <Ratio
         width={winWidth > edgeShort ? edgeLong : edgeShort}
-        height={winwidth > edgeShort ? edgeShort : edgeLong}
+        height={winWidth > edgeShort ? edgeShort : edgeLong}
         style={{
           width: "100%",
           maxWidth: "none",
