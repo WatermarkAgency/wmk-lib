@@ -5,6 +5,7 @@ import Loading from "../../loader/Spinner/Spinner";
 import PropTypes from "prop-types";
 import { wmkClass } from "../../logic";
 import "./Video.css";
+import pixels from "./16x9.png";
 
 export const Video = ({ id, className, url, poster, dimensions, Loader }) => {
   const [readyState, setReadyState] = useState(null);
@@ -27,7 +28,7 @@ export const Video = ({ id, className, url, poster, dimensions, Loader }) => {
 
   const edgeLong = dimensions.split("x")[0];
   const edgeShort = dimensions.split("x")[1];
-  const _id = id ? id : undefined
+  const _id = id ? id : undefined;
   return (
     <div
       id={_id}
@@ -36,12 +37,15 @@ export const Video = ({ id, className, url, poster, dimensions, Loader }) => {
     >
       {/*This image sets the aspect ratio of the video*/}
       <img
-        src={`https://via.placeholder.com/${
-          winWidth > edgeShort
-            ? `${edgeLong}x${edgeShort}`
-            : `${edgeShort}x${edgeShort}`
-        }.jpg`}
+        // src={`https://via.placeholder.com/${
+        //   winWidth > edgeShort
+        //     ? `${edgeLong}x${edgeShort}`
+        //     : `${edgeShort}x${edgeShort}`
+        // }.jpg`}
+        src={pixels}
         alt=""
+        height={winWidth > edgeShort ? edgeLong : edgeShort}
+        width={winWidth > edgeShort ? edgeShort : edgeLong}
         style={{
           width: "100%",
           maxWidth: "none",
