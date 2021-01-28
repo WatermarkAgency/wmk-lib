@@ -6,6 +6,6 @@ export default ({ width, height }) => (
     x="0px"
     y="0px"
     viewBox={`0 0 ${width} ${height}`}
-    style={{ "enable-background": `new 0 0 ${width} ${height}` }}
+    style={{ enableBackground: `new 0 0 ${width} ${height}` }}
   ></svg>
 );
