@@ -2,14 +2,12 @@ import React from "react";
 import Helmet from "react-helmet";
 import PropTypes from "prop-types";
 
-export const SEO = {};
-
 const sanitizeSocialImageUrl = url => {
   let _url = typeof url === "string" || url instanceof String ? url : "";
   return _url.indexOf("//") === 0 ? "https:" + _url : _url;
 };
 
-SEO.Meta = ({
+export const SEO = ({
   description,
   lang,
   title,
@@ -19,7 +17,9 @@ SEO.Meta = ({
   twitterImage,
   twitterHandle,
   baseUrl,
-  siteTitle
+  siteTitle,
+  //fbAppId,
+  graphs
 }) => {
   const slugVar = !slug || slug === "/" ? "" : slug;
   const pathVar = !slug || slug === "/" ? "" : path;
@@ -28,6 +28,10 @@ SEO.Meta = ({
       name: `description`,
       content: description
     },
+    // {
+    //   name: `fb:app_id`,
+    //   content: fbAppId
+    // },
     {
       property: `og:title`,
       content: title
@@ -102,6 +106,23 @@ SEO.Meta = ({
     console.log("No Twitter Handle set in SEO.Meta");
   }
 
+  const schema = {
+    "@context": "https://schema.org",
+    "@graph": []
+  };
+  graphs.forEach(graph => schema["@graph"].push(graph));
+  const website = generateGraph(
+    "WebSite",
+    {
+      name: siteTitle,
+      url: baseUrl,
+      publisher: {
+        "@id": baseUrl + "/#organization"
+      }
+    },
+    baseUrl
+  );
+  graphs.push(website);
   return (
     <Helmet
       htmlAttributes={{
@@ -116,17 +137,21 @@ SEO.Meta = ({
       title={title}
       titleTemplate={`%s | ${siteTitle}`}
       meta={metaProps}
-    />
+    >
+      {" "}
+      <script type="application/ld+json">{JSON.stringify(schema)}</script>
+    </Helmet>
   );
 };
 
-SEO.Meta.defaultProps = {
+SEO.defaultProps = {
   lang: `en`,
   description: ``,
-  path: "/"
+  path: "/",
+  graphs: []
 };
 
-SEO.Meta.propTypes = {
+SEO.propTypes = {
   description: PropTypes.string,
   lang: PropTypes.string,
   title: PropTypes.string.isRequired,
@@ -136,7 +161,9 @@ SEO.Meta.propTypes = {
   twitterImage: PropTypes.string,
   twitterHandle: PropTypes.string,
   baseUrl: PropTypes.string.isRequired,
-  siteTitle: PropTypes.string.isRequired
+  siteTitle: PropTypes.string.isRequired,
+  fbAppId: PropTypes.string,
+  graphs: PropTypes.array
 };
 
 export const generateGraph = (type, graphMeta = {}, baseUrl) => {
@@ -148,41 +175,4 @@ export const generateGraph = (type, graphMeta = {}, baseUrl) => {
     ...info,
     ...graphMeta
   };
-};
-
-/* SEO SCHEMA */
-SEO.Schema = ({ graphs, baseUrl, siteTitle }) => {
-  const website = generateGraph(
-    "WebSite",
-    {
-      name: siteTitle,
-      url: baseUrl,
-      publisher: {
-        "@id": baseUrl + "/#organization"
-      }
-    },
-    baseUrl
-  );
-
-  graphs.push(website);
-  const schema = {
-    "@context": "https://schema.org",
-    "@graph": []
-  };
-  graphs.forEach(graph => schema["@graph"].push(graph));
-  return (
-    <Helmet>
-      <script type="application/ld+json">{JSON.stringify(schema)}</script>
-    </Helmet>
-  );
-};
-
-SEO.Schema.defaultProps = {
-  graphs: []
-};
-
-SEO.Schema.propTypes = {
-  graphs: PropTypes.array,
-  baseUrl: PropTypes.string.isRequired,
-  siteTitle: PropTypes.string.isRequired
 };
