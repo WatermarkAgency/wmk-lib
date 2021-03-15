@@ -1,14 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {
-  FaFacebookF,
-  FaTwitter,
-  FaYoutube,
-  FaLinkedinIn,
-  FaInstagram,
-  FaPinterestP,
-  FaYelp,
-} from "react-icons/fa";
+// import {
+//   FaFacebookF,
+//   FaTwitter,
+//   FaYoutube,
+//   FaLinkedinIn,
+//   FaInstagram,
+//   FaPinterestP,
+//   FaYelp,
+// } from "react-icons/fa";
 import SocialMediaIcon from "./SocialMediaIcon";
 import { wmkClass } from "../../logic";
 
@@ -50,13 +50,13 @@ SocialMediaIcons.propTypes = {
 
 SocialMediaIcons.defaultProps = {
   platforms: [
-    { name: "facebook", Icon: FaFacebookF },
-    { name: "twitter", Icon: FaTwitter },
-    { name: "linkedin", Icon: FaLinkedinIn },
-    { name: "youtube", Icon: FaYoutube },
-    { name: "instagram", Icon: FaInstagram },
-    { name: "pinterest", Icon: FaPinterestP },
-    { name: "yelp", Icon: FaYelp },
+    { name: "facebook", Icon: () => <em>error</em> },
+    { name: "twitter", Icon: () => <em>error</em> },
+    { name: "linkedin", Icon: () => <em>error</em> },
+    { name: "youtube", Icon: () => <em>error</em> },
+    { name: "instagram", Icon: () => <em>error</em> },
+    { name: "pinterest", Icon: () => <em>error</em> },
+    { name: "yelp", Icon: () => <em>error</em> },
   ],
   className: "",
 };
