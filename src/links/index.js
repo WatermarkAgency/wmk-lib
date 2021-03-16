@@ -1,3 +1,2 @@
-import { SocialMediaIcons } from './SocialMediaIcons/SocialMediaIcons'
-
-export { SocialMediaIcons }
+export * from './SocialMediaIcons/SocialMediaIcons'
+export * from './Anchor'
