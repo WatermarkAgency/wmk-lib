@@ -9,7 +9,7 @@ export const WmkLink = React.forwardRef(
         <Anchor
           style={style}
           ref={ref}
-          href={
+          to={
             mailto
               ? `mailto:${to || children}`
               : tel
