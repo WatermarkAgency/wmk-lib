@@ -2,14 +2,14 @@ import React from "react";
 import Helmet from "react-helmet";
 import PropTypes from "prop-types";
 
-export const SEO = {};
+export const WmkSeo = {};
 
 const sanitizeSocialImageUrl = (url) => {
   let _url = typeof url === "string" || url instanceof String ? url : "";
   return _url.indexOf("//") === 0 ? "https:" + _url : _url;
 };
 
-SEO.Meta = ({
+WmkSeo.Meta = ({
   description,
   lang,
   title,
@@ -77,7 +77,7 @@ SEO.Meta = ({
       });
     }
   } else {
-    console.log("No Open Graph Image set in SEO.Meta");
+    console.log("No Open Graph Image set in WmkSeo.Meta");
   }
 
   if (typeof twitterImage !== "undefined") {
@@ -88,7 +88,7 @@ SEO.Meta = ({
       });
     }
   } else {
-    console.log("No Twitter Image set in SEO.Meta");
+    console.log("No Twitter Image set in WmkSeo.Meta");
   }
 
   if (typeof twitterHandle !== "undefined") {
@@ -99,7 +99,7 @@ SEO.Meta = ({
       });
     }
   } else {
-    console.log("No Twitter Handle set in SEO.Meta");
+    console.log("No Twitter Handle set in WmkSeo.Meta");
   }
 
   return (
@@ -120,13 +120,13 @@ SEO.Meta = ({
   );
 };
 
-SEO.Meta.defaultProps = {
+WmkSeo.Meta.defaultProps = {
   lang: `en`,
   description: ``,
   path: "/"
 };
 
-SEO.Meta.propTypes = {
+WmkSeo.Meta.propTypes = {
   description: PropTypes.string,
   lang: PropTypes.string,
   title: PropTypes.string.isRequired,
@@ -151,7 +151,7 @@ export const generateGraph = (type, graphMeta = {}, baseUrl) => {
 };
 
 /* SEO SCHEMA */
-SEO.Schema = ({ graphs, baseUrl, siteTitle }) => {
+WmkSeo.Schema = ({ graphs, baseUrl, siteTitle }) => {
   const website = generateGraph(
     "WebSite",
     {
@@ -177,11 +177,11 @@ SEO.Schema = ({ graphs, baseUrl, siteTitle }) => {
   );
 };
 
-SEO.Schema.defaultProps = {
+WmkSeo.Schema.defaultProps = {
   graphs: []
 };
 
-SEO.Schema.propTypes = {
+WmkSeo.Schema.propTypes = {
   graphs: PropTypes.array,
   baseUrl: PropTypes.string.isRequired,
   siteTitle: PropTypes.string.isRequired
