@@ -14,13 +14,15 @@ npm install --save wmk-lib
 
 ### Links
 
-#### WMKLink
+#### WmkLink
 
 ```jsx
-const WMKLink = React.forwardRef(
+const WmkLink = React.forwardRef(
   ({ id, children, target, mailto, tel, style, className, speed }, ref)...
-<WMKLink to={'/page'}>Link Text</WMKLink>
-<WMKLink to="http://site.com" target="blank">Link Text</WMKLink>
+<WmkLink to={'/page'}>Link Text</WMKLink>
+<WmkLink to="http://site.com" target="blank">Link Text</WMKLink>
+<WmkLink mailto>email@address.com</WmkLink>
+<WmkLink tel>123.456.7890</WmkLink>
 ```
 
 _target_ any target will trigger external link. It's best to leave target _undefined_ if intended to use Gatsby <Link>.
@@ -164,19 +166,19 @@ Helps with loading and linking logo images from within Contentful. Detects wheth
 
 ### SEO
 
-#### SEO.Meta
+#### WmkSeo.Meta
 
 ```jsx
-SEO.Meta = ({description, lang, title, path, slug, ogImage, twitterImage, twitterHandle, baseUrl, siteTitle})...
+WmkSeo.Meta = ({description, lang, title, path, slug, ogImage, twitterImage, twitterHandle, baseUrl, siteTitle})...
 ```
 
 Assists with page SEO meta data (including open graph and twitter image).
 Note: ogImage, twitterImage and twitterHandle expect a string. If undefined is passed, you will see console errors. To intentionally leave out this data, you must pass 'null' to these props. For the images, it is good to have a conditional to check for the url or pass null to avoid the console logs.
 
-#### SEO.Schema
+#### WmkSeo.Schema
 
 ```jsx
-SEO.Schema = ({ graphs, baseUrl, siteTitle })...
+WmkSeo.Schema = ({ graphs, baseUrl, siteTitle })...
 ```
 
 Helps dynamically generate on-page schema.
