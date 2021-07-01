@@ -16,9 +16,12 @@ npm install --save wmk-lib
 
 #### WmkLink
 
-```jsx
+```
 const WmkLink = React.forwardRef(
   ({ id, children, target, mailto, tel, style, className, speed }, ref)...
+```
+
+```jsx
 <WmkLink to={'/page'}>Link Text</WMKLink>
 <WmkLink to="http://site.com" target="blank">Link Text</WMKLink>
 <WmkLink mailto>email@address.com</WmkLink>
