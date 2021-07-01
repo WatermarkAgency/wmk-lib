@@ -10,6 +10,8 @@
 npm install --save wmk-lib
 ```
 
+_**Note:** Since Gatsby bumped from 2.0 to 3.0, some of the below methods have been temporarily removed until they can be made compatible_
+
 ## Usage
 
 ### Links
