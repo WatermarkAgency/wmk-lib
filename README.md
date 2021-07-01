@@ -22,8 +22,8 @@ const WmkLink = React.forwardRef(
 ```
 
 ```jsx
-<WmkLink to={'/page'}>Link Text</WMKLink>
-<WmkLink to="http://site.com" target="blank">Link Text</WMKLink>
+<WmkLink to={'/page'}>Link Text</WmkLink>
+<WmkLink to="http://site.com" target="blank">Link Text</WmkLink>
 <WmkLink mailto>email@address.com</WmkLink>
 <WmkLink tel>123.456.7890</WmkLink>
 ```
