@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Link } from "gatsby";
 import { Anchor } from "./Anchor";
+import PropTypes from "prop-types";
 
 export const WmkLink = React.forwardRef(
   ({ to, target, children, mailto, tel, style }, ref) => {
@@ -29,3 +30,12 @@ export const WmkLink = React.forwardRef(
     }
   }
 );
+
+WmkLink.propTypes = {
+  to: PropTypes.string.isRequired,
+  target: PropTypes.string,
+  children: PropTypes.node.isRequired,
+  mailto: PropTypes.bool,
+  tel: PropTypes.bool,
+  style: PropTypes.object
+}

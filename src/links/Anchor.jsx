@@ -45,7 +45,6 @@ Anchor.propTypes = {
     PropTypes.string
   ]),
   className: PropTypes.string,
-  children: PropTypes.node.isRequired,
   style: PropTypes.object,
   speed: PropTypes.oneOfType([
     PropTypes.number,
