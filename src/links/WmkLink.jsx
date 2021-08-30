@@ -39,7 +39,7 @@ export const WmkLink = React.forwardRef(
 );
 
 WmkLink.propTypes = {
-  to: PropTypes.string.isRequired,
+  to: PropTypes.string,
   target: PropTypes.string,
   children: PropTypes.node.isRequired,
   mailto: PropTypes.bool,
