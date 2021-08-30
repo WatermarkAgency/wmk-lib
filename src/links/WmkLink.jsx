@@ -4,7 +4,7 @@ import { Anchor } from "./Anchor";
 import PropTypes from "prop-types";
 
 export const WmkLink = React.forwardRef(
-  ({ to, target, children, mailto, tel, style, className }, ref) => {
+  ({ to, target, children, mailto, tel, style, className, label }, ref) => {
     if (target || mailto || tel) {
       return (
         <Anchor
@@ -18,13 +18,19 @@ export const WmkLink = React.forwardRef(
               : to
           }
           target={target}
-          className={className}>
+          className={className}
+          label={label}>
           {children}
         </Anchor>
       );
     } else {
       return (
-        <Link ref={ref} to={to} style={style} className={className}>
+        <Link
+          ref={ref}
+          to={to}
+          style={style}
+          className={className}
+          aria-label={label}>
           {children}
         </Link>
       );
