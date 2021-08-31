@@ -35,7 +35,7 @@ export const Anchor = React.forwardRef(
 
 Anchor.propTypes = {
   children: PropTypes.node.isRequired,
-  to: PropTypes.string.isRequired,
+  to: PropTypes.string,
   target: PropTypes.oneOfType([
     PropTypes.bool,
     PropTypes.string
