@@ -1,4 +1,5 @@
-import React, { useState, useRef, useEffect } from "react";
+import * as React from "react";
+import { useState, useRef, useEffect } from "react";
 import PropTypes from "prop-types";
 import { useScrollPosition } from "@n8tb1t/use-scroll-position";
 import { wmkClass } from "../logic";

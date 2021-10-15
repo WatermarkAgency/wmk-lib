@@ -1,4 +1,5 @@
-import React, { Component } from "react";
+import * as React from "react";
+import { Component } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import get from "lodash/get";
 import { useState, useRef, useEffect } from "react";
