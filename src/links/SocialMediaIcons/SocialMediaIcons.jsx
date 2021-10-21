@@ -1,14 +1,5 @@
-import React from "react";
+import * as React from "react";
 import PropTypes from "prop-types";
-// import {
-//   FaFacebookF,
-//   FaTwitter,
-//   FaYoutube,
-//   FaLinkedinIn,
-//   FaInstagram,
-//   FaPinterestP,
-//   FaYelp,
-// } from "react-icons/fa";
 import SocialMediaIcon from "./SocialMediaIcon";
 import { wmkClass } from "../../logic";
 
