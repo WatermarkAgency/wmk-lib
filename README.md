@@ -122,10 +122,10 @@ maximum amount of items per page. Each index of the parent array corresponds to 
 new Pagination(array, items_per_page)
 ```
 
-*Pagination.pages* - Array of array of paged items
-*Pagination.length* - Number of paginated pages
-*Pagination.total* - Total number of paginated items
-*Pagination.perPage* - Number of items per page
+- *Pagination.pages* - Array of array of paged items
+- *Pagination.length* - Number of paginated pages
+- *Pagination.total* - Total number of paginated items
+- *Pagination.perPage* - Number of items per page
 
 
 ### MediaQueries Methods (class object)
