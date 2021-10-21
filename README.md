@@ -113,18 +113,20 @@ Helps dynamically generate on-page schema.
 
 ## Helper classes and functions
 
-### paginateArray(arr, per = 20)
+### Pagination
 
 Pass an array of items to get back an array that contains arrays up to the
 maximum amount of items per page. Each index of the parent array corresponds to a page of paginated results. Default number of items per page is 20 items.
 ```js
-/**
- *
- * @param {Array} arr
- * @param {number} per - an interger representing max items per page
- * @returns {Array} - an array of arrays representing each page
- */
+
+new Pagination(array, items_per_page)
 ```
+
+*Pagination.pages* - Array of array of paged items
+*Pagination.length* - Number of paginated pages
+*Pagination.total* - Total number of paginated items
+*Pagination.perPage* - Number of items per page
+
 
 ### MediaQueries Methods (class object)
 A class utility for managing breakpoints 

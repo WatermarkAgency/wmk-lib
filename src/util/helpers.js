@@ -2,9 +2,9 @@
  *
  * @param {Array} arr
  * @param {number} per - an interger representing max items per page
- * @returns {Array} - an array of arrays representing each page
+ * @returns {Object} - an array of arrays representing each page
  */
-export const paginateArray = (arr, per = 20) => {
+const paginateArray = (arr, per = 20) => {
   if (Array.isArray(arr)) {
     const totalPages = Math.ceil(arr.length / per);
     const pages = [];
@@ -13,6 +13,24 @@ export const paginateArray = (arr, per = 20) => {
     }
     return pages;
   } else {
-    return [[]];
+    return [];
   }
 };
+
+/**
+ * Class that represets paginated items
+ */
+export class Pagination {
+  /**
+   * Declare pagination
+   * @param {Array} arr - an interger representing max items per page
+   * @param {number} per - an array of arrays representing each page
+   */
+  constructor(arr, per = 20) {
+    const pages = paginateArray(arr, per);
+    this.pages = pages;
+    this.perPage = per;
+    this.length = pages.length;
+    this.total = Array.isArray(arr) ? arr.length : 0;
+  }
+}
