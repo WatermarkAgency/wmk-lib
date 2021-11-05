@@ -18,17 +18,19 @@ export const Sticky = ({
   const domPosition = absolute ? "absolute" : "relative";
   const [headerRect, setHeaderRect] = useState({ y: 0, height: 0, width: 0 });
   const [scrollPos, setScrollPos] = useState(0);
+  const [location, setLocation] = useState();
 
   const headerRef = useRef();
 
   useEffect(() => {
+    setLocation(window.location.href);
     const handleResize = () => {
       setHeaderRect(headerRef.current.getBoundingClientRect());
     };
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  }, [location]);
 
   useScrollPosition(({ currPos }) => {
     setScrollPos(currPos.y * -1);
