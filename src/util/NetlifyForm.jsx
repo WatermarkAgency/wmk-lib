@@ -11,7 +11,7 @@ const FieldName = () => {
     <Row>
       <Col lg={6}>
         <Form.Label htmlFor="firstName" visuallyHidden>
-          First Name
+          First Name *
         </Form.Label>
         <Form.Control
           type="text"
@@ -23,7 +23,7 @@ const FieldName = () => {
       </Col>
       <Col lg={6}>
         <Form.Label htmlFor="lastName" visuallyHidden>
-          Last Name
+          Last Name *
         </Form.Label>
         <Form.Control
           type="text"
@@ -42,7 +42,7 @@ const FieldEmail = () => {
     <Row>
       <Col>
         <Form.Label htmlFor="email" visuallyHidden>
-          Email
+          Email *
         </Form.Label>
         <Form.Control
           type="email"
@@ -61,7 +61,7 @@ const FieldSingle = ({ name, label, isRequired }) => {
     <Row>
       <Col>
         <Form.Label htmlFor={name} visuallyHidden>
-          {label}
+          {label} {isRequired ? <span>*</span> : null}
         </Form.Label>
         <Form.Control
           type={name}
@@ -306,7 +306,7 @@ const registeredFields = {
  * @param {Object} form configuration options
  * @returns
  */
-export const NetlifyForm = ({ title, fields, config }) => {
+export const NetlifyForm = ({ title, subtitle, fields, config }) => {
   const [submitted, setSubmitted] = useState(false);
   const [formElement, setFormElement] = useState();
   const TitleComp = title;
@@ -315,9 +315,10 @@ export const NetlifyForm = ({ title, fields, config }) => {
   const redirectOnSubmit = get(config, `redirectOnSubmit`, true);
   const thankYouPage = get(config, `thankYouPage`, `/thank-you`);
   const thankYouMessage = get(config, `thankYouMessage`, `Thank you!`);
+  const thankYouMarkup = get(config, `thankYouMarkup`, ``);
   const consoleMessage = get(config, `consoleMessage`);
   const submit = get(config, `submit`, `Submit`);
-  const postUrl = get(config, `postUrl`, "/");  
+  const postUrl = get(config, `postUrl`, "/");
 
   const curForm = useRef();
 
@@ -327,12 +328,10 @@ export const NetlifyForm = ({ title, fields, config }) => {
   }, [setFormElement]);
 
   const submitAction = () => {
-    return (
-      redirectOnSubmit
-        ? window.location.href = thankYouPage
-        : setSubmitted(true)
-    )
-  }
+    return redirectOnSubmit
+      ? (window.location.href = thankYouPage)
+      : setSubmitted(true);
+  };
   const formSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData(formElement);
@@ -358,36 +357,42 @@ export const NetlifyForm = ({ title, fields, config }) => {
       ) : typeof title === "function" ? (
         <TitleComp />
       ) : null}
-      {submitted 
-        ? <div id="thank-you-message" style={{padding: '2rem'}}>{thankYouMessage}</div>
-        : <Form
-            name={formName}
-            method="post"
-            ref={curForm}
-            data-netlify="true"
-            onSubmit={formSubmit}>
-            <input type="hidden" name="form-name" value={formName} />
-            <Container fluid="true">
-              {Array.isArray(fields)
-                ? fields.map((field, i) => {
-                    const fieldType = get(field, `as`);
-                    const FieldComp = get(field, `Component`);
-                    const FieldJsx =
-                      FieldComp && FieldComp instanceof Component
-                        ? FieldComp
-                        : get(registeredFields, `[${fieldType}]`, NullComponent);
-                    const props = get(field, `props`);
-                    return <FieldJsx key={fieldType + i} {...props} />;
-                  })
-                : null}
-              <Row>
-                <Col className="submit-col">
-                  <Button type="submit">{submit}</Button>
-                </Col>
-              </Row>
-            </Container>
-          </Form>
-      }
+      {subtitle && <p>{subtitle}</p>}
+      {submitted ? (
+        thankYouMarkup ?
+          <div id="thank-you-message" style={{ padding: "2rem" }} dangerouslySetInnerHTML={{__html: thankYouMarkup}} />
+          : <div id="thank-you-message" style={{ padding: "2rem" }}>
+              {thankYouMessage}
+            </div>
+      ) : (
+        <Form
+          name={formName}
+          method="post"
+          ref={curForm}
+          data-netlify="true"
+          onSubmit={formSubmit}>
+          <input type="hidden" name="form-name" value={formName} />
+          <Container fluid="true">
+            {Array.isArray(fields)
+              ? fields.map((field, i) => {
+                  const fieldType = get(field, `as`);
+                  const FieldComp = get(field, `Component`);
+                  const FieldJsx =
+                    FieldComp && FieldComp instanceof Component
+                      ? FieldComp
+                      : get(registeredFields, `[${fieldType}]`, NullComponent);
+                  const props = get(field, `props`);
+                  return <FieldJsx key={fieldType + i} {...props} />;
+                })
+              : null}
+            <Row>
+              <Col className="submit-col">
+                <Button type="submit">{submit}</Button>
+              </Col>
+            </Row>
+          </Container>
+        </Form>
+      )}
     </>
   );
 };
