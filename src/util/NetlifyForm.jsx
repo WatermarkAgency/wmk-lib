@@ -352,12 +352,6 @@ export const NetlifyForm = ({ title, subtitle, fields, config }) => {
 
   return (
     <>
-      {typeof title === "string" ? (
-        <h2>{title}</h2>
-      ) : typeof title === "function" ? (
-        <TitleComp />
-      ) : null}
-      {subtitle && <p>{subtitle}</p>}
       {submitted ? (
         thankYouMarkup ?
           <div id="thank-you-message" style={{ padding: "2rem" }} dangerouslySetInnerHTML={{__html: thankYouMarkup}} />
@@ -365,33 +359,41 @@ export const NetlifyForm = ({ title, subtitle, fields, config }) => {
               {thankYouMessage}
             </div>
       ) : (
-        <Form
-          name={formName}
-          method="post"
-          ref={curForm}
-          data-netlify="true"
-          onSubmit={formSubmit}>
-          <input type="hidden" name="form-name" value={formName} />
-          <Container fluid="true">
-            {Array.isArray(fields)
-              ? fields.map((field, i) => {
-                  const fieldType = get(field, `as`);
-                  const FieldComp = get(field, `Component`);
-                  const FieldJsx =
-                    FieldComp && FieldComp instanceof Component
-                      ? FieldComp
-                      : get(registeredFields, `[${fieldType}]`, NullComponent);
-                  const props = get(field, `props`);
-                  return <FieldJsx key={fieldType + i} {...props} />;
-                })
-              : null}
-            <Row>
-              <Col className="submit-col">
-                <Button type="submit">{submit}</Button>
-              </Col>
-            </Row>
-          </Container>
-        </Form>
+        <>
+          {typeof title === "string" ? (
+            <h2>{title}</h2>
+          ) : typeof title === "function" ? (
+            <TitleComp />
+          ) : null}
+          {subtitle && <p>{subtitle}</p>}
+          <Form
+            name={formName}
+            method="post"
+            ref={curForm}
+            data-netlify="true"
+            onSubmit={formSubmit}>
+            <input type="hidden" name="form-name" value={formName} />
+            <Container fluid="true">
+              {Array.isArray(fields)
+                ? fields.map((field, i) => {
+                    const fieldType = get(field, `as`);
+                    const FieldComp = get(field, `Component`);
+                    const FieldJsx =
+                      FieldComp && FieldComp instanceof Component
+                        ? FieldComp
+                        : get(registeredFields, `[${fieldType}]`, NullComponent);
+                    const props = get(field, `props`);
+                    return <FieldJsx key={fieldType + i} {...props} />;
+                  })
+                : null}
+              <Row>
+                <Col className="submit-col">
+                  <Button type="submit">{submit}</Button>
+                </Col>
+              </Row>
+            </Container>
+          </Form>
+        </>        
       )}
     </>
   );
