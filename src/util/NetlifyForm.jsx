@@ -11,7 +11,7 @@ const FieldName = () => {
     <Row>
       <Col lg={6}>
         <Form.Label htmlFor="firstName" visuallyHidden>
-          First Name
+          First Name *
         </Form.Label>
         <Form.Control
           type="text"
@@ -23,7 +23,7 @@ const FieldName = () => {
       </Col>
       <Col lg={6}>
         <Form.Label htmlFor="lastName" visuallyHidden>
-          Last Name
+          Last Name *
         </Form.Label>
         <Form.Control
           type="text"
@@ -42,7 +42,7 @@ const FieldEmail = () => {
     <Row>
       <Col>
         <Form.Label htmlFor="email" visuallyHidden>
-          Email
+          Email *
         </Form.Label>
         <Form.Control
           type="email"
@@ -60,9 +60,9 @@ const FieldSingle = ({ name, label, isRequired }) => {
   return (
     <Row>
       <Col>
-        <Form.Label htmlFor={name} visuallyHidden>
-          {label}
-        </Form.Label>
+        {label && <Form.Label htmlFor={name} visuallyHidden>
+          {label} {isRequired ? <span>*</span> : null}
+        </Form.Label>}
         <Form.Control
           type={name}
           placeholder={label}
@@ -160,6 +160,9 @@ const FieldAddress = ({
   return (
     <Row>
       <Col lg={12}>
+        <Form.Label htmlFor="addressStreet" visuallyHidden>
+          Street Address
+        </Form.Label>
         <Form.Control
           type="text"
           placeholder="Street Address"
@@ -169,6 +172,9 @@ const FieldAddress = ({
         />
       </Col>
       <Col lg={6}>
+        <Form.Label htmlFor="addressCity" visuallyHidden>
+          City
+        </Form.Label>
         <Form.Control
           type="text"
           placeholder="City"
@@ -178,6 +184,9 @@ const FieldAddress = ({
         />
       </Col>
       <Col lg={6}>
+        <Form.Label htmlFor="addressState" visuallyHidden>
+          State
+        </Form.Label>
         <Form.Control
           as="select"
           id="addressState"
@@ -193,6 +202,9 @@ const FieldAddress = ({
         </Form.Control>
       </Col>
       <Col lg={6}>
+        <Form.Label htmlFor="addressPostalCode" visuallyHidden>
+          Postal Code
+        </Form.Label>
         <Form.Control
           type="text"
           placeholder="Postal Code"
@@ -306,12 +318,16 @@ const registeredFields = {
  * @param {Object} form configuration options
  * @returns
  */
-export const NetlifyForm = ({ title, fields, config }) => {
+export const NetlifyForm = ({ title, subtitle, fields, config }) => {
+  const [submitted, setSubmitted] = useState(false);
   const [formElement, setFormElement] = useState();
   const TitleComp = title;
 
   const formName = get(config, `name`);
+  const redirectOnSubmit = get(config, `redirectOnSubmit`, true);
   const thankYouPage = get(config, `thankYouPage`, `/thank-you`);
+  const thankYouMessage = get(config, `thankYouMessage`, `Thank you!`);
+  const thankYouMarkup = get(config, `thankYouMarkup`, ``);
   const consoleMessage = get(config, `consoleMessage`);
   const submit = get(config, `submit`, `Submit`);
   const postUrl = get(config, `postUrl`, "/");
@@ -323,6 +339,11 @@ export const NetlifyForm = ({ title, fields, config }) => {
     setFormElement(current);
   }, [setFormElement]);
 
+  const submitAction = () => {
+    return redirectOnSubmit
+      ? (window.location.href = thankYouPage)
+      : setSubmitted(true);
+  };
   const formSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData(formElement);
@@ -337,44 +358,55 @@ export const NetlifyForm = ({ title, fields, config }) => {
           console.log("Form submit success: ", body);
         }
       })
-      .then(() => (window.location.href = thankYouPage))
+      .then(() => submitAction())
       .catch((error) => alert(error));
   };
 
   return (
     <>
-      {typeof title === "string" ? (
-        <h2>{title}</h2>
-      ) : typeof title === "function" ? (
-        <TitleComp />
-      ) : null}
-      <Form
-        name={formName}
-        method="post"
-        ref={curForm}
-        data-netlify="true"
-        onSubmit={formSubmit}>
-        <input type="hidden" name="form-name" value={formName} />
-        <Container fluid="true">
-          {Array.isArray(fields)
-            ? fields.map((field, i) => {
-                const fieldType = get(field, `as`);
-                const FieldComp = get(field, `Component`);
-                const FieldJsx =
-                  FieldComp && FieldComp instanceof Component
-                    ? FieldComp
-                    : get(registeredFields, `[${fieldType}]`, NullComponent);
-                const props = get(field, `props`);
-                return <FieldJsx key={fieldType + i} {...props} />;
-              })
-            : null}
-          <Row>
-            <Col className="submit-col">
-              <Button type="submit">{submit}</Button>
-            </Col>
-          </Row>
-        </Container>
-      </Form>
+      {submitted ? (
+        thankYouMarkup ?
+          <div id="thank-you-message" style={{ padding: "2rem" }} dangerouslySetInnerHTML={{__html: thankYouMarkup}} />
+          : <div id="thank-you-message" style={{ padding: "2rem" }}>
+              {thankYouMessage}
+            </div>
+      ) : (
+        <>
+          {typeof title === "string" ? (
+            <h2>{title}</h2>
+          ) : typeof title === "function" ? (
+            <TitleComp />
+          ) : null}
+          {subtitle && <p>{subtitle}</p>}
+          <Form
+            name={formName}
+            method="post"
+            ref={curForm}
+            data-netlify="true"
+            onSubmit={formSubmit}>
+            <input type="hidden" name="form-name" value={formName} />
+            <Container fluid="true">
+              {Array.isArray(fields)
+                ? fields.map((field, i) => {
+                    const fieldType = get(field, `as`);
+                    const FieldComp = get(field, `Component`);
+                    const FieldJsx =
+                      FieldComp && FieldComp instanceof Component
+                        ? FieldComp
+                        : get(registeredFields, `[${fieldType}]`, NullComponent);
+                    const props = get(field, `props`);
+                    return <FieldJsx key={fieldType + i} {...props} />;
+                  })
+                : null}
+              <Row>
+                <Col className="submit-col">
+                  <Button type="submit">{submit}</Button>
+                </Col>
+              </Row>
+            </Container>
+          </Form>
+        </>        
+      )}
     </>
   );
 };
