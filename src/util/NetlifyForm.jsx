@@ -225,9 +225,11 @@ const FieldAddress = ({
           <option disabled={true} value="">
             Choose a State
           </option>
-          {states.map((state, i) => (
-            <option key={`${state}-${i}`}>{state}</option>
-          ))}
+          {Array.isArray(states)
+            ? states.map((state, i) => (
+                <option key={`${state}-${i}`}>{state}</option>
+              ))
+            : null}
         </Form.Control>
       </Col>
       <Col lg={6}>
