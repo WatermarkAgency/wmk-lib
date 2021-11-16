@@ -4,13 +4,24 @@ import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import get from "lodash/get";
 import { useState, useRef, useEffect } from "react";
 
+const isReactComponent = (V) => {
+  return (
+    (typeof V === "function" && React.isValidElement(<V />)) ||
+    (V !== null && React.isValidElement(V))
+  );
+};
+
+//const getComp = (V) => {}
+
 const NullComponent = () => <></>;
 
-const FieldName = ({ isRequired = true }) => {
+const FieldName = ({ isRequired = true, showLabel = false }) => {
   return (
     <Row>
       <Col lg={6}>
-        <Form.Label htmlFor="firstName" visuallyHidden>
+        <Form.Label
+          htmlFor="firstName"
+          visuallyHidden={showLabel ? undefined : true}>
           First Name {isRequired ? <span>*</span> : null}
         </Form.Label>
         <Form.Control
@@ -22,7 +33,9 @@ const FieldName = ({ isRequired = true }) => {
         />
       </Col>
       <Col lg={6}>
-        <Form.Label htmlFor="lastName" visuallyHidden>
+        <Form.Label
+          htmlFor="lastName"
+          visuallyHidden={showLabel ? undefined : true}>
           Last Name {isRequired ? <span>*</span> : null}
         </Form.Label>
         <Form.Control
@@ -37,11 +50,13 @@ const FieldName = ({ isRequired = true }) => {
   );
 };
 
-const FieldEmail = ({ isRequired = true }) => {
+const FieldEmail = ({ isRequired = true, showLabel = false }) => {
   return (
     <Row>
       <Col>
-        <Form.Label htmlFor="email" visuallyHidden>
+        <Form.Label
+          htmlFor="email"
+          visuallyHidden={showLabel ? undefined : true}>
           Email {isRequired ? <span>*</span> : null}
         </Form.Label>
         <Form.Control
@@ -56,12 +71,14 @@ const FieldEmail = ({ isRequired = true }) => {
   );
 };
 
-const FieldSingle = ({ name, label, isRequired }) => {
+const FieldSingle = ({ name, label, isRequired, showLabel = false }) => {
   return (
     <Row>
       <Col>
         {label && (
-          <Form.Label htmlFor={name} visuallyHidden>
+          <Form.Label
+            htmlFor={name}
+            visuallyHidden={showLabel ? undefined : true}>
             {label} {isRequired ? <span>*</span> : null}
           </Form.Label>
         )}
@@ -77,11 +94,13 @@ const FieldSingle = ({ name, label, isRequired }) => {
   );
 };
 
-const FieldPhone = ({ isRequired = true }) => {
+const FieldPhone = ({ isRequired = true, showLabel = false }) => {
   return (
     <Row>
       <Col>
-        <Form.Label htmlFor="phone" visuallyHidden>
+        <Form.Label
+          htmlFor="phone"
+          visuallyHidden={showLabel ? undefined : true}>
           Phone Number {isRequired ? <span>*</span> : null}
         </Form.Label>
         <Form.Control
@@ -158,12 +177,15 @@ const FieldAddress = ({
     "Wisconsin",
     "Wyoming"
   ],
-  isRequired = false
+  isRequired = false,
+  showLabel = false
 }) => {
   return (
     <Row>
       <Col lg={12}>
-        <Form.Label htmlFor="addressStreet" visuallyHidden>
+        <Form.Label
+          htmlFor="addressStreet"
+          visuallyHidden={showLabel ? undefined : true}>
           Street Address {isRequired ? <span>*</span> : null}
         </Form.Label>
         <Form.Control
@@ -175,7 +197,9 @@ const FieldAddress = ({
         />
       </Col>
       <Col lg={6}>
-        <Form.Label htmlFor="addressCity" visuallyHidden>
+        <Form.Label
+          htmlFor="addressCity"
+          visuallyHidden={showLabel ? undefined : true}>
           City {isRequired ? <span>*</span> : null}
         </Form.Label>
         <Form.Control
@@ -187,7 +211,9 @@ const FieldAddress = ({
         />
       </Col>
       <Col lg={6}>
-        <Form.Label htmlFor="addressState" visuallyHidden>
+        <Form.Label
+          htmlFor="addressState"
+          visuallyHidden={showLabel ? undefined : true}>
           State {isRequired ? <span>*</span> : null}
         </Form.Label>
         <Form.Control
@@ -205,7 +231,9 @@ const FieldAddress = ({
         </Form.Control>
       </Col>
       <Col lg={6}>
-        <Form.Label htmlFor="addressPostalCode" visuallyHidden>
+        <Form.Label
+          htmlFor="addressPostalCode"
+          visuallyHidden={showLabel ? undefined : true}>
           Postal Code {isRequired ? <span>*</span> : null}
         </Form.Label>
         <Form.Control
@@ -220,11 +248,19 @@ const FieldAddress = ({
   );
 };
 
-const FieldSelect = ({ name, label, options, isRequired }) => {
+const FieldSelect = ({
+  name,
+  label,
+  options,
+  isRequired,
+  showLabel = false
+}) => {
   return (
     <Row>
       <Col>
-        <Form.Label htmlFor={name} visuallyHidden>
+        <Form.Label
+          htmlFor={name}
+          visuallyHidden={showLabel ? undefined : true}>
           {label} {isRequired ? <span>*</span> : null}
         </Form.Label>
         <Form.Control
@@ -245,11 +281,20 @@ const FieldSelect = ({ name, label, options, isRequired }) => {
   );
 };
 
-const FieldCheckbox = ({ label, name, text, isRequired }) => {
+const FieldCheckbox = ({
+  label,
+  name,
+  text,
+  isRequired,
+  showLabel = false
+}) => {
   return (
     <Row>
       <Col>
-        <Form.Label htmlFor={name} className="show">
+        <Form.Label
+          htmlFor={name}
+          className="show"
+          visuallyHidden={showLabel ? undefined : true}>
           {label} {isRequired ? <span>*</span> : null}
         </Form.Label>
         <Form.Check
@@ -264,14 +309,16 @@ const FieldCheckbox = ({ label, name, text, isRequired }) => {
   );
 };
 
-const FieldMessage = ({ isRequired }) => {
+const FieldMessage = ({ isRequired, showLabel = false }) => {
   return (
     <>
       <Row>
         <Col>
-          <label htmlFor="message">
+          <Form.Label
+            htmlFor="message"
+            visuallyHidden={showLabel ? undefined : true}>
             Message {isRequired ? <span>*</span> : null}
-          </label>
+          </Form.Label>
           <Form.Control
             as="textarea"
             rows={3}
@@ -286,10 +333,14 @@ const FieldMessage = ({ isRequired }) => {
   );
 };
 
-const FieldRadio = ({ options, inline = true, name, label }) => {
+const FieldRadio = ({ options, inline = true, name, label, showLabel }) => {
   return (
     <Form.Group>
-      <Form.Label style={{ marginRight: ".5rem" }}>{label}</Form.Label>
+      <Form.Label
+        style={{ marginRight: ".5rem" }}
+        visuallyHidden={showLabel ? undefined : true}>
+        {label}
+      </Form.Label>
       {Array.isArray(options)
         ? options.map((o, i) => {
             const radioLabel = get(o, `label`);
@@ -331,25 +382,24 @@ const registeredFields = {
  * @returns
  */
 export const NetlifyForm = ({ title, fields, config }) => {
-  //const [submitted, setSubmitted] = useState(false);
+  //console.log("props:", title, fields, config);
+  const [submitted, setSubmitted] = useState();
   const [formElement, setFormElement] = useState();
   const TitleComp = title;
 
   const formName = get(config, `name`);
-  //const redirectOnSubmit = get(config, `redirectOnSubmit`, true);
-  //const thankYouPage = get(config, `thankYouPage`, `/thank-you`);
   const thankYou = get(
     config,
     `thankYou`,
     get(config, `thankYouPage`, `/thank-you`)
   );
-  //const thankYouMarkup = get(config, `thankYouMarkup`, ``);
   const consoleMessage = get(config, `consoleMessage`);
   const submit = get(config, `submit`, `Submit`);
   const postUrl = get(config, `postUrl`, "/");
-  let ThankYouJsx = null; //() => <div>Thank you for your submission</div>
+  let ThankYouJsx = null;
+  //console.log(thankYou);
   switch (true) {
-    case thankYou instanceof Component:
+    case isReactComponent(thankYou):
       ThankYouJsx = thankYou;
       break;
     case typeof thankYou === "string" && thankYou.indexOf("/") === 0:
@@ -358,6 +408,7 @@ export const NetlifyForm = ({ title, fields, config }) => {
       break;
     case typeof thankYou === "string":
       ThankYouJsx = ({ thankYou }) => <p>{thankYou}</p>;
+      break;
     default:
       ThankYouJsx = () => <div>Thank you for your submission!</div>;
   }
@@ -369,11 +420,6 @@ export const NetlifyForm = ({ title, fields, config }) => {
     setFormElement(current);
   }, [setFormElement]);
 
-  // const submitAction = () => {
-  //   return redirectOnSubmit
-  //     ? (window.location.href = thankYouPage)
-  //     : setSubmitted(true);
-  // };
   const formSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData(formElement);
@@ -391,33 +437,21 @@ export const NetlifyForm = ({ title, fields, config }) => {
       .then(() => {
         if (!ThankYouJsx) {
           window.location.href = thankYou;
+        } else {
+          setSubmitted(true);
         }
       })
       .catch((error) => console.log(error));
   };
-
   return (
     <>
       {submitted && ThankYouJsx ? (
-        // (
-        //   thankYouMarkup ? (
-        //     <div
-        //       id="thank-you-message"
-        //       style={{ padding: "2rem" }}
-        //       dangerouslySetInnerHTML={{ __html: thankYouMarkup }}
-        //     />
-        //   ) : (
-        //     <div id="thank-you-message" style={{ padding: "2rem" }}>
-        //       {thankYouMessage}
-        //     </div>
-        //   )
-        // )
         <ThankYouJsx />
       ) : (
         <>
           {typeof title === "string" ? (
             <h2>{title}</h2>
-          ) : title instanceof Component ? (
+          ) : isReactComponent(title) ? (
             <TitleComp />
           ) : null}
           <Form
@@ -433,7 +467,7 @@ export const NetlifyForm = ({ title, fields, config }) => {
                     const fieldType = get(field, `as`);
                     const FieldComp = get(field, `Component`);
                     const FieldJsx =
-                      FieldComp && FieldComp instanceof Component
+                      FieldComp && isReactComponent(FieldComp)
                         ? FieldComp
                         : get(
                             registeredFields,
