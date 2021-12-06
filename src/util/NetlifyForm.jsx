@@ -374,10 +374,6 @@ const registeredFields = {
   radio: FieldRadio
 };
 
-const StyledFormWrapper = styled.div`
-  display: ${({ show }) => (show ? `block` : `none`)};
-`;
-
 /**
  * Netlify Form Builder Utility
  * @param {string | Component} title
@@ -448,13 +444,14 @@ export const NetlifyForm = ({ title, fields, config }) => {
       })
       .catch((error) => console.log(error));
   };
+  const showForm = ThankYouJsx && keepDom;
   return (
     <>
-      {submitted && ThankYouJsx && !keepDom ? (
+      {submitted && !showForm ? (
         <ThankYouJsx />
       ) : (
         <>
-          <StyledFormWrapper show={submitted && ThankYouJsx && keepDom}>
+          <div style={{ display: submitted && showForm ? "none" : "block" }}>
             {typeof title === "string" ? (
               <h2>{title}</h2>
             ) : isReactComponent(title) ? (
@@ -491,8 +488,8 @@ export const NetlifyForm = ({ title, fields, config }) => {
                 </Row>
               </Container>
             </Form>
-          </StyledFormWrapper>
-          {submitted && ThankYouJsx && keepDom ? (
+          </div>
+          {submitted && showForm ? (
             <Row>
               <Col>
                 <ThankYouJsx />
