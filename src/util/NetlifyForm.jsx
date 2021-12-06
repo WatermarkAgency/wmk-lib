@@ -374,6 +374,10 @@ const registeredFields = {
   radio: FieldRadio
 };
 
+const StyledFormWrapper = styled.div`
+  display: ${({ show }) => (show ? `block` : `none`)};
+`;
+
 /**
  * Netlify Form Builder Utility
  * @param {string | Component} title
@@ -396,6 +400,7 @@ export const NetlifyForm = ({ title, fields, config }) => {
   const consoleMessage = get(config, `consoleMessage`);
   const submit = get(config, `submit`, `Submit`);
   const postUrl = get(config, `postUrl`, "/");
+  const keepDom = get(config, `keepDom`);
   let ThankYouJsx = null;
   //console.log(thankYou);
   switch (true) {
@@ -445,46 +450,55 @@ export const NetlifyForm = ({ title, fields, config }) => {
   };
   return (
     <>
-      {submitted && ThankYouJsx ? (
+      {submitted && ThankYouJsx && !keepDom ? (
         <ThankYouJsx />
       ) : (
         <>
-          {typeof title === "string" ? (
-            <h2>{title}</h2>
-          ) : isReactComponent(title) ? (
-            <TitleComp />
+          <StyledFormWrapper show={submitted && ThankYouJsx && keepDom}>
+            {typeof title === "string" ? (
+              <h2>{title}</h2>
+            ) : isReactComponent(title) ? (
+              <TitleComp />
+            ) : null}
+            <Form
+              name={formName}
+              method="post"
+              ref={curForm}
+              data-netlify="true"
+              onSubmit={formSubmit}>
+              <input type="hidden" name="form-name" value={formName} />
+              <Container fluid="true">
+                {Array.isArray(fields)
+                  ? fields.map((field, i) => {
+                      const fieldType = get(field, `as`);
+                      const FieldComp = get(field, `Component`);
+                      const FieldJsx =
+                        FieldComp && isReactComponent(FieldComp)
+                          ? FieldComp
+                          : get(
+                              registeredFields,
+                              `[${fieldType}]`,
+                              NullComponent
+                            );
+                      const props = get(field, `props`);
+                      return <FieldJsx key={fieldType + i} {...props} />;
+                    })
+                  : null}
+                <Row>
+                  <Col className="submit-col">
+                    <Button type="submit">{submit}</Button>
+                  </Col>
+                </Row>
+              </Container>
+            </Form>
+          </StyledFormWrapper>
+          {submitted && ThankYouJsx && keepDom ? (
+            <Row>
+              <Col>
+                <ThankYouJsx />
+              </Col>
+            </Row>
           ) : null}
-          <Form
-            name={formName}
-            method="post"
-            ref={curForm}
-            data-netlify="true"
-            onSubmit={formSubmit}>
-            <input type="hidden" name="form-name" value={formName} />
-            <Container fluid="true">
-              {Array.isArray(fields)
-                ? fields.map((field, i) => {
-                    const fieldType = get(field, `as`);
-                    const FieldComp = get(field, `Component`);
-                    const FieldJsx =
-                      FieldComp && isReactComponent(FieldComp)
-                        ? FieldComp
-                        : get(
-                            registeredFields,
-                            `[${fieldType}]`,
-                            NullComponent
-                          );
-                    const props = get(field, `props`);
-                    return <FieldJsx key={fieldType + i} {...props} />;
-                  })
-                : null}
-              <Row>
-                <Col className="submit-col">
-                  <Button type="submit">{submit}</Button>
-                </Col>
-              </Row>
-            </Container>
-          </Form>
         </>
       )}
     </>
