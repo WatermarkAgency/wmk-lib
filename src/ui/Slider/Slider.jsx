@@ -17,7 +17,7 @@ export const Slider = ({
         ? slidesToScroll
         : slidesToShow
       : 1;
-  const prevNextButtonWidth = 80;
+  const prevNextButtonWidth = 50;
   // detect width of wrap and slider window
   const [wrapWidth, setWrapWidth] = useState(0);
   const [windowWidth, setWindowWidth] = useState(0);
@@ -28,7 +28,11 @@ export const Slider = ({
       setWrapWidth(wrapRef.current.getBoundingClientRect().width);
     // setWindowWidth(windowRef.current.getBoundingClientRect().width);
     if (wrapWidth > 0) {
-      setWindowWidth(wrapWidth - 2 * prevNextButtonWidth);
+      if (arrows) {
+        setWindowWidth(wrapWidth - 2 * prevNextButtonWidth);
+      } else {
+        setWindowWidth(wrapWidth);
+      }
     }}
     handleResize();
     window.addEventListener("resize", handleResize);
@@ -70,23 +74,24 @@ export const Slider = ({
 
   return (
     <div className="wrap" ref={wrapRef}>
-      <button
+      {arrows && <button
         onClick={() => incrementCurrSlide("prev", safeSlidesToScroll)}
         className="prev prevNext"
         style={{ width: prevNextButtonWidth }}>
         <img src={arrowImageSrc} alt="left arrow" />
-      </button>
+      </button>}
       <div className="window" style={{width: windowWidth}} ref={windowRef}>
         <div
           className="slides-container"
-          style={{ left: left, width: slideWidth * slideCount }}>
+          style={{ left: left, width: slideWidth * slideCount, transition: `all ${speed ? speed/1000 : .5}s ease` }}>
           {slidesValidated ? (
             slidesDataArray.map((slide, i) => (
               <div
                 className="slide-wrap"
                 style={{
                   width: slideWidth,
-                  position: "relative"
+                  position: "relative",
+                  overflow: "hidden"
                 }}
                 key={`${slide}-${i}`}>
                 <SlideComponent slide={slide} width={slideWidth} />
@@ -97,12 +102,17 @@ export const Slider = ({
           )}
         </div>
       </div>
-      <button
+      {arrows && <button
         onClick={() => incrementCurrSlide("next", safeSlidesToScroll)}
         className="next prevNext"
         style={{ width: prevNextButtonWidth }}>
         <img src={arrowImageSrc} alt="right arrow" />
-      </button>
+      </button>}
+      {dots && <div className="dots">
+        {slidesValidated && slidesDataArray.map((s,i) => {
+          return <button onClick={() => setCurrSlide(i)} className={`dot ${currSlide === i ? 'active' : null}`} />
+        })}
+      </div>}
     </div>
   );
 };
@@ -144,11 +154,11 @@ Slider.defaultProps = {
   slidesDataArray: [
     {
       img: {
-        src: "https://via.placeholder.com/400x250",
+        src: "https://via.placeholder.com/600x250",
         title: "placeholder image"
       },
       title: "slide 1",
-      copy: "lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet"
+      copy: "lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet"
     },
     {
       img: {

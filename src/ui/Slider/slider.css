@@ -3,6 +3,7 @@
   display: flex;
   justify-content: center;
   flex-wrap: nowrap;
+  position: relative;
 }
 
 .window {
@@ -21,8 +22,27 @@
   cursor: pointer;
 }
 .prevNext img {
-  width: 3rem;
+  width: 2rem;
 }
 .prevNext.next img {
   transform: rotate(180deg);
+}
+
+.dots {
+  position: absolute;
+  bottom: -2rem;
+  display: flex;
+  flex-wrap: nowrap;
+}
+.dot {
+  width: 1rem;
+  height: 1rem;
+  background: black;
+  border-radius: 50%;
+  border: none;
+  margin: 0 .25rem;
+  cursor: pointer;
+}
+.dot.active {
+  background: gray;
 }
