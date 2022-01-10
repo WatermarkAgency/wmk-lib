@@ -10,9 +10,13 @@ export const Slider = ({
   arrowImageSrc
 }) => {
   const { arrows, dots, speed, slidesToShow, slidesToScroll } = settings;
-  const safeSlidesToScroll = slidesToShow && slidesToScroll ?
-    slidesToScroll <= slidesToShow ? slidesToScroll : slidesToShow : 1;
-    console.log('safeSlidesToScroll: ', safeSlidesToScroll);
+  // prevent scrolling from skipping any slides (ex: you are showing 3 slides at a time, but set slidesToScroll to 4, which would skip a slide every time it's scrolled so safeSlidesToScroll is set to 3 instead of 4)
+  const safeSlidesToScroll =
+    slidesToShow && slidesToScroll
+      ? slidesToScroll <= slidesToShow
+        ? slidesToScroll
+        : slidesToShow
+      : 1;
   const prevNextButtonWidth = 80;
   // detect width of wrap and slider window
   const [wrapWidth, setWrapWidth] = useState(0);
@@ -28,13 +32,13 @@ export const Slider = ({
     }
     handleResize();
     window.addEventListener("resize", handleResize);
-    console.log("wrapWidth: ", wrapWidth);
-    console.log("windowWidth: ", windowWidth);
+    // console.log("wrapWidth: ", wrapWidth);
+    // console.log("windowWidth: ", windowWidth);
     return () => window.removeEventListener("resize", handleResize);
   }, [windowWidth, wrapWidth]);
 
   // ===== track and increment current slide index =====
-  const [currSlide, setCurrSlide] = useState(2);
+  const [currSlide, setCurrSlide] = useState(0);
   // ===== calculate how far left the slides container should be pulled to show the correct current slide(s) =====
   const slidesValidated =
     slidesDataArray && Array.isArray(slidesDataArray) && slidesDataArray.length;
@@ -47,23 +51,18 @@ export const Slider = ({
   const oddOffset = Math.floor(slidesToShow / 2);
   const oddLeft = -((currSlide - oddOffset) * slideWidth);
   const left = slidesToShow % 2 === 0 ? evenLeft : oddLeft;
-  const incrementCurrSlide = ({ prevNext, safeSlidesToScroll }) => {
-    let newCurrSlideIndex;
+  const incrementCurrSlide = (prevNext, safeSlidesToScroll) => {
     if (prevNext === "prev") {
       if (currSlide >= safeSlidesToScroll) {
         setCurrSlide(currSlide - safeSlidesToScroll);
-        console.log('currSlide: ', currSlide);
       } else {
         setCurrSlide(0);
-        console.log('currSlide: ', currSlide);
       }
     } else {
-      if (currSlide <= slideCount - safeSlidesToScroll) {
+      if (currSlide <= slideCount - 1 - safeSlidesToScroll) {
         setCurrSlide(currSlide + safeSlidesToScroll);
-        console.log('currSlide: ', currSlide);
       } else {
         setCurrSlide(slideCount - 1);
-        console.log('currSlide: ', currSlide);
       }
     }
   };
