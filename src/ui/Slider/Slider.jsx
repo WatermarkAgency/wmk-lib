@@ -19,7 +19,9 @@ export const Slider = ({
         : slidesToShow
       : 1;
   const prevNextButtonWidth = 50;
-  // detect width of wrap and slider window
+  // ================================================== //
+  // ===== DETECT WIDTH OF WRAP AND SLIDER WINDOW ===== //
+  // ================================================== //
   const [wrapWidth, setWrapWidth] = useState(0);
   const [windowWidth, setWindowWidth] = useState(0);
   const wrapRef = useRef();
@@ -27,14 +29,15 @@ export const Slider = ({
   useEffect(() => {
     const handleResize = () => {
       setWrapWidth(wrapRef.current.getBoundingClientRect().width);
-    // setWindowWidth(windowRef.current.getBoundingClientRect().width);
-    if (wrapWidth > 0) {
-      if (arrows) {
-        setWindowWidth(wrapWidth - 2 * prevNextButtonWidth);
-      } else {
-        setWindowWidth(wrapWidth);
+      // setWindowWidth(windowRef.current.getBoundingClientRect().width);
+      if (wrapWidth > 0) {
+        if (arrows) {
+          setWindowWidth(wrapWidth - 2 * prevNextButtonWidth);
+        } else {
+          setWindowWidth(wrapWidth);
+        }
       }
-    }}
+    };
     handleResize();
     window.addEventListener("resize", handleResize);
     // console.log("wrapWidth: ", wrapWidth);
@@ -42,9 +45,11 @@ export const Slider = ({
     return () => window.removeEventListener("resize", handleResize);
   }, [windowWidth, wrapWidth]);
 
-  // ===== track and increment current slide index =====
+  // ================================================== //
+  // ===== TRACK AND INCREMENT CURRENT SLIDE INDEX ===== //
+  // ================================================== //
   const [currSlide, setCurrSlide] = useState(0);
-  // ===== calculate how far left the slides container should be pulled to show the correct current slide(s) =====
+  // ===== calculate how far left the slides container should be pulled to show the correct current slide(s) ===== //
   const slidesValidated =
     slidesDataArray && Array.isArray(slidesDataArray) && slidesDataArray.length;
   const slideWidth = windowWidth / slidesToShow;
@@ -73,18 +78,60 @@ export const Slider = ({
     }
   };
 
+  // =========================================================================== //
+  // ===== DEFINE JSX FOR VARIOUS PIECES (keeps return statement cleaner) ===== //
+  // =========================================================================== //
+  
+  // NOTE: using this SlideJSX in the return statement resulted in all slides re-rendering after every state change, which was not pleasant to look at or use so I'm not using this in the return statement until I can figure out a way around that behavior
+  // const SlideJSX = ({slide, i}) => (
+  //   <div
+  //     className="slide-wrap"
+  //     style={{
+  //       width: slideWidth,
+  //       position: "relative",
+  //       overflow: "hidden"
+  //     }}
+  //     key={`slide-${i}`}>
+  //     <SlideComponent slide={slide} width={slideWidth} />
+  //   </div>
+  // );
+  const ArrowJSX = ({ prevNext }) => (
+    <button
+      onClick={() => incrementCurrSlide(prevNext, safeSlidesToScroll)}
+      className={`${prevNext} prevNext`}
+      style={{ width: prevNextButtonWidth }}>
+      {CustomArrowComponent ? (
+        <CustomArrowComponent />
+      ) : (
+        <img src={arrowImageSrc} alt="arrow" />
+      )}
+    </button>
+  );
+  const DotsJSX = () => (
+    <div className="dots">
+      {slidesValidated &&
+        slidesDataArray.map((s, i) => {
+          return (
+            <button
+              onClick={() => setCurrSlide(i)}
+              className={`dot ${currSlide === i ? "active" : null}`}
+            />
+          );
+        })}
+    </div>
+  );
+
   return (
     <div className="wrap" ref={wrapRef}>
-      {arrows && <button
-        onClick={() => incrementCurrSlide("prev", safeSlidesToScroll)}
-        className="prev prevNext"
-        style={{ width: prevNextButtonWidth }}>
-        {CustomArrowComponent ? <CustomArrowComponent /> : <img src={arrowImageSrc} alt="right arrow" />}
-      </button>}
-      <div className="window" style={{width: windowWidth}} ref={windowRef}>
+      {arrows && <ArrowJSX prevNext="prev" />}
+      <div className="window" style={{ width: windowWidth }} ref={windowRef}>
         <div
-          className="slides-container"
-          style={{ left: left, width: slideWidth * slideCount, transition: `all ${speed ? speed/1000 : .5}s ease` }}>
+          className="slides-row"
+          style={{
+            left: left,
+            width: slideWidth * slideCount,
+            transition: `all ${speed ? speed / 1000 : 0.5}s ease`
+          }}>
           {slidesValidated ? (
             slidesDataArray.map((slide, i) => (
               <div
@@ -94,26 +141,24 @@ export const Slider = ({
                   position: "relative",
                   overflow: "hidden"
                 }}
-                key={`${slide}-${i}`}>
+                key={`slide-${i}`}>
                 <SlideComponent slide={slide} width={slideWidth} />
               </div>
             ))
           ) : (
             <p>data for slides needs to be a non-empty array</p>
           )}
+          {/* {slidesValidated ? (
+            slidesDataArray.map((slide, i) => (
+              <SlideJSX slide={slide} i={i} />
+            ))
+          ) : (
+            <p>data for slides needs to be a non-empty array</p>
+          )} */}
         </div>
       </div>
-      {arrows && <button
-        onClick={() => incrementCurrSlide("next", safeSlidesToScroll)}
-        className="next prevNext"
-        style={{ width: prevNextButtonWidth }}>
-        {CustomArrowComponent ? <CustomArrowComponent /> : <img src={arrowImageSrc} alt="right arrow" />}
-      </button>}
-      {dots && <div className="dots">
-        {slidesValidated && slidesDataArray.map((s,i) => {
-          return <button onClick={() => setCurrSlide(i)} className={`dot ${currSlide === i ? 'active' : null}`} />
-        })}
-      </div>}
+      {arrows && <ArrowJSX prevNext="next" />}
+      {dots && <DotsJSX />}
     </div>
   );
 };
@@ -179,7 +224,12 @@ Slider.defaultProps = {
       copy: "lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet"
     }
   ],
-  CustomArrowComponent: () => <img src="https://images.ctfassets.net/l6o0o2yu98mw/wqq1haDungEQedVzuTubI/38f9d68aa1495acbe74a78cfb09bf490/left_arrow.png?h=250" alt="arrow" />,
+  CustomArrowComponent: () => (
+    <img
+      src="https://images.ctfassets.net/l6o0o2yu98mw/wqq1haDungEQedVzuTubI/38f9d68aa1495acbe74a78cfb09bf490/left_arrow.png?h=250"
+      alt="arrow"
+    />
+  ),
   arrowImageSrc:
     "https://images.ctfassets.net/l6o0o2yu98mw/wqq1haDungEQedVzuTubI/38f9d68aa1495acbe74a78cfb09bf490/left_arrow.png?h=250"
 };
