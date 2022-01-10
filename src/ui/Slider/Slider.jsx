@@ -10,8 +10,9 @@ export const Slider = ({
   arrowImageSrc
 }) => {
   const { arrows, dots, speed, slidesToShow, slidesToScroll } = settings;
-  const safeSlidesToScroll =
-    slidesToScroll <= slidesToShow ? slidesToScroll : slidesToShow;
+  const safeSlidesToScroll = slidesToShow && slidesToScroll ?
+    slidesToScroll <= slidesToShow ? slidesToScroll : slidesToShow : 1;
+    console.log('safeSlidesToScroll: ', safeSlidesToScroll);
   const prevNextButtonWidth = 80;
   // detect width of wrap and slider window
   const [wrapWidth, setWrapWidth] = useState(0);
@@ -21,16 +22,19 @@ export const Slider = ({
   useEffect(() => {
     const handleResize = () =>
       setWrapWidth(wrapRef.current.getBoundingClientRect().width);
-      // setWindowWidth(windowRef.current.getBoundingClientRect().width);
-      if (wrapWidth > 0) {
-        setWindowWidth(wrapWidth - 2*prevNextButtonWidth)
-      } 
+    // setWindowWidth(windowRef.current.getBoundingClientRect().width);
+    if (wrapWidth > 0) {
+      setWindowWidth(wrapWidth - 2 * prevNextButtonWidth);
+    }
     handleResize();
     window.addEventListener("resize", handleResize);
     console.log("wrapWidth: ", wrapWidth);
     console.log("windowWidth: ", windowWidth);
     return () => window.removeEventListener("resize", handleResize);
   }, [windowWidth, wrapWidth]);
+
+  // ===== track and increment current slide index =====
+  const [currSlide, setCurrSlide] = useState(2);
   // ===== calculate how far left the slides container should be pulled to show the correct current slide(s) =====
   const slidesValidated =
     slidesDataArray && Array.isArray(slidesDataArray) && slidesDataArray.length;
@@ -43,22 +47,23 @@ export const Slider = ({
   const oddOffset = Math.floor(slidesToShow / 2);
   const oddLeft = -((currSlide - oddOffset) * slideWidth);
   const left = slidesToShow % 2 === 0 ? evenLeft : oddLeft;
-
-  // ===== track and increment current slide index =====
-  const [currSlide, setCurrSlide] = useState(1);
   const incrementCurrSlide = ({ prevNext, safeSlidesToScroll }) => {
     let newCurrSlideIndex;
     if (prevNext === "prev") {
       if (currSlide >= safeSlidesToScroll) {
         setCurrSlide(currSlide - safeSlidesToScroll);
+        console.log('currSlide: ', currSlide);
       } else {
         setCurrSlide(0);
+        console.log('currSlide: ', currSlide);
       }
     } else {
       if (currSlide <= slideCount - safeSlidesToScroll) {
         setCurrSlide(currSlide + safeSlidesToScroll);
+        console.log('currSlide: ', currSlide);
       } else {
         setCurrSlide(slideCount - 1);
+        console.log('currSlide: ', currSlide);
       }
     }
   };
@@ -72,20 +77,19 @@ export const Slider = ({
         <img src={arrowImageSrc} alt="left arrow" />
       </button>
       <div className="window" ref={windowRef}>
-        <div className="slides-container" style={{ left: left, width: (slideWidth * slideCount) }}>
+        <div
+          className="slides-container"
+          style={{ left: left, width: slideWidth * slideCount }}>
           {slidesValidated ? (
             slidesDataArray.map((slide, i) => (
               <div
                 className="slide-wrap"
                 style={{
                   width: slideWidth,
-                  position: "relative",                  
+                  position: "relative"
                 }}
                 key={`${slide}-${i}`}>
-                <SlideComponent
-                  slide={slide}
-                  width={slideWidth}                  
-                />
+                <SlideComponent slide={slide} width={slideWidth} />
               </div>
             ))
           ) : (
