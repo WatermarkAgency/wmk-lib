@@ -24,12 +24,12 @@ export const Slider = ({
   const wrapRef = useRef();
   const windowRef = useRef();
   useEffect(() => {
-    const handleResize = () =>
+    const handleResize = () => {
       setWrapWidth(wrapRef.current.getBoundingClientRect().width);
     // setWindowWidth(windowRef.current.getBoundingClientRect().width);
     if (wrapWidth > 0) {
       setWindowWidth(wrapWidth - 2 * prevNextButtonWidth);
-    }
+    }}
     handleResize();
     window.addEventListener("resize", handleResize);
     // console.log("wrapWidth: ", wrapWidth);
@@ -43,6 +43,7 @@ export const Slider = ({
   const slidesValidated =
     slidesDataArray && Array.isArray(slidesDataArray) && slidesDataArray.length;
   const slideWidth = windowWidth / slidesToShow;
+  // console.log('slideWidth: ', slideWidth);
   const slideCount = slidesValidated ? slidesDataArray.length : 0;
   // if showing an even number of slides, the current slide will be just left of center
   const evenOffset = slidesToShow / 2 - 1;
@@ -75,7 +76,7 @@ export const Slider = ({
         style={{ width: prevNextButtonWidth }}>
         <img src={arrowImageSrc} alt="left arrow" />
       </button>
-      <div className="window" ref={windowRef}>
+      <div className="window" style={{width: windowWidth}} ref={windowRef}>
         <div
           className="slides-container"
           style={{ left: left, width: slideWidth * slideCount }}>
