@@ -7,6 +7,7 @@ export const Slider = ({
   settings,
   SlideComponent,
   slidesDataArray,
+  CustomArrowComponent,
   arrowImageSrc
 }) => {
   const { arrows, dots, speed, slidesToShow, slidesToScroll } = settings;
@@ -78,7 +79,7 @@ export const Slider = ({
         onClick={() => incrementCurrSlide("prev", safeSlidesToScroll)}
         className="prev prevNext"
         style={{ width: prevNextButtonWidth }}>
-        <img src={arrowImageSrc} alt="left arrow" />
+        {CustomArrowComponent ? <CustomArrowComponent /> : <img src={arrowImageSrc} alt="right arrow" />}
       </button>}
       <div className="window" style={{width: windowWidth}} ref={windowRef}>
         <div
@@ -106,7 +107,7 @@ export const Slider = ({
         onClick={() => incrementCurrSlide("next", safeSlidesToScroll)}
         className="next prevNext"
         style={{ width: prevNextButtonWidth }}>
-        <img src={arrowImageSrc} alt="right arrow" />
+        {CustomArrowComponent ? <CustomArrowComponent /> : <img src={arrowImageSrc} alt="right arrow" />}
       </button>}
       {dots && <div className="dots">
         {slidesValidated && slidesDataArray.map((s,i) => {
@@ -123,6 +124,7 @@ Slider.propTypes = {
   settings: PropTypes.object,
   SlideComponent: PropTypes.func,
   slidesDataArray: PropTypes.array,
+  CustomArrowComponent: PropTypes.func,
   arrowImageSrc: PropTypes.string
 };
 
@@ -177,6 +179,7 @@ Slider.defaultProps = {
       copy: "lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet"
     }
   ],
+  CustomArrowComponent: () => <img src="https://images.ctfassets.net/l6o0o2yu98mw/wqq1haDungEQedVzuTubI/38f9d68aa1495acbe74a78cfb09bf490/left_arrow.png?h=250" alt="arrow" />,
   arrowImageSrc:
     "https://images.ctfassets.net/l6o0o2yu98mw/wqq1haDungEQedVzuTubI/38f9d68aa1495acbe74a78cfb09bf490/left_arrow.png?h=250"
 };
