@@ -1,4 +1,12 @@
+.wrap {
+  width: 100% !important;
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
+}
+
 .window {
+  min-width: 20rem;
   position: relative;
   overflow: hidden;
 }
@@ -6,7 +14,16 @@
 .slides-container {
   position: relative;
   top: 0;
-  left: 0;
   display: flex;
   flex-wrap: nowrap;
+}
+
+.prevNext {
+  cursor: pointer;
+}
+.prevNext img {
+  width: 3rem;
+}
+.prevNext.next img {
+  transform: rotate(180deg);
 }
