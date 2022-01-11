@@ -224,12 +224,6 @@ Slider.defaultProps = {
       copy: "lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet"
     }
   ],
-  CustomArrowComponent: () => (
-    <img
-      src="https://images.ctfassets.net/l6o0o2yu98mw/wqq1haDungEQedVzuTubI/38f9d68aa1495acbe74a78cfb09bf490/left_arrow.png?h=250"
-      alt="arrow"
-    />
-  ),
   arrowImageSrc:
     "https://images.ctfassets.net/l6o0o2yu98mw/wqq1haDungEQedVzuTubI/38f9d68aa1495acbe74a78cfb09bf490/left_arrow.png?h=250"
 };
