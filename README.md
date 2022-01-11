@@ -92,6 +92,35 @@ const Sticky = ({Alert, className, children, absolute, style, zIndex, width, tri
 <Sticky Alert={AlertBar}><Header /></Sticky>
 ```
 
+### UI
+
+#### Slider
+
+```jsx
+const Slider = ({SlideComponent, slidesDataArray, settings, CustomArrowComponent, arrowImageSrc})...
+<Slider SlideComponent={...} slidesDataArray={[...]} />
+```
+
+Basic slider - just feed it a custom slide component and an array of slides data that the custom slide component is set up to display. 
+
+Required props:
+-SlideComponent: arrow function returning custom markup that displays the slide data
+-slidesDataArray: array of data with each entry representing a slide
+---NOTE: make sure your slide data and slide component are created so that the component is  pulling out and applying the data for each slide using the same keys that are used in the data itself
+
+Optional props:
+-settings object
+---arrows: whether or not you want the prev/next buttons to be rendered (default: true)
+---dots: whether or not you want the dots to be rendered (default: true)
+---speed: how many milliseconds it takes for the slide scrolling animation to complete (default: 500)
+---slidesToShow: how many slides to show at once (default: 1)
+---slidesToScroll: how many slides are scrolled on a single click of the prev/next buttons (default: 1) 
+------NOTE: if you set this as a higher number than slidesToShow, it will use the value of slidesToShow instead)
+-CustomArrowComponent: arrow function that returns markup for whatever arrow you want show inside the prev/next buttons
+-arrowImageSrc: url string of any image you want to use inside the prev/next buttons in place of the default arrow
+---NOTE: make sure the arrow image you use is an arrow that points left or else the arrows in the slider will not be pointing in the correct directions
+---NOTE: CustomArrowComponent overrides this - if you want to use this arrowImageSrc prop to have a custom arrow image from a url, make sure you do not have anything defined for the CustomArrowComponent prop
+
 ### SEO
 
 #### WmkSeo.Meta
