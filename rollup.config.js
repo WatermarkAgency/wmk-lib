@@ -1,31 +1,42 @@
 import resolve from "@rollup/plugin-node-resolve";
-import babel from "@rollup/plugin-babel";
 import commonjs from "@rollup/plugin-commonjs";
-import generatePackageJson from "rollup-plugin-generate-package-json";
-export default {
-  input: "src/index.js",
-  output: {
-    file: "dist/bundles/bundle.js",
-    format: "cjs"
+import typescript from "@rollup/plugin-typescript";
+import { terser } from "rollup-plugin-terser";
+import external from "rollup-plugin-peer-deps-external";
+import postcss from "rollup-plugin-postcss";
+import dts from "rollup-plugin-dts";
+
+const packageJson = require("./package.json");
+
+export default [
+  {
+    input: "src/index.ts",
+    output: [
+      {
+        file: packageJson.main,
+        format: "cjs",
+        sourcemap: true,
+        name: "react-ts-lib",
+      },
+      {
+        file: packageJson.module,
+        format: "esm",
+        sourcemap: true,
+      },
+    ],
+    plugins: [
+      external(),
+      resolve(),
+      commonjs(),
+      typescript({ tsconfig: "./tsconfig.json" }),
+      postcss(),
+      terser(),
+    ],
   },
-  external: [`/@babel\/runtime/`, "react", "react-dom", "prop-types", "gatsby"],
-  plugins: [
-    resolve({ extensions: [".jsx", ".js", ".tsx"] }),
-    commonjs(),
-    babel({
-      extensions: [".jsx", ".js", ".tsx"],
-      exclude: "node_modules/**",
-      babelHelpers: "runtime"
-    }),
-    generatePackageJson({
-      outputFolder: "dist",
-      baseContents: (pkg) => ({
-        name: pkg.name,
-        main: "bundles/bundle.js",
-        peerDependencies: {
-          react: "^17.0.0"
-        }
-      })
-    })
-  ]
-};
+  {
+    input: "dist/esm/types/index.d.ts",
+    output: [{ file: "dist/index.d.ts", format: "esm" }],
+    external: [/\.css$/],
+    plugins: [dts()],
+  },
+];
