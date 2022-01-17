@@ -388,12 +388,12 @@ const FieldRadio = ({
             return (
               <Form.Check
                 key={radioLabel + i}
-                inline={inline ? "yes" : undefined}
+                inline={inline}
                 label={radioLabel}
                 name={name}
                 type="radio"
                 id={name + "-" + i}
-                disabled={disabled ? "yes" : undefined}
+                disabled={disabled}
               />
             );
           })
