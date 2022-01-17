@@ -71,7 +71,17 @@ const FieldEmail = ({ isRequired = true, showLabel = false }) => {
   );
 };
 
-const FieldSingle = ({ name, label, isRequired, showLabel = false }) => {
+const FieldSingle = ({
+  name,
+  label,
+  isRequired,
+  showLabel = false
+}: {
+  name: string;
+  label: string;
+  isRequired: boolean;
+  showLabel?: boolean;
+}) => {
   return (
     <Row>
       <Col>
@@ -254,6 +264,12 @@ const FieldSelect = ({
   options,
   isRequired,
   showLabel = false
+}: {
+  name: string;
+  label: string;
+  options: string[];
+  isRequired: boolean;
+  showLabel?: boolean;
 }) => {
   return (
     <Row>
@@ -272,7 +288,7 @@ const FieldSelect = ({
           <option disabled={true} value="">
             {label}
           </option>
-          {options.map((option, i) => {
+          {options.map((option, i: number) => {
             return <option key={option + i}>{option}</option>;
           })}
         </Form.Control>
@@ -287,6 +303,12 @@ const FieldCheckbox = ({
   text,
   isRequired,
   showLabel = false
+}: {
+  name: string;
+  label: string;
+  text: string;
+  isRequired: boolean;
+  showLabel?: boolean;
 }) => {
   return (
     <Row>
@@ -309,7 +331,13 @@ const FieldCheckbox = ({
   );
 };
 
-const FieldMessage = ({ isRequired, showLabel = false }) => {
+const FieldMessage = ({
+  isRequired,
+  showLabel = false
+}: {
+  isRequired: boolean;
+  showLabel?: boolean;
+}) => {
   return (
     <>
       <Row>
@@ -333,7 +361,19 @@ const FieldMessage = ({ isRequired, showLabel = false }) => {
   );
 };
 
-const FieldRadio = ({ options, inline = true, name, label, showLabel }) => {
+const FieldRadio = ({
+  options,
+  inline = true,
+  name,
+  label,
+  showLabel
+}: {
+  options: { label: string }[];
+  inline?: boolean;
+  name: string;
+  label: string;
+  showLabel: boolean;
+}) => {
   return (
     <Form.Group>
       <Form.Label
@@ -381,7 +421,15 @@ const registeredFields = {
  * @param {Object} form configuration options
  * @returns
  */
-export const NetlifyForm = ({ title, fields, config }) => {
+export const NetlifyForm = ({
+  title,
+  fields,
+  config
+}: {
+  title: string | Component;
+  fields: object[];
+  config: object;
+}) => {
   //console.log("props:", title, fields, config);
   const [submitted, setSubmitted] = useState();
   const [formElement, setFormElement] = useState();
