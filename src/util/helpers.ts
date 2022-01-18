@@ -1,10 +1,7 @@
 /**
  *
- * @param {Array} arr
- * @param {number} per - an interger representing max items per page
- * @returns {Object} - an array of arrays representing each page
  */
-const paginateArray = (arr, per = 20) => {
+const paginateArray = (arr: {}[], per = 20) => {
   if (Array.isArray(arr)) {
     const totalPages = Math.ceil(arr.length / per);
     const pages = [];
@@ -21,16 +18,29 @@ const paginateArray = (arr, per = 20) => {
  * Class that represets paginated items
  */
 export class Pagination {
-  /**
-   * Declare pagination
-   * @param {Array} arr - an interger representing max items per page
-   * @param {number} per - an array of arrays representing each page
-   */
+  pages: {}[][];
+  perPage: number;
+  length: number;
+  total: number;
   constructor(arr, per = 20) {
     const pages = paginateArray(arr, per);
     this.pages = pages;
     this.perPage = per;
     this.length = pages.length;
     this.total = Array.isArray(arr) ? arr.length : 0;
+  }
+}
+
+export class HashTable {
+  table: { [key: string]: any };
+  constructor(arr: { [key: string]: any }[], key: string) {
+    const hash = arr.reduce((hash, i) => {
+      return hash;
+    }, {});
+    this.table = hash;
+  }
+  row(str: string) {
+    const ret = this.table[str];
+    return ret ? ret : undefined;
   }
 }

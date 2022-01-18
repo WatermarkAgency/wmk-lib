@@ -9,7 +9,10 @@ type headerProps = {
 };
 
 export const Header = React.forwardRef(
-  ({ children, className, style }: headerProps, ref) => {
+  (
+    { children, className, style }: headerProps,
+    ref: React.ForwardedRef<HTMLHeadElement>
+  ) => {
     return (
       <header
         className={wmkClass("header", "layout", className)}

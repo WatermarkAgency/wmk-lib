@@ -13,7 +13,10 @@ type copyrightProps = {
 };
 
 export const Copyright = React.forwardRef(
-  ({ children, className, id }: copyrightProps, ref) => {
+  (
+    { children, className, id }: copyrightProps,
+    ref: React.ForwardedRef<HTMLDivElement>
+  ) => {
     const year = new Date().getFullYear();
     return (
       <div
