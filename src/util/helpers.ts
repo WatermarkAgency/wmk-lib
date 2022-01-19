@@ -22,7 +22,7 @@ export class Pagination {
   perPage: number;
   length: number;
   total: number;
-  constructor(arr, per = 20) {
+  constructor(arr: {}[][], per = 20) {
     const pages = paginateArray(arr, per);
     this.pages = pages;
     this.perPage = per;
