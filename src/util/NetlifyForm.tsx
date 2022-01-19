@@ -1,10 +1,9 @@
 import * as React from "react";
-import { Component } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import get from "lodash/get";
 import { useState, useRef, useEffect } from "react";
 
-const isReactComponent = (V) => {
+const isReactComponent = (V: unknown) => {
   return (
     (typeof V === "function" && React.isValidElement(<V />)) ||
     (V !== null && React.isValidElement(V))
@@ -426,37 +425,47 @@ export const NetlifyForm = ({
   fields,
   config
 }: {
-  title: string | Component;
+  title: string | React.FunctionComponent;
   fields: object[];
-  config: object;
+  config: {
+    thankYou?: string | Function;
+    thankYouPage?: string;
+    name: string;
+    postUrl: string;
+    consoleMessage?: boolean;
+    sumbit?: string;
+  };
 }) => {
   //console.log("props:", title, fields, config);
-  const [submitted, setSubmitted] = useState();
+  const [submitted, setSubmitted] = useState(false);
   const [formElement, setFormElement] = useState();
   const TitleComp = title;
 
-  const formName = get(config, `name`);
-  const thankYou = get(
-    config,
-    `thankYou`,
-    get(config, `thankYouPage`, `/thank-you`)
-  );
+  const formName = config.name;
+  const thankYou = config.thankYou
+    ? config.thankYou
+    : config.thankYouPage
+    ? config.thankYouPage
+    : `/thank-you`;
   const consoleMessage = get(config, `consoleMessage`);
   const submit = get(config, `submit`, `Submit`);
   const postUrl = get(config, `postUrl`, "/");
   const keepDom = get(config, `keepDom`);
-  let ThankYouJsx = null;
+  let ThankYouJsx: null | Function;
+  ThankYouJsx = null;
   //console.log(thankYou);
   switch (true) {
     case isReactComponent(thankYou):
-      ThankYouJsx = thankYou;
+      if (typeof thankYou === "function") {
+        ThankYouJsx = thankYou;
+      }
       break;
     case typeof thankYou === "string" && thankYou.indexOf("/") === 0:
       break;
     case typeof thankYou === "string" && thankYou.indexOf("http") === 0:
       break;
     case typeof thankYou === "string":
-      ThankYouJsx = ({ thankYou }) => <p>{thankYou}</p>;
+      ThankYouJsx = ( {thankYou}: {thankYou: string} ) => <p>{thankYou}</p>;
       break;
     default:
       ThankYouJsx = () => <div>Thank you for your submission!</div>;
@@ -469,10 +478,10 @@ export const NetlifyForm = ({
     setFormElement(current);
   }, [setFormElement]);
 
-  const formSubmit = (e) => {
+  const formSubmit = (e: React.MouseEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(formElement);
-    const body = new URLSearchParams(formData).toString();
+    const body = new URLSearchParams(formData as any).toString();
     fetch(postUrl, {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -485,7 +494,9 @@ export const NetlifyForm = ({
       })
       .then(() => {
         if (!ThankYouJsx) {
-          window.location.href = thankYou;
+          if (typeof thankYou === "string") {
+            window.location.href = thankYou;
+          }
         } else {
           setSubmitted(true);
         }
@@ -512,7 +523,7 @@ export const NetlifyForm = ({
               data-netlify="true"
               onSubmit={formSubmit}>
               <input type="hidden" name="form-name" value={formName} />
-              <Container fluid="true">
+              <Container fluid>
                 {Array.isArray(fields)
                   ? fields.map((field, i) => {
                       const fieldType = get(field, `as`);
