@@ -4,6 +4,18 @@ import PropTypes from "prop-types";
 import { useScrollPosition } from "@n8tb1t/use-scroll-position";
 import { wmkClass } from "../logic";
 import { Header } from "./Header";
+import { CssStyles } from ".";
+
+type stickyProps = {
+  Alert: React.ComponentClass | React.FunctionComponent;
+  className: string;
+  children: React.ReactNode;
+  absolute: boolean;
+  style: CssStyles;
+  zIndex: number;
+  width: string;
+  trigger: number;
+};
 
 export const Sticky = ({
   Alert,
@@ -14,7 +26,7 @@ export const Sticky = ({
   zIndex,
   width,
   trigger
-}) => {
+}: stickyProps) => {
   const domPosition = absolute ? "absolute" : "relative";
   const [headerRect, setHeaderRect] = useState({ y: 0, height: 0, width: 0 });
   const [scrollPos, setScrollPos] = useState(0);

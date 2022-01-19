@@ -1,9 +1,15 @@
 import * as React from "react";
+import { CssStyles } from ".";
 import { wmkClass } from "../logic";
 
+type headerProps = {
+  children: React.ReactNode;
+  className: string;
+  style: CssStyles;
+};
+
 export const Header = React.forwardRef(
-  ({ children, className, style }, ref) => {
-    //   style["top"] = offset ? offset : 0;
+  ({ children, className, style }: headerProps, ref) => {
     return (
       <header
         className={wmkClass("header", "layout", className)}
